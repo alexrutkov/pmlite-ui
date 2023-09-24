@@ -1,0 +1,28 @@
+
+<section class="login__container">
+  <p-card header="Введите логин и пароль" class="login__card shadow-3">
+
+    <div class="flex flex-column gap-3">
+
+      <div  [formGroup]="credentialsGroup" class="flex flex-column">
+        <div class="p-inputgroup mb-4">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input type="text" formControlName="username" pInputText placeholder="Логин">
+        </div>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+          <input type="password" formControlName="password" pInputText placeholder="Пароль">
+        </div>
+        <a [routerLink]="['/recover']" class="align-self-end">Восстановить пароль</a>
+
+      </div>
+      <p-progressBar *ngIf="showSpinner" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+    </div>
+    <ng-template pTemplate="footer" >
+      <div class="text-center">
+        <p-button (click)="login()" [disabled]="credentialsGroup.invalid" label="Войти" icon="pi  pi-check"></p-button>
+
+      </div>
+    </ng-template>
+  </p-card>
+</section>

@@ -19,6 +19,13 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "paths": {
+      "@modules/*": ["src/app/modules/*"],
+      "@components/*": ["src/app/components/*"],
+      "@services/*": ["src/app/services/*"],
+      "@directives/*": ["src/app/directives/*"],
+      "@redux/*": ["src/app/redux/*"]
+    },
     "lib": [
       "ES2022",
       "dom"
