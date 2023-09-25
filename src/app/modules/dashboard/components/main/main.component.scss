@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+@import "mixins";
+
+:host {
+
+  .mat-drawer-container {
+    min-height: calc(100vh - var(--mat-toolbar-standard-height));
+    @include respond(phone) {
+      min-height: calc(100vh - var(--mat-toolbar-mobile-height));
+    }
+  }
+
+  .mat-drawer {
+    width: 80%;
+  }
+}

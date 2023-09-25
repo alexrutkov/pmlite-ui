@@ -7,7 +7,8 @@ import {Component} from '@angular/core';
       <p-toast></p-toast>
       <router-outlet></router-outlet>
     </div>
-  `
+  `,
+  styles: ['.container {max-width: 599px; margin: auto;}']
 })
 export class AppComponent {
 }
