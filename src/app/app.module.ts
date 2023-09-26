@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -7,7 +7,14 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import {provideComponentStore} from "@ngrx/component-store";
+import {TasksStore} from "@stores/tasks.store";
+import {QuillModule} from "ngx-quill";
+import {registerLocaleData} from "@angular/common";
+import localeRu from '@angular/common/locales/ru';
 
+
+registerLocaleData(localeRu, 'ru');
 @NgModule({
   declarations: [
     AppComponent
@@ -17,10 +24,13 @@ import {HttpClientModule} from "@angular/common/http";
       BrowserAnimationsModule,
       HttpClientModule,
         AppRoutingModule,
-        ToastModule
+        ToastModule,
+      QuillModule.forRoot()
     ],
   providers: [
-    MessageService
+    MessageService,
+    {provide: LOCALE_ID, useValue: 'ru-Ru'},
+    provideComponentStore(TasksStore)
   ],
   bootstrap: [AppComponent]
 })

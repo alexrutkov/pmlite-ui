@@ -3,6 +3,19 @@
 
 :host {
 
+  .menubar {
+    position: fixed;
+    max-width: 600px;
+    margin: 0 auto;
+    top: 0;
+    width: 100%;
+    color: white;
+    z-index: 100;
+  }
+  mat-toolbar {
+
+  }
+
   .mat-drawer-container {
     min-height: calc(100vh - var(--mat-toolbar-standard-height));
     @include respond(phone) {

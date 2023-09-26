@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TasksStore} from "../../../../stores/tasks.store";
 
 @Component({
   selector: 'app-main',
@@ -6,5 +7,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-
+  constructor(private tasksStore: TasksStore) {
+    this.tasksStore.select(s => s.tasks)
+      .subscribe(t => console.log('TASK', t))
+  }
 }

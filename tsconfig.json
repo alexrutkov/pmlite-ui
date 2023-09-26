@@ -23,6 +23,7 @@
       "@modules/*": ["src/app/modules/*"],
       "@components/*": ["src/app/components/*"],
       "@services/*": ["src/app/services/*"],
+      "@stores/*": ["src/app/stores/*"],
       "@directives/*": ["src/app/directives/*"],
       "@redux/*": ["src/app/redux/*"]
     },

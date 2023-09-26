@@ -1,0 +1,24 @@
+@import "mixins";
+
+quill-editor {
+  //height: 200px;
+  ::ng-deep {
+    .ql-editor{
+      min-height:200px;
+      background: white;
+    }
+  }
+}
+
+.task {
+  margin-bottom: var(--mat-toolbar-standard-height);
+  @include respond(phone) {
+    margin-bottom: var(--mat-toolbar-mobile-height);
+  }
+}
+
+
+mat-toolbar {
+  max-width: 600px;
+  transform: translateX(-50%);
+}
