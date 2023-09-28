@@ -39,4 +39,8 @@ export class TasksStore extends ComponentStore<TasksState> implements OnStoreIni
     this.messageService.success('Задача создана!')
     return currentState;
   })
+
+  selectTask(taskId: string) {
+    return this.select((state) => state.tasks.find(t => t.id == taskId)!);
+  }
 }

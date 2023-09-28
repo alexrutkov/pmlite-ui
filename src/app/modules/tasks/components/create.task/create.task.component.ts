@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TasksStore} from "@stores/tasks.store";
 import {Router} from "@angular/router";
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-create.task',
@@ -11,6 +12,7 @@ import {Router} from "@angular/router";
 export class CreateTaskComponent {
 
   taskForm: FormGroup = this._fb.group({
+    id: [uuid.v4()],
     name: ['', Validators.required],
     isPublic: [false],
     description: [''],

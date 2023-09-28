@@ -5,4 +5,6 @@ export interface Task {
   name: string;
   description: string;
   createdAt: string;
+  startDate: string;
+  finishDate: string;
 }

@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="menu.toggle($event)">
       <mat-icon>{{menu.render ? 'menu_open' : 'menu'}}</mat-icon>
     </button>
-    <span class="ml-3">PM (lite)</span>
+    <span [routerLink]="['/']" class="ml-3 cursor-pointer">PM (lite)</span>
     <button class="ml-auto" [routerLink]="['/tasks', 'create']" mat-raised-button color="accent">
       <mat-icon>add_task</mat-icon> Создать задачу
     </button>
@@ -17,8 +17,10 @@
     </ng-template>
   </p-overlayPanel>
 </div>
+<section class="main">
+  <div class="p-2">
+    <router-outlet></router-outlet>
+  </div>
+</section>
 
-<div class="p-2">
-  <router-outlet></router-outlet>
-</div>
 

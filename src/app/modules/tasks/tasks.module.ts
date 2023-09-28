@@ -16,17 +16,20 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {TasksComponent} from './components/tasks/tasks.component';
 import {MatCardModule} from "@angular/material/card";
+import {TaskComponent} from './components/task/task.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: 'create', component: CreateTaskComponent}
+  {path: 'create', component: CreateTaskComponent},
+  {path: ':id', component: TaskComponent}
 ];
 
 @NgModule({
   declarations: [
     MainComponent,
     CreateTaskComponent,
-    TasksComponent
+    TasksComponent,
+    TaskComponent
   ],
   imports: [
     CommonModule,
