@@ -1,0 +1,20 @@
+@import "mixins";
+
+.picture {
+  height: 120px;
+  width: 120px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  .mdc-icon-button {
+    top: -10px;
+    right: -25px;
+  }
+}
+
+.profile {
+  margin-bottom: var(--mat-toolbar-standard-height);
+  @include respond(phone) {
+    margin-bottom: var(--mat-toolbar-mobile-height);
+  }
+}

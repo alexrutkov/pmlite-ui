@@ -1,0 +1,29 @@
+.overlay {
+  &--menu.p-overlaypanel {
+    margin-top: 0 !important;
+    height: 100%;
+    width: 80%;
+    max-width: 400px;
+    background: white;
+    border-radius: 0 !important;
+    position: fixed;
+    display: block !important;
+    top: 64px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateX(-100px) translateY(0) !important;
+    z-index: 999;
+
+    .p-overlaypanel-content {
+      padding: 0;
+    }
+
+    @include respond(phone) {
+      top: 56px !important;
+      left: 0 !important;
+      transform: translateY(0) !important;
+    }
+    &:before, &:after {
+      display: none;
+    }
+  }
+}

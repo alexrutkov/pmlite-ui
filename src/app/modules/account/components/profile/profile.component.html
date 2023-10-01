@@ -1,0 +1,23 @@
+<div [formGroup]="profileForm" class="profile flex flex-column gap-2 pt-3">
+  <div [ngStyle]="{'background-image': getBackgroundImage()}"
+       class=" relative align-self-center picture flex-shrink-0"  >
+    <button color="primary" class="absolute" (click)="imageFile.click()" mat-icon-button><mat-icon>add_a_photo</mat-icon></button>
+    <input #imageFile hidden (change)="onImageChanged($event.target)"  (click)="imageFile.value = ''" type="file" accept=".png">
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Имя</mat-label>
+    <input type="text" matInput formControlName="name">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>@Имя пользователя</mat-label>
+    <input type="text" matInput formControlName="username">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>О себе (кратко)</mat-label>
+    <textarea cdkTextareaAutosize [cdkAutosizeMinRows]="4" formControlName="about" matInput></textarea>
+  </mat-form-field>
+  <app-select-tags formControlName="tags"></app-select-tags>
+</div>
+<mat-toolbar class="actions">
+  <button (click)="saveProfile()" class="ml-auto" mat-raised-button color="primary">Сохранить</button>
+</mat-toolbar>

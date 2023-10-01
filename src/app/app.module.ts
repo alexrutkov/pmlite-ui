@@ -12,6 +12,7 @@ import {TasksStore} from "@stores/tasks.store";
 import {QuillModule} from "ngx-quill";
 import {registerLocaleData} from "@angular/common";
 import localeRu from '@angular/common/locales/ru';
+import {AccountStore} from "@stores/account.store";
 
 
 registerLocaleData(localeRu, 'ru');
@@ -30,7 +31,8 @@ registerLocaleData(localeRu, 'ru');
   providers: [
     MessageService,
     {provide: LOCALE_ID, useValue: 'ru-Ru'},
-    provideComponentStore(TasksStore)
+    provideComponentStore(TasksStore),
+    provideComponentStore(AccountStore),
   ],
   bootstrap: [AppComponent]
 })

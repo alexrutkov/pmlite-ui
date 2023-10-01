@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {ComponentStore, OnStoreInit} from "@ngrx/component-store";
 import {initialTasksState, TasksState} from "@modules/tasks/model/TasksState";
-import {TaskStorageService} from "@services/task.storage.service";
+import {TaskStorageService} from "@stores/services/task.storage.service";
 import {Task} from "@modules/tasks/model/Task";
 import {MessageToastService} from "@services/message.service";
 import {HttpClient} from "@angular/common/http";

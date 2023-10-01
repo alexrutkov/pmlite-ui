@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {LocalStorageService} from "@services/local.storage.service";
+import {LocalStorageService} from "@stores/services/local.storage.service";
 import {TasksState} from "@modules/tasks/model/TasksState";
 
 @Injectable({

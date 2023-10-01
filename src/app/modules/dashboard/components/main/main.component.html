@@ -4,12 +4,17 @@
       <mat-icon>{{menu.render ? 'menu_open' : 'menu'}}</mat-icon>
     </button>
     <span [routerLink]="['/']" class="ml-3 cursor-pointer">PM (lite)</span>
-    <button class="ml-auto" [routerLink]="['/tasks', 'create']" mat-raised-button color="accent">
-      <mat-icon>add_task</mat-icon> Создать задачу
+    <button class="ml-auto" [routerLink]="['/tasks', 'create']" mat-mini-fab>
+      <mat-icon>add_task</mat-icon>
     </button>
-    <button class="ml-2"  mat-icon-button>
+    <button class="ml-2" mat-mini-fab color="primary" [matMenuTriggerFor]="accountMenu">
       <mat-icon>account_circle</mat-icon>
     </button>
+    <mat-menu #accountMenu="matMenu">
+      <a [routerLink]="['/account', 'profile']" mat-menu-item><mat-icon>face</mat-icon>Профиль</a>
+      <a [routerLink]="['/account', 'privacy']" mat-menu-item><mat-icon>manage_accounts</mat-icon>Настройки</a>
+      <a [routerLink]="['/account', 'notifications']" mat-menu-item><mat-icon>notifications</mat-icon>Оповещения</a>
+    </mat-menu>
   </mat-toolbar>
   <p-overlayPanel [dismissable]="true" styleClass="overlay--menu" #menu>
     <ng-template pTemplate>

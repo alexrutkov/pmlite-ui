@@ -9,6 +9,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MenuComponent} from './components/menu/menu.component';
 import {MatListModule} from "@angular/material/list";
 import {OverlayPanelModule} from "primeng/overlaypanel";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
         MatButtonModule,
         MatSidenavModule,
         MatListModule,
-        OverlayPanelModule
+        OverlayPanelModule,
+        MatMenuModule,
+        MatExpansionModule
     ]
 })
 export class DashboardModule { }
