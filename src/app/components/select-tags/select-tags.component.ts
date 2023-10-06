@@ -17,7 +17,7 @@ import {Tag} from "@modules/account/model/Profile";
   selector: 'app-select-tags',
   standalone: true,
   imports: [CommonModule, MatAutocompleteModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatOptionModule, PaginatorModule, ReactiveFormsModule],
-  templateUrl: './select.tags.component.html',
+  templateUrl: './select-tags.component.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -25,7 +25,7 @@ import {Tag} from "@modules/account/model/Profile";
       useExisting: SelectTagsComponent
     }
   ],
-  styleUrls: ['./select.tags.component.scss']
+  styleUrls: ['./select-tags.component.scss']
 })
 export class SelectTagsComponent implements ControlValueAccessor {
   @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
