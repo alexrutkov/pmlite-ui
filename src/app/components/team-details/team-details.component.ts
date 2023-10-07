@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {MatChipsModule} from "@angular/material/chips";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-team-details',
   standalone: true,
-    imports: [CommonModule, MatChipsModule, NgOptimizedImage],
+  imports: [CommonModule, MatChipsModule, NgOptimizedImage, RouterLink],
   templateUrl: './team-details.component.html',
   styleUrls: ['./team-details.component.scss']
 })

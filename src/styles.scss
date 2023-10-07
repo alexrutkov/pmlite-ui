@@ -7,12 +7,31 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 ul {list-style: none;margin: 0;padding: 0;}
 
+.container {
+  &.with-actions {
+    margin-bottom: var(--mat-toolbar-standard-height);
+    @include respond(phone) {
+      margin-bottom: var(--mat-toolbar-mobile-height);
+    }
+  }
+}
+
 .mat-toolbar {
   &.actions {
     position: fixed;
     max-width: 600px;
+    z-index: 100;
     transform: translateX(-50%);
-    bottom: 0;
     left: 50%;
+    bottom: 0;
+  }
+  &.agreement {
+    position: sticky;
+    z-index: 100;
+    font-size: 14px;
+    top: var(--mat-toolbar-standard-height);
+    @include respond(phone) {
+      top: var(--mat-toolbar-mobile-height);
+    }
   }
 }

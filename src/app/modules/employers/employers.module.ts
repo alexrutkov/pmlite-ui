@@ -9,11 +9,11 @@ import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {EmployeeDetailsComponent} from "@components/employee-details/employee-details.component";
 
 const routes: Routes = [
-  {
-    path: '', component: MainComponent
-  }
+  {path: '', component: MainComponent},
+  {path: ':id', component: EmployeeDetailsComponent}
 ];
 
 @NgModule({

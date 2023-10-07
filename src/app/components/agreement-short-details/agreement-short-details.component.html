@@ -1,0 +1,26 @@
+<mat-card [ngSwitch]="event.type">
+  <mat-card-header>
+    <mat-card-title>Аланхея</mat-card-title>
+    <mat-card-subtitle>@id234234</mat-card-subtitle>
+    <img mat-card-avatar src="https://via.placeholder.com/80x80" alt="Photo of a Shiba Inu">
+  </mat-card-header>
+  <mat-card-content >
+    <p>{{agreementTypes[event.type]}}:</p>
+
+    <mat-chip *ngSwitchCase="'CREATE_TAG'">{{'Lorem ipsum dolor sit amet, consectetur' | uppercase}}</mat-chip>
+    <strong *ngSwitchCase="'CREATE_TASK'">{{event.data.name}}</strong>
+    <strong *ngSwitchCase="'PARTICIPATE_TASK'">{{event.data.name}}</strong>
+    <strong *ngSwitchCase="'PARTICIPATE_TEAM'">{{event.data.name}}</strong>
+  </mat-card-content>
+  <mat-card-actions>
+    <button *ngSwitchCase="'CREATE_TASK'" [routerLink]="[event.id, 'task']"
+            mat-raised-button color="primary" class="ml-auto">Просмотр</button>
+    <button *ngSwitchCase="'PARTICIPATE_TEAM'" [routerLink]="[event.id, 'team']"
+            mat-raised-button color="primary" class="ml-auto">Просмотр</button>
+    <button *ngSwitchCase="'PARTICIPATE_TASK'" [routerLink]="[event.id, 'task']"
+            mat-raised-button color="primary" class="ml-auto">Просмотр</button>
+  </mat-card-actions>
+  <mat-card-footer class="pr-2 pb-2 text-bluegray-300 text-sm flex">
+    <span class="ml-auto">27.09.2023, 00:57</span>
+  </mat-card-footer>
+</mat-card>

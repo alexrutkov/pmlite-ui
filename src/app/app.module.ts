@@ -13,6 +13,7 @@ import {QuillModule} from "ngx-quill";
 import {registerLocaleData} from "@angular/common";
 import localeRu from '@angular/common/locales/ru';
 import {AccountStore} from "@stores/account.store";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 registerLocaleData(localeRu, 'ru');
@@ -26,6 +27,7 @@ registerLocaleData(localeRu, 'ru');
       HttpClientModule,
         AppRoutingModule,
         ToastModule,
+      MatDialogModule,
       QuillModule.forRoot()
     ],
   providers: [

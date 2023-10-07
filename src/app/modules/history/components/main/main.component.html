@@ -1,1 +1,3 @@
-<p>main works!</p>
+<ul class="flex flex-column gap-2">
+  <li *ngFor="let e of events"><app-agreement-short-details [event]="e"></app-agreement-short-details></li>
+</ul>

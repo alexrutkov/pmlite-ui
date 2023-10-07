@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Добавить обоснование:</h2>
+<mat-dialog-content>
+  <mat-form-field class="w-full">
+    <mat-label>Обоснование</mat-label>
+    <textarea cdkTextareaAutosize [cdkAutosizeMinRows]="4" [formControl]="reasonControl" matInput></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Отменить</button>
+  <button class="ml-auto" (click)="save()" mat-raised-button color="primary">Сохранить</button>
+</mat-dialog-actions>

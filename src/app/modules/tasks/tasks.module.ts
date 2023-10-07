@@ -17,11 +17,12 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {TasksComponent} from './components/tasks/tasks.component';
 import {MatCardModule} from "@angular/material/card";
 import {TaskComponent} from './components/task/task.component';
+import {TaskDetailsComponent} from "@components/task-details/task-details.component";
 
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'create', component: CreateTaskComponent},
-  {path: ':id', component: TaskComponent}
+  {path: ':id', component: TaskDetailsComponent}
 ];
 
 @NgModule({

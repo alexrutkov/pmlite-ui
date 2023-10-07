@@ -14,6 +14,7 @@ import {EmployeeDetailsComponent} from "@components/employee-details/employee-de
 import {TaskDetailsComponent} from "@components/task-details/task-details.component";
 import {TeamDetailsComponent} from "@components/team-details/team-details.component";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
     EmployeeDetailsComponent,
     TaskDetailsComponent,
     TeamDetailsComponent,
-    MatTabsModule
+    MatTabsModule,
+    MatToolbarModule
   ]
 })
 export class AgreementsModule { }
