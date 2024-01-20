@@ -25,10 +25,8 @@
         <strong *ngSwitchCase="'PARTICIPATE_TEAM'">{{e.data.name}}</strong>
       </mat-card-content>
       <mat-card-actions>
-        <ng-container *ngSwitchCase="'CREATE_TAG'">
-          <button mat-raised-button color="warn">Отклонить</button>
-          <button mat-raised-button color="primary" class="ml-auto">Принять</button>
-        </ng-container>
+        <button *ngSwitchCase="'CREATE_TAG'" [routerLink]="[e.id, 'tag']"
+                mat-raised-button color="primary" class="ml-auto">Просмотр</button>
         <button *ngSwitchCase="'CREATE_TASK'" [routerLink]="[e.id, 'task']"
                 mat-raised-button color="primary" class="ml-auto">Просмотр</button>
         <button *ngSwitchCase="'PARTICIPATE_TEAM'" [routerLink]="[e.id, 'team']"

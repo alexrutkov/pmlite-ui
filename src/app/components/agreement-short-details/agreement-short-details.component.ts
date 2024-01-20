@@ -4,18 +4,19 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {RouterLink} from "@angular/router";
-import {AgreementEvent, AgreementType} from "@modules/agreements/model/AgreementEvent";
+import {Agreement, AgreementTaskType} from "@modules/agreements/model/AgreementTask";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-agreement-short-details',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatChipsModule, RouterLink],
+  imports: [CommonModule, MatButtonModule, MatCardModule, MatChipsModule, RouterLink, MatIconModule],
   templateUrl: './agreement-short-details.component.html',
   styleUrls: ['./agreement-short-details.component.scss']
 })
 export class AgreementShortDetailsComponent {
-  @Input() event!: AgreementEvent<any>;
-  agreementTypes: {[key in keyof typeof AgreementType]: string} = {
+  @Input() agreement!: Agreement<any>;
+  agreementTypes: {[key in keyof typeof AgreementTaskType]: string} = {
     'CREATE_TAG': 'Создание нового тега',
     'CREATE_TASK': 'Создание новой задачи',
     'PARTICIPATE_TEAM': 'Участие в команде',

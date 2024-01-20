@@ -15,18 +15,25 @@ import {TaskDetailsComponent} from "@components/task-details/task-details.compon
 import {TeamDetailsComponent} from "@components/team-details/team-details.component";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {AgreementHistoryComponent} from './components/history/agreement-history.component';
+import {AgreementShortDetailsComponent} from "@components/agreement-short-details/agreement-short-details.component";
+import {AgreementTagComponent} from './components/agreement-tag/agreement-tag.component';
 
 
 const routes: Routes = [
   {path: '', component: MainComponent},
+  {path: 'history', component: AgreementHistoryComponent},
   {path: ':id/task', component: AgreementTaskComponent},
+  {path: ':id/tag', component: AgreementTagComponent},
   {path: ':id/team', component: AgreementTeamComponent}
 ];
 @NgModule({
   declarations: [
     MainComponent,
     AgreementTaskComponent,
-    AgreementTeamComponent
+    AgreementTeamComponent,
+    AgreementHistoryComponent,
+    AgreementTagComponent
   ],
   imports: [
 
@@ -42,7 +49,8 @@ const routes: Routes = [
     TaskDetailsComponent,
     TeamDetailsComponent,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    AgreementShortDetailsComponent
   ]
 })
 export class AgreementsModule { }

@@ -10,8 +10,7 @@ const routes: Routes = [
       {path: 'employers', loadChildren: () => import('@modules/employers/employers.module').then(mod => mod.EmployersModule)},
       {path: 'teams', loadChildren: () => import('@modules/teams/teams.module').then(mod => mod.TeamsModule)},
       {path: 'account', loadChildren: () => import('@modules/account/account.module').then(mod => mod.AccountModule)},
-      {path: 'agreements', loadChildren: () => import('@modules/agreements/agreements.module').then(mod => mod.AgreementsModule)},
-      {path: 'history', loadChildren: () => import('@modules/history/history.module').then(mod => mod.HistoryModule)},
+      {path: 'agreements', loadChildren: () => import('@modules/agreements/agreements.module').then(mod => mod.AgreementsModule)}
     ]
   }
 ];

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {AgreementEvent, AgreementType} from "@modules/agreements/model/AgreementEvent";
+import {AgreementTask, AgreementTaskType} from "@modules/agreements/model/AgreementTask";
 
 @Component({
   selector: 'app-main',
@@ -9,7 +9,7 @@ import {AgreementEvent, AgreementType} from "@modules/agreements/model/Agreement
 })
 export class MainComponent {
 
-  agreementTypes: {[key in keyof typeof AgreementType]: string} = {
+  agreementTypes: {[key in keyof typeof AgreementTaskType]: string} = {
     'CREATE_TAG': 'Создание нового тега',
     'CREATE_TASK': 'Создание новой задачи',
     'PARTICIPATE_TEAM': 'Участие в команде',
@@ -17,13 +17,13 @@ export class MainComponent {
   }
   typeControl = new FormControl<string>('', Validators.required);
 
-  events: AgreementEvent<any>[] = [
-    {id: '1', type: 'CREATE_TAG', data: ''},
-    {id: '1', type: 'CREATE_TASK', data: {name: 'Тестирую новую задачу'}},
-    {id: '1', type: 'PARTICIPATE_TEAM', data: {name: 'Команда номер 1'}},
-    {id: '1', type: 'PARTICIPATE_TASK', data: {name: 'Тестирую новую задачу'}},
+  events: AgreementTask<any>[] = [
+    {id: '1', type: 'CREATE_TAG', data: '', employer: {id: '2', name: 'Аланхея'} },
+    {id: '1', type: 'CREATE_TASK', data: {name: 'Тестирую новую задачу'}, employer: {id: '2', name: 'Аланхея'}},
+    {id: '1', type: 'PARTICIPATE_TEAM', data: {name: 'Команда номер 1'}, employer: {id: '2', name: 'Аланхея'}},
+    {id: '1', type: 'PARTICIPATE_TASK', data: {name: 'Тестирую новую задачу'}, employer: {id: '2', name: 'Аланхея'}},
   ];
-  filteredEvents: AgreementEvent<any>[] = [];
+  filteredEvents: AgreementTask<any>[] = [];
 
   constructor() {
     this.filteredEvents = this.events;

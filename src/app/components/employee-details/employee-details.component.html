@@ -28,3 +28,11 @@
     <li><a [routerLink]="['/tasks', '991c97dd-9a80-4669-986c-117d8d116c0f']">Моя первая задача</a></li>
   </ol>
 </section>
+
+<section>
+  <h3>Согласования</h3>
+  <ul class="flex flex-column gap-2">
+    <li *ngFor="let e of events"><app-agreement-short-details [agreement]="e"></app-agreement-short-details></li>
+  </ul>
+
+</section>
