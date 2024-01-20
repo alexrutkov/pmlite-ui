@@ -1,7 +1,7 @@
 <mat-card [ngSwitch]="agreement.task.type">
   <mat-card-header class="relative">
     <mat-card-title>{{agreement.task.employer.name}}</mat-card-title>
-    <mat-card-subtitle>@id234234</mat-card-subtitle>
+    <mat-card-subtitle>&#64;id234234</mat-card-subtitle>
     <img mat-card-avatar src="https://via.placeholder.com/80x80" alt="Photo of a Shiba Inu">
     <mat-icon [ngClass]="{'decline': agreement.type == 'DECLINED'}" class="absolute sign">
       {{agreement.type == 'DECLINED' ? 'cancel' : 'verified'}}
