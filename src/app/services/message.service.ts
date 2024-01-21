@@ -13,4 +13,8 @@ export class MessageToastService {
   success(message: string) {
     this.messageService.add({severity:'success', summary: message});
   }
+
+  error(message: string) {
+    this.messageService.add({severity:'error', summary: message});
+  }
 }

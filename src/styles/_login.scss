@@ -1,8 +1,4 @@
-$color: #098CA9;
-
-.title {
-  font-size: 16px;
-}
+@use '@angular/material' as mat;
 
 .login {
 
@@ -17,29 +13,28 @@ $color: #098CA9;
   }
 
   &__card {
-    width: 320px;
+    width: 300px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
 
+  .full-width {
+    width: 100%;
+  }
   .title {
     text-transform: uppercase;
     text-align: center;
-    color: $color;
     font-style: normal;
     font-weight: bold;
     font-size: 25px;
     line-height: 50px;
-    margin: 0 0 10px;
+    margin: 0 010px;
   }
-}
 
-.help {
-  color: $color;
-  font-size: 13px;
-}
-.error {
-  font-size: var(--mat-form-field-subscript-text-size)
+  a, a:active {
+    text-decoration: none;
+  }
+
 }
