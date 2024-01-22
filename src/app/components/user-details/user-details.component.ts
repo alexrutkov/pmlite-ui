@@ -9,10 +9,10 @@ import {Agreement} from "@modules/agreements/model/AgreementTask";
   selector: 'app-employee-details',
   standalone: true,
     imports: [CommonModule, NgOptimizedImage, MatChipsModule, RouterLink, AgreementShortDetailsComponent],
-  templateUrl: './employee-details.component.html',
-  styleUrls: ['./employee-details.component.scss']
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.scss']
 })
-export class EmployeeDetailsComponent {
+export class UserDetailsComponent {
   events: Agreement<any>[] = [
     {
       id: '1', type: 'DECLINED', task: {

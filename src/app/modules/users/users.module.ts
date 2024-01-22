@@ -1,25 +1,25 @@
 import {NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {MainComponent} from './components/main/main.component';
+import {MainComponent} from '@modules/users/components/main/main.component';
 import {RouterModule, Routes} from "@angular/router";
 import {MatTabsModule} from "@angular/material/tabs";
-import {EmployersComponent} from './components/employers/employers.component';
+import {UsersComponent} from '@modules/users/components/users/users.component';
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {EmployeeDetailsComponent} from "@components/employee-details/employee-details.component";
+import {UserDetailsComponent} from "@components/user-details/user-details.component";
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: ':id', component: EmployeeDetailsComponent}
+  {path: ':id', component: UserDetailsComponent}
 ];
 
 @NgModule({
   declarations: [
     MainComponent,
-    EmployersComponent
+    UsersComponent
   ],
   imports: [
     CommonModule,
@@ -33,4 +33,4 @@ const routes: Routes = [
     MatIconModule
   ]
 })
-export class EmployersModule { }
+export class UsersModule { }

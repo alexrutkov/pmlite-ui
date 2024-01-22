@@ -1,4 +1,4 @@
-import {Employer} from "@modules/employers/Employer";
+import {User} from "@modules/users/User";
 
 
 export enum AgreementTaskType {
@@ -13,14 +13,14 @@ export enum AgreementType {
 export interface AgreementTask<T> {
   id: string;
   type: keyof typeof AgreementTaskType;
-  employer: Employer;
+  employer: User;
   data: T;
 }
 
 export interface Agreement<T> {
   id: string;
   type: keyof typeof AgreementType;
-  agreementBy: Employer;
+  agreementBy: User;
   agreementAt: string;
   task: AgreementTask<T>;
 }

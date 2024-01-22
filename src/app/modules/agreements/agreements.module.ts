@@ -10,7 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {AgreementTaskComponent} from './components/agreement-task/agreement-task.component';
 import {AgreementTeamComponent} from './components/agreement-team/agreement-team.component';
-import {EmployeeDetailsComponent} from "@components/employee-details/employee-details.component";
+import {UserDetailsComponent} from "@components/user-details/user-details.component";
 import {TaskDetailsComponent} from "@components/task-details/task-details.component";
 import {TeamDetailsComponent} from "@components/team-details/team-details.component";
 import {MatTabsModule} from "@angular/material/tabs";
@@ -45,7 +45,7 @@ const routes: Routes = [
     MatSelectModule,
     ReactiveFormsModule,
     MatIconModule,
-    EmployeeDetailsComponent,
+    UserDetailsComponent,
     TaskDetailsComponent,
     TeamDetailsComponent,
     MatTabsModule,

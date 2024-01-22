@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '', component: MainComponent, children: [
       {path: '', redirectTo: 'tasks', pathMatch: 'full'},
       {path: 'tasks', loadChildren: () => import('@modules/tasks/tasks.module').then(mod => mod.TasksModule)},
-      {path: 'employers', loadChildren: () => import('@modules/employers/employers.module').then(mod => mod.EmployersModule)},
+      {path: 'users', loadChildren: () => import('@modules/users/users.module').then(mod => mod.UsersModule)},
       {path: 'teams', loadChildren: () => import('@modules/teams/teams.module').then(mod => mod.TeamsModule)},
       {path: 'account', loadChildren: () => import('@modules/account/account.module').then(mod => mod.AccountModule)},
       {path: 'agreements', loadChildren: () => import('@modules/agreements/agreements.module').then(mod => mod.AgreementsModule)}
