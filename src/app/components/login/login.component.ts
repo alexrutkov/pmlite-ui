@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.isAuthorized().subscribe();
+    // this.authService.isAuthorized().subscribe();
   }
 
   public login() {

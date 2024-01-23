@@ -6,7 +6,7 @@ import {AgreementShortDetailsComponent} from "@components/agreement-short-detail
 import {Agreement} from "@modules/agreements/model/AgreementTask";
 
 @Component({
-  selector: 'app-employee-details',
+  selector: 'app-user-details',
   standalone: true,
     imports: [CommonModule, NgOptimizedImage, MatChipsModule, RouterLink, AgreementShortDetailsComponent],
   templateUrl: './user-details.component.html',
