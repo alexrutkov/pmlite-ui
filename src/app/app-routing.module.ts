@@ -8,7 +8,11 @@ const canMatchDashboard: CanMatchFn = (route: Route, segments: UrlSegment[]) => 
 
 const routes: Routes = [
   {path: 'login', loadComponent: () => import('@components/login/login.component').then(mod => mod.LoginComponent)},
-  {path: 'registration', loadComponent: () => import('@components/registration/registration.component').then(mod => mod.RegistrationComponent)},
+  {
+    path: 'registration',
+    loadChildren: () => import('@modules/registration/registration.module').then(m => m.RegistrationModule),
+    title: 'Регистрация'
+  },
   {
     path: '',
     loadChildren: () => import('@modules/dashboard/dashboard.module').then(mod => mod.DashboardModule),

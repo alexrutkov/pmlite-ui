@@ -1,0 +1,64 @@
+<section class="login__container">
+  <p-card header="Установите пароль" class="login__card shadow-3">
+
+    <div class="flex flex-column gap-3 align-items-center">
+
+      <div [formGroup]="passwordForm" class="flex flex-column gap-3">
+
+        <p-password styleClass="w-full" formControlName="password" [toggleMask]="true" autocomplete="off">
+        </p-password>
+        <div class="flex flex-column gap-2">
+          <p-password styleClass="w-full" formControlName="confirmPassword" autocomplete="off"
+                      [feedback]="false"
+                      [toggleMask]="true">
+          </p-password>
+          <span class="mat-error"
+                *ngIf="passwordForm.get('confirmPassword')?.hasError('compare')">
+        * Пароли должны совпадать
+      </span>
+
+        </div>
+        <p-divider></p-divider>
+        <div>
+          <p class="mt-1 font-bold">Требование к паролю</p>
+          <ul class="hints pl-2 ml-2 mt-0" style="line-height: 1.5">
+            <li class="flex flex-row justify-content-between"
+                [style.color]="isLowerValid ? 'green' : 'red'">
+              <span>Нижний регистр</span>
+              <i *ngIf="isLowerValid; else error" class="pi pi-check"></i>
+            </li>
+            <li [style.color]="isUpperValid ? 'green' : 'red'"
+                class="flex flex-row justify-content-between">
+              <span>Верхний регистр</span>
+              <i *ngIf="isUpperValid; else error" class="pi pi-check"></i>
+            </li>
+            <li [style.color]="isDigitValid ? 'green' : 'red'"
+                class="flex flex-row justify-content-between">
+              <span>Цифра</span>
+              <i *ngIf="isDigitValid; else error" class="pi pi-check"></i>
+            </li>
+            <li [style.color]="isLengthValid ? 'green' : 'red'"
+                class="flex flex-row justify-content-between">
+              <span>Минимум 8 символов</span>
+              <i *ngIf="isLengthValid; else error" class="pi pi-check"></i>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+    <ng-template pTemplate="footer" >
+      <div class="text-center flex flex-row gap-2">
+        <p-button (onClick)="savePassword()" styleClass="p-button-success" [disabled]="passwordForm.invalid"
+                  label="Установить" icon="pi  pi-check"></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</section>
+
+
+
+<ng-template #error>
+  <i class="pi pi-times-circle"></i>
+</ng-template>

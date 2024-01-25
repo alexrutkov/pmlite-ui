@@ -1,40 +1,19 @@
 import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {NgxCaptchaModule} from "ngx-captcha";
-import {
-  AbstractControl,
-  AsyncValidatorFn,
-  FormBuilder,
-  ReactiveFormsModule,
-  ValidationErrors,
-  Validators
-} from "@angular/forms";
+import {AbstractControl, AsyncValidatorFn, FormBuilder, ValidationErrors, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {MessageToastService} from "@services/message.service";
 import {finalize, Observable, of} from "rxjs";
 import {catchError, map} from "rxjs/operators";
-import {MatButton} from "@angular/material/button";
-import {MatError, MatFormField, MatInput, MatLabel} from "@angular/material/input";
+import {CAPTCHA_KEY} from "@modules/registration/const";
 
 @Component({
   selector: 'app-registration',
-  standalone: true,
-  imports: [
-    CommonModule,
-    NgxCaptchaModule,
-    ReactiveFormsModule,
-    MatButton,
-    MatInput,
-    MatLabel,
-    MatError,
-    MatFormField
-  ],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  siteKey = '6Lfak1cpAAAAAIhU0f1S6sFCFyyMb53b75FdqfV3'
+  siteKey = CAPTCHA_KEY;
   registrationForm = this._fb.group({
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
     email: ['', [Validators.required, Validators.email], this.emailValidator()],

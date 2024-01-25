@@ -1,0 +1,36 @@
+<section class="login login__container">
+  <div class="login__card flex flex-column justify-content-start align-items-center gap-2">
+    <h3 class="title">РЕГИСТРАЦИЯ</h3>
+    <span class="help text-center">Ваш почтовый адрес будет<br/> использоваться для входа в приложение</span>
+    <div class="flex flex-column justify-content-center align-items-center gap-4 mb-5 w-10" style=" min-width: 320px">
+      <form [formGroup]="registrationForm" class="w-full flex flex-column gap-1">
+        <mat-form-field appearance="outline">
+          <mat-label>(Введите имя)</mat-label>
+          <input formControlName="name" matInput required>
+          <mat-error class="mat-error" *ngIf="hasError('name') || hasError('name', 'minlength')">
+            * Обязательное поле, минимум 2 символа
+          </mat-error>
+          <mat-error  *ngIf="hasError('name', 'maxlength')">Максимально 100 символов</mat-error>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>(Введите email-адрес)</mat-label>
+          <input formControlName="email" matInput required>
+          <mat-error  *ngIf="hasError('email')">* Обязательное поле</mat-error>
+          <mat-error  *ngIf="hasError('email', 'email')">Неверный формат email адреса</mat-error>
+          <mat-error  *ngIf="hasError('email', 'emailExists')"> Пользователь уже зарегистрирован.</mat-error>
+        </mat-form-field>
+        <div class="flex flex-column justify-content-center align-items-center">
+          <ngx-recaptcha2 [size]="'normal'" [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+          <mat-error class="error" *ngIf="hasError('recaptcha')">* Нужно пройти проверку на робота</mat-error>
+        </div>
+      </form>
+      <button class="btn" (click)="attemptRegistration()" color="primary" mat-raised-button>ПРОДОЛЖИТЬ</button>
+    </div>
+    <!--    <span class="help text-center">
+          Нажимая кнопку «Продолжить», вы<br/>принимаете пользовательское соглашение и политику конфиденциальности
+        </span>-->
+  </div>
+</section>
+
+

@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {ProfileComponent} from './components/profile/profile.component';
 import {PrivacyComponent} from './components/privacy/privacy.component';
 import {NotificationsComponent} from './components/notifications/notifications.component';
-import {ChangePasswordComponent} from './components/change.password/change.password.component';
+import {ChangePasswordComponent} from '@modules/account/components/change-password/change-password.component';
 import {RouterModule, Routes} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";

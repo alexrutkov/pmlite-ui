@@ -1,0 +1,9 @@
+<section class="login login__container">
+  <div class="login__card p-4 error text-center flex flex-column justify-content-center">
+    <strong class="mb-4 text-lg">Текущий токен недействителен!</strong>
+    <span class="mb-6">Пройдите процедуру восстановления пароля повторно.</span>
+    <p-button [routerLink]="['/registration', 'recover']" styleClass="p-button-link" label="Восстановить пароль" icon="pi pi-id-card"></p-button>
+
+  </div>
+</section>
+

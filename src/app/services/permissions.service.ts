@@ -22,7 +22,6 @@ export class PermissionsService {
   }
 
   canMatch(segments: UrlSegment[]): Observable<boolean | UrlTree> {
-    console.log(segments)
     return this.authService.isAuthorized()
       .pipe(map((isAuthorized: boolean ) => {
         const url = segments.map(s => s.path).join('/');

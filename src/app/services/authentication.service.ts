@@ -61,4 +61,8 @@ export class AuthenticationService {
         });
     }
   }
+
+  updateCsrf(): Observable<any> {
+    return this.http.get(`/api/authorization/csrf`);
+  }
 }

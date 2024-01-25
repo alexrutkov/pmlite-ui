@@ -1,0 +1,4 @@
+export class RegistrationService {
+
+  constructor() { }
+}

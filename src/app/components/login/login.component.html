@@ -13,7 +13,10 @@
           <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
           <input type="password" formControlName="password" pInputText placeholder="Пароль">
         </div>
-        <a [routerLink]="['/recover']" class="align-self-end">Восстановить пароль</a>
+        <div class="flex flex-row justify-content-between mt-3">
+          <a [routerLink]="['/registration']" class="align-self-end">Регистрация</a>
+          <a [routerLink]="['/registration/recover']" class="align-self-end">Восстановить пароль</a>
+        </div>
 
       </div>
       <p-progressBar *ngIf="showSpinner" mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
