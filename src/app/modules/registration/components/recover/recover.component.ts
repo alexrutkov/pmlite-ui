@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {MessageService} from "primeng/api";
+import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {CAPTCHA_KEY} from "@modules/registration/const";
+import {MessageToastService} from "@services/message.service";
 
 @Component({
   selector: 'app-recover',
@@ -14,13 +14,13 @@ export class RecoverComponent implements OnInit {
   siteKey = CAPTCHA_KEY;
 
   recoverForm = this._fb.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     recaptcha: ['', Validators.required]
   })
   constructor(
     private http: HttpClient,
     private _fb: FormBuilder,
-    private messageService: MessageService,
+    private messageService: MessageToastService,
     private router: Router
   ) { }
 
@@ -28,18 +28,14 @@ export class RecoverComponent implements OnInit {
   }
 
   recover() {
-    this.http.post('recover-password', null, {params: new HttpParams()
-        .set('username', this.recoverForm.get('username')!!.value as string)
-        .set('recaptcha', this.recoverForm.get('recaptcha')!!.value as string)
-    })
-      .pipe(
-      )
+    this.http.post('/api/authorization/recoveryPassword', this.recoverForm.getRawValue())
       .subscribe({
         next: () => {
-          this.messageService.add({summary: 'Пароль выслан на учетные данные', severity: 'success'});
+          this.messageService.success('Письмо для восстановления выслано на почтовый ящик!');
           this.router.navigate(['/login']);
         },
-        error: () => this.messageService.add({summary: 'Пользователь не найден согласно заданным учетным данным', severity: 'error'})
+        error: () => this.messageService
+          .error('Пользователь не найден согласно заданным учетным данным')
       });
   }
 }

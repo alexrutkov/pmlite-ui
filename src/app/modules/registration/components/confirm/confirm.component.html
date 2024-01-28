@@ -1,5 +1,5 @@
 <section class="login__container">
-  <p-card header="Установите пароль" class="login__card shadow-3">
+  <p-card header="Установите пароль" subheader="* сохранить доступ к сайту" class="login__card shadow-3">
 
     <div class="flex flex-column gap-3 align-items-center">
 
@@ -37,6 +37,11 @@
               <span>Цифра</span>
               <i *ngIf="isDigitValid; else error" class="pi pi-check"></i>
             </li>
+            <li [style.color]="isSpecialValid ? 'green' : 'red'"
+                class="flex flex-row justify-content-between">
+              <span>Спец символ</span>
+              <i *ngIf="isSpecialValid; else error" class="pi pi-check"></i>
+            </li>
             <li [style.color]="isLengthValid ? 'green' : 'red'"
                 class="flex flex-row justify-content-between">
               <span>Минимум 8 символов</span>
@@ -45,6 +50,9 @@
           </ul>
         </div>
 
+        <ngx-invisible-recaptcha [siteKey]="siteKey" #captchaElem
+          (ready)="onReadyCaptcha()"
+          formControlName="recaptcha"></ngx-invisible-recaptcha>
 
       </div>
     </div>

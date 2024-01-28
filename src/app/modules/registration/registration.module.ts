@@ -15,13 +15,14 @@ import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {RegistrationComponent} from "@modules/registration/components/registration/registration.component";
 import {RecoverComponent} from "@modules/registration/components/recover/recover.component";
-import {RegistrationService} from "@modules/registration/services/registration.service";
+
 
 const routes: Route[] = [
   {path: '', component: RegistrationComponent},
-  {path: 'confirm', component: ConfirmComponent},
+  {path: 'confirm/:token', component: ConfirmComponent},
   {path: 'recover', component: RecoverComponent},
-  {path: 'expired', component: ExpiredComponent}
+  {path: 'expired', component: ExpiredComponent},
+  {path: '**', redirectTo: 'expired'},
 ]
 
 @NgModule({
@@ -46,7 +47,6 @@ const routes: Route[] = [
         MatFormField,
         MatInput,
         MatLabel
-    ],
-  providers: [RegistrationService]
+    ]
 })
 export class RegistrationModule { }

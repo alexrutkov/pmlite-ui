@@ -6,7 +6,7 @@
       <div  [formGroup]="recoverForm" class="flex flex-column">
         <div class="p-inputgroup mb-4">
           <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-          <input type="text" formControlName="username" pInputText placeholder="email / номер телефона">
+          <input type="text" formControlName="email" pInputText placeholder="email">
         </div>
         <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
 

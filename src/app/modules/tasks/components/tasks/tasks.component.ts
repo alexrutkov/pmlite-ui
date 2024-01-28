@@ -20,8 +20,8 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.post('/api/tasks', {name: 'Простое имя', shortDescription: 'Короткое описание'})
-      .subscribe()
+/*    this.http.post('/api/tasks', {name: 'Простое имя', shortDescription: 'Короткое описание'})
+      .subscribe()*/
   }
 
 }

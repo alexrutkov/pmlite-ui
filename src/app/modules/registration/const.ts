@@ -1,1 +1,2 @@
 export const CAPTCHA_KEY = '6Lfak1cpAAAAAIhU0f1S6sFCFyyMb53b75FdqfV3'
+export const INVISIBLE_CAPTCHA_KEY = '6LcFzl4pAAAAANiv6hJZ8sFvD3wx-T33i1CpJmbO'
