@@ -1,8 +1,9 @@
-<div>
-  <mat-tab-group>
-    <mat-tab label="Все задачи">
-      <app-tasks></app-tasks>
-    </mat-tab>
-    <mat-tab label="Мои задачи"></mat-tab>
-  </mat-tab-group>
-</div>
+
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" (indexFocused)="indexFocus($event)">
+    <a mat-tab-link [routerLink]="['all']" [active]="isActive(0)">Все задачи</a>
+    <a mat-tab-link [routerLink]="['my']" [active]="isActive(1)">Мои задачи</a>
+  </nav>
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+  </mat-tab-nav-panel>
+

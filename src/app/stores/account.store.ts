@@ -1,27 +1,28 @@
 import {Injectable} from "@angular/core";
-import {ComponentStore} from "@ngrx/component-store";
-import {MessageToastService} from "@services/message.service";
+import {ComponentStore, OnStoreInit} from "@ngrx/component-store";
 import {HttpClient} from "@angular/common/http";
-import {AccountState, initialAccountState} from "@modules/account/model/AccountState";
+import {AccountState} from "@modules/account/model/AccountState";
+import {AccountDetails} from "@modules/account/model/AccountDetails";
+import {UserRole} from "@modules/account/model/AccountRole";
 
 
 @Injectable()
-export class AccountStore extends ComponentStore<AccountState>  {
+export class AccountStore extends ComponentStore<AccountState> implements OnStoreInit {
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageToastService
+    private http: HttpClient
   ) {
-    super(initialAccountState);
+    super();
   }
 
-/*  readonly saveTask = this.effect((task$: Observable<Task>) => {
-    return task$.pipe(
-      tap(task => {
-        this.taskStorage.saveTask()
-      })
-    )
-  })*/
+  ngrxOnStoreInit(): void {
+    this.http.get<AccountDetails>('/api/account/details')
+      .subscribe(s => this.setState({details: s}));
+  }
+
+  hasRole(role: UserRole) {
+    return this.select((state: AccountState) => state.details.roles.includes(role))
+  }
 
 
 }

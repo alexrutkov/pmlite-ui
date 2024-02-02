@@ -1,11 +1,5 @@
-import {Profile} from "@modules/account/model/Profile";
+import {AccountDetails} from "@modules/account/model/AccountDetails";
 
 export interface AccountState {
-  profile: Profile
-}
-
-export const initialAccountState: AccountState = {
-  profile: {
-    name: '', username: '', about: '', tags: []
-  }
+  details: AccountDetails
 }

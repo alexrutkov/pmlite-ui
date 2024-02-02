@@ -1,0 +1,22 @@
+<div class="flex flex-column gap-2 task" [formGroup]="taskForm">
+  <h2>Создание новой задачи</h2>
+  <mat-form-field appearance="outline">
+    <mat-label>Название</mat-label>
+    <input matInput formControlName="name" type="text">
+    @if (errorService.hasError(taskForm.get('name'))) {
+      <mat-error>{{errorService.getError(taskForm.get('name'))}}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Краткое описание</mat-label>
+    <textarea cdkTextareaAutosize [cdkAutosizeMinRows]="8" formControlName="shortDescription" matInput></textarea>
+    @if (errorService.hasError(taskForm.get('shortDescription'))) {
+      <mat-error>{{errorService.getError(taskForm.get('shortDescription'))}}</mat-error>
+    }
+  </mat-form-field>
+
+</div>
+<mat-toolbar class="actions">
+  <button (click)="saveTask()" [disabled]="taskForm.invalid" class="ml-auto" mat-raised-button color="primary">Создать</button>
+</mat-toolbar>

@@ -24,6 +24,7 @@
       "@components/*": ["src/app/components/*"],
       "@services/*": ["src/app/services/*"],
       "@stores/*": ["src/app/stores/*"],
+      "@core/*": ["src/app/core/*"],
       "@directives/*": ["src/app/directives/*"],
       "@redux/*": ["src/app/redux/*"]
     },

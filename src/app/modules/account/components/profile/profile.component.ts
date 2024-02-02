@@ -21,8 +21,6 @@ export class ProfileComponent {
     private accountStore: AccountStore,
     private _fb: FormBuilder
   ) {
-    this.accountStore.select(s => s.profile)
-      .subscribe(p => this.profileForm.patchValue(p));
   }
 
   onImageChanged(target: EventTarget | null) {

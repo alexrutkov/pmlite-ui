@@ -10,6 +10,7 @@ import {HttpClient} from "@angular/common/http";
 @Injectable()
 export class TasksStore extends ComponentStore<TasksState> implements OnStoreInit {
 
+  private isLoading = false;
   constructor(
     private taskStorage: TaskStorageService,
     private http: HttpClient,
@@ -25,22 +26,25 @@ export class TasksStore extends ComponentStore<TasksState> implements OnStoreIni
       .subscribe(s => this.setState(() => s));
   }
 
-/*  readonly saveTask = this.effect((task$: Observable<Task>) => {
-    return task$.pipe(
-      tap(task => {
-        this.taskStorage.saveTask()
-      })
-    )
-  })*/
-
-  readonly saveTask = this.updater((state, task: Task) => {
-    const currentState = {...state, tasks: [...state.tasks, {...task, createdAt: new Date().toUTCString()}]};
-    this.taskStorage.saveState(currentState);
-    this.messageService.success('Задача создана!')
-    return currentState;
+  readonly addTasks = this.updater((state, tasks: Task[]) => {
+    // this.taskStorage.saveState(currentState);
+    return {...state, tasks: [...state.tasks, ...tasks]};
   })
 
   selectTask(taskId: string) {
     return this.select((state) => state.tasks.find(t => t.id == taskId)!);
   }
+
+  tryLoadMore() {
+    if (!this.isLoading) {
+      this.isLoading = true;
+      this.http.get<TasksState>('/assets/tasks.json', {responseType: 'json'})
+        .subscribe(s => {
+          this.addTasks(s.tasks);
+          setTimeout(() => this.isLoading = false, 500);
+        });
+    }
+  }
+
+
 }

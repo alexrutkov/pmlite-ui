@@ -11,6 +11,8 @@ import {MatListModule} from "@angular/material/list";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {provideComponentStore} from "@ngrx/component-store";
+import {AccountStore} from "@stores/account.store";
 
 
 @NgModule({
@@ -18,17 +20,21 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MainComponent,
     MenuComponent
   ],
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        DashboardRoutingModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatListModule,
-        OverlayPanelModule,
-        MatMenuModule,
-        MatExpansionModule
-    ]
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    DashboardRoutingModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    OverlayPanelModule,
+    MatMenuModule,
+    MatExpansionModule
+  ],
+  providers: [
+    provideComponentStore(AccountStore)
+  ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}

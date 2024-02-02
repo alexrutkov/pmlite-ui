@@ -10,7 +10,9 @@ export class MenuComponent {
 
   @Output() route: EventEmitter<any> = new EventEmitter<any>(true);
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router
+  ) {
   }
 
   navigate(paths: string[]) {

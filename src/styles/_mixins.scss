@@ -5,6 +5,14 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin ellipseText($size) {
+  display: -webkit-box;
+  -webkit-line-clamp: $size;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 
 // MEDIA QUERY MANAGER
 /*

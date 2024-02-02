@@ -2,3 +2,11 @@
 .mat-mdc-card-title {
   line-height: normal;
 }
+
+.virtual-box {
+  height: calc(100vh
+    - var(--mat-toolbar-standard-height)
+    - var(--mdc-secondary-navigation-tab-container-height)
+  );
+}
+

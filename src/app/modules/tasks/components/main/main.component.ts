@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {TasksStore} from "../../../../stores/tasks.store";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-main',
@@ -7,8 +7,17 @@ import {TasksStore} from "../../../../stores/tasks.store";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-  constructor(private tasksStore: TasksStore) {
-    this.tasksStore.select(s => s.tasks)
-      .subscribe(t => console.log('TASK', t))
+  private selectedIndexTab = 0;
+  constructor(
+    private route: ActivatedRoute
+  ) {
+  }
+
+  isActive(index: number) {
+    return this.selectedIndexTab == index;
+  }
+
+  indexFocus(index: number) {
+    this.selectedIndexTab = index
   }
 }

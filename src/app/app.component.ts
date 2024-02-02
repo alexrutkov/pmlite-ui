@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "@services/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,11 @@ import {Component} from '@angular/core';
   `,
   styles: ['.container {max-width: 599px; margin: auto;}']
 })
-export class AppComponent {
+export class AppComponent implements  OnInit{
+  constructor(private service: AuthenticationService) {
+  }
+
+  ngOnInit(): void {
+    this.service.isAuthorized().subscribe()
+  }
 }
