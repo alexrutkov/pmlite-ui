@@ -1,4 +1,4 @@
-import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
@@ -15,8 +15,7 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private messageService: MessageToastService,
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private router: Router
   ) {
   }
 

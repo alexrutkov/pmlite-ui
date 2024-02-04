@@ -3,12 +3,14 @@
     <mat-card-title class="overflow-hidden">{{task.name}}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    {{task.description}}
+    {{task.shortDescription}}
   </mat-card-content>
-  <mat-card-actions align="end">
-    <button [routerLink]="[task.id]" class="mr-auto" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
-    <button mat-button><mat-icon>group_work</mat-icon> В работу</button>
-    <button color="primary" mat-icon-button><mat-icon>add_alert</mat-icon></button>
+  <mat-card-actions>
+    <div>
+      <button mat-button><mat-icon color="warn">favorite</mat-icon> {{4212 | shortNumber }}</button>
+      <button mat-button><mat-icon color="warn">star</mat-icon> {{251233 | shortNumber }}</button>
+    </div>
+    <button [routerLink]="['/tasks', task.id]" class="ml-auto" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
   </mat-card-actions>
   <mat-card-footer class="pr-2 pb-2 text-bluegray-300 text-sm flex">
     <span class="ml-auto">{{task.createdAt | date: 'short'}}</span>

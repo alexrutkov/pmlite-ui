@@ -1,7 +1,7 @@
-import {Task} from "@modules/tasks/model/Task";
+import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 
 export interface TasksState {
-  tasks: Task[];
+  tasks: TaskSummary[];
 }
 
 export const initialTasksState: TasksState = {

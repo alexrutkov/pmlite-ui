@@ -16,6 +16,8 @@
     }
   </mat-form-field>
 
+  <app-select-tags (removed)="removeTaskTag($event)" formControlName="tags"></app-select-tags>
+
 </div>
 <mat-toolbar class="actions">
   <button (click)="saveTask()" [disabled]="taskForm.invalid" class="ml-auto" mat-raised-button color="primary">Создать</button>

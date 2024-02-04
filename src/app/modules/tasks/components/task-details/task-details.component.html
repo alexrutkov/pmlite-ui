@@ -1,0 +1,33 @@
+<div *ngIf="(task$ | async) as task" class="flex flex-column gap-2 w-full pt-3">
+  <div class="flex flex-row">
+    <div class="flex-column flex gap-1 align-items-center flex-grow-1 text-center">
+      <span>Задача №{{task.id}}</span>
+      <strong>{{task.name}}</strong>
+    </div>
+    <app-task-menu [taskId]="task.id"></app-task-menu>
+
+  </div>
+
+  <p style="text-indent: 30px">{{task.shortDescription}}</p>
+  <mat-chip-set>
+    <mat-chip>Скульптура</mat-chip>
+    <mat-chip>Физика</mat-chip>
+  </mat-chip-set>
+  <section>
+    <h3>Команды</h3>
+    <ol>
+      <li><a [routerLink]="['/teams', '1']">Творческая команда</a></li>
+      <li><a [routerLink]="['/teams', '1']">Обычная команда</a></li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Участники</h3>
+    <ol>
+      @for (item of task.users; track item.user.id) {
+        <li><a [routerLink]="['/employers', item.user.id]">{{ item.user.name }} </a> - {{ item.role }}</li>
+      }
+    </ol>
+  </section>
+</div>
+

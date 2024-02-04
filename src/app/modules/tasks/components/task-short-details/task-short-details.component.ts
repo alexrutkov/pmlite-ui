@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Task} from "@modules/tasks/model/Task";
+import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 
 @Component({
   selector: 'app-task-short-details',
@@ -8,5 +8,5 @@ import {Task} from "@modules/tasks/model/Task";
 })
 export class TaskShortDetailsComponent {
 
-  @Input() task!: Task;
+  @Input() task!: TaskSummary;
 }

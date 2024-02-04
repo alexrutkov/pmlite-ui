@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Подтвердите действие:</h2>
+<mat-dialog-content class="flex flex-column gap-2">
+  <span>{{message.message}}</span>
+  <span class="font-italic">{{message.hint}}</span>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="ref.close(false)" mat-raised-button>Отменить</button>
+  <button class="ml-auto" (click)="ref.close(true)"  mat-raised-button color="primary">Подтвердить</button>
+</mat-dialog-actions>

@@ -21,11 +21,11 @@ export class ErrorService {
           case 'required': return REQUIRED;
           case 'minlength': {
             const error = errors[e] as LengthError;
-            return `Минимальное кол-во символов: ${error.requiredLength}`;
+            return `Минимальное количество символов: ${error.requiredLength}`;
           }
           case 'maxlength': {
             const error = errors[e] as LengthError;
-            return `Максимальное кол-во символов: ${error.requiredLength}`;
+            return `Максимальное количество символов: ${error.requiredLength}`;
           }
           default: return ''
         }

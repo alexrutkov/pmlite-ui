@@ -1,23 +1,22 @@
 <mat-form-field class="example-chip-list">
   <mat-label>Сфера деятельности</mat-label>
-  <mat-chip-grid #chipGrid aria-label="Fruit selection">
-    <mat-chip-row *ngFor="let tag of tags"
-                  [editable]="true"
-                  (edited)="edit(tag, $event)"
+  <mat-chip-grid #chipGrid>
+    <mat-chip-row *ngFor="let tag of tags"  color="primary" highlighted="true"
                   (removed)="remove(tag)">
-      {{tag.name}}
+      {{tag.displayTag}}
       <button matChipRemove [attr.aria-label]="'remove ' + tag">
         <mat-icon>cancel</mat-icon>
       </button>
     </mat-chip-row>
   </mat-chip-grid>
-  <input placeholder="Введите сферу деятельности" #fruitInput [formControl]="tagControl"
+  <input placeholder="Введите сферу деятельности" #tagInput [formControl]="tagControl"
          [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
          (matChipInputTokenEnd)="add($event)"/>
+
   <mat-autocomplete [hideSingleSelectionIndicator]="true" #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-      {{tag.name}}
+    <mat-option *ngFor="let tag of filteredTags$ | async" [value]="tag">
+      {{tag.displayTag}}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

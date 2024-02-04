@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, TrackByFunction, ViewChild} from '@angular/core';
-import {TasksStore} from "@stores/tasks.store";
-import {EMPTY, filter, Observable, tap} from "rxjs";
-import {Task} from "@modules/tasks/model/Task";
+import {TasksStore} from "@modules/tasks/tasks.store";
+import {EMPTY, filter, Observable, takeUntil, tap} from "rxjs";
+import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 import {HttpClient} from "@angular/common/http";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {provideComponentStore} from "@ngrx/component-store";
@@ -18,7 +18,7 @@ const AUTOLOAD_OFFSET = 200
 })
 export class TasksComponent implements OnInit, AfterViewInit {
 
-  tasks$: Observable<Task[]> = EMPTY;
+  tasks$: Observable<TaskSummary[]> = EMPTY;
 
   @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
 
@@ -32,22 +32,21 @@ export class TasksComponent implements OnInit, AfterViewInit {
       );
   }
 
-  trackTaskFn: TrackByFunction<Task> = (index: number, task: Task) => {
+  trackTaskFn: TrackByFunction<TaskSummary> = (index: number, task: TaskSummary) => {
     return task.id
   }
 
   ngAfterViewInit(): void {
     this.virtualScroll.elementScrolled()
       .pipe(
-        filter(() => this.isScrollOnBottom())
+        filter(() => this.isScrollOnBottom()),
+        takeUntil(this.tasksStore.isDone$)
       )
       .subscribe(() => this.tasksStore.tryLoadMore())
   }
 
 
   ngOnInit(): void {
-/*    this.http.post('/api/tasks', {name: 'Простое имя', shortDescription: 'Короткое описание'})
-      .subscribe()*/
   }
 
   private isScrollOnBottom(): boolean {

@@ -16,11 +16,13 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {TasksComponent} from './components/tasks/tasks.component';
 import {MatCardModule} from "@angular/material/card";
-import {TaskComponent} from './components/task/task.component';
-import {TaskDetailsComponent} from "@components/task-details/task-details.component";
+import {TaskDetailsComponent} from "@modules/tasks/components/task-details/task-details.component";
 import {urlData} from "@core/symbols";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {TaskShortDetailsComponent} from "@modules/tasks/components/task-short-details/task-short-details.component";
+import {TASKS_URL} from "@modules/tasks/tokens";
+import {ShortNumberPipe} from "@pipes/short-number.pipe";
+import {SelectTagsComponent} from "@components/select-tags/select-tags.component";
 
 
 const routes: Routes = [
@@ -29,11 +31,20 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {path: '', redirectTo: 'all', pathMatch: 'full'},
-      {path: 'all', component: TasksComponent, data: {[urlData]: '/api/tasks'}},
-      {path: 'my', component: TasksComponent, data: {[urlData]: '/api/tasks'}},
+      {
+        path: 'all',
+        component: TasksComponent,
+        providers: [{provide: TASKS_URL, useValue: '/api/tasks/all'}]
+      },
+      {
+        path: 'my',
+        component: TasksComponent,
+        providers: [{provide: TASKS_URL, useValue: '/api/tasks/my'}]
+      },
     ]
   },
   {path: 'create', component: CreateTaskComponent, data: {[urlData]: '/api/tasks'}},
+  {path: 'edit/:id', component: CreateTaskComponent, data: {[urlData]: '/api/tasks'}},
   {path: 'createRootTask', component: CreateTaskComponent, data: {[urlData]: '/api/tasks/createRootTask'}},
   {path: ':id', component: TaskDetailsComponent}
 ];
@@ -43,26 +54,27 @@ const routes: Routes = [
     MainComponent,
     CreateTaskComponent,
     TasksComponent,
-    TaskComponent,
     TaskShortDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatTabsModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatTooltipModule,
-    QuillEditorComponent,
-    MatToolbarModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCardModule,
-    ScrollingModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatTabsModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        MatIconModule,
+        MatTooltipModule,
+        QuillEditorComponent,
+        MatToolbarModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatCardModule,
+        ScrollingModule,
+        ShortNumberPipe,
+        SelectTagsComponent
+    ]
 })
 export class TasksModule {
 }

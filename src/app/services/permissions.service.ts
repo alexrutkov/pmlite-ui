@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router, UrlSegment, UrlTree} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {AuthenticationService} from "@services/authentication.service";
 
@@ -9,6 +9,7 @@ import {AuthenticationService} from "@services/authentication.service";
 })
 export class PermissionsService {
   publicFallbackPageUri = '/login';
+  private authorizedUrls: string[] = [];
   constructor(
     private authService: AuthenticationService,
     private router: Router
@@ -22,15 +23,21 @@ export class PermissionsService {
   }
 
   canMatch(segments: UrlSegment[]): Observable<boolean | UrlTree> {
-    return this.authService.isAuthorized()
-      .pipe(map((isAuthorized: boolean ) => {
-        const url = segments.map(s => s.path).join('/');
-        if (!isAuthorized && !this.isPublicPage(url)) {
-          this.authService.setInterruptedUrl(url);
-          return this.router.parseUrl(this.publicFallbackPageUri);
-        }
-        return true;
-      }));
+    const url = segments.map(s => s.path).join('/');
+    if (this.authorizedUrls.includes(url)) {
+      return of(true);
+    }
+    else {
+      return this.authService.isAuthorized()
+        .pipe(map((isAuthorized: boolean ) => {
+          if (!isAuthorized && !this.isPublicPage(url)) {
+            this.authService.setInterruptedUrl(url);
+            return this.router.parseUrl(this.publicFallbackPageUri);
+          }
+          this.authorizedUrls.push(url);
+          return true;
+        }));
+    }
   }
 
 }

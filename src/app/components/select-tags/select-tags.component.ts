@@ -1,22 +1,25 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-import {MatChipEditedEvent, MatChipInputEvent, MatChipsModule} from "@angular/material/chips";
+import {MatChipInputEvent, MatChipsModule} from "@angular/material/chips";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatOptionModule} from "@angular/material/core";
 import {PaginatorModule} from "primeng/paginator";
-import {filter, Observable, startWith} from "rxjs";
-import {map} from "rxjs/operators";
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule} from "@angular/forms";
+import {concatMap, debounceTime, filter, Observable} from "rxjs";
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators} from "@angular/forms";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {Tag} from "@modules/account/model/Profile";
+import {ErrorService} from "@services/error.service";
+import {MatInput} from "@angular/material/input";
+import {MessageToastService} from "@services/message.service";
+import {HttpClient} from "@angular/common/http";
+import {Tag} from "@core/Tag";
 
 
 @Component({
   selector: 'app-select-tags',
   standalone: true,
-  imports: [CommonModule, MatAutocompleteModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatOptionModule, PaginatorModule, ReactiveFormsModule],
+  imports: [CommonModule, MatAutocompleteModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatOptionModule, PaginatorModule, ReactiveFormsModule, MatInput],
   templateUrl: './select-tags.component.html',
   providers: [
     {
@@ -28,20 +31,30 @@ import {Tag} from "@modules/account/model/Profile";
   styleUrls: ['./select-tags.component.scss']
 })
 export class SelectTagsComponent implements ControlValueAccessor {
-  @ViewChild('fruitInput') fruitInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('tagInput') tagInput!: ElementRef<HTMLInputElement>;
+
+  @Output() removed: EventEmitter<number> = new EventEmitter<number>();
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  tagControl = new FormControl('');
-  filteredTags: Observable<Tag[]>;
+  tagControl = new FormControl<string>(
+    '',
+    [
+      Validators.maxLength(25),
+      Validators.required,
+      Validators.minLength(2)
+    ]
+  );
+  filteredTags$: Observable<Tag[]>;
   tags: Tag[] = [];
-  allTags: Tag[] = [
-    {name: 'программист', id: 'asdf'}
-  ];
-  constructor() {
-    this.filteredTags = this.tagControl.valueChanges.pipe(
-      filter(s => typeof s === 'string'),
-      startWith(null),
-      map((searchTag: string | null) => (searchTag ? this._filter(searchTag) : this.allTags.slice())),
+  constructor(
+    private errorService: ErrorService,
+    private messageService: MessageToastService,
+    private http: HttpClient
+  ) {
+    this.filteredTags$ = this.tagControl.valueChanges.pipe(
+      debounceTime(300),
+      filter(s => !!s && s.length > 1),
+      concatMap(s => this.http.post<Tag[]>('/api/tags/search', {tag: s}))
     );
   }
 
@@ -63,50 +76,47 @@ export class SelectTagsComponent implements ControlValueAccessor {
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-
-    // Add our fruit
-    if (value) {
-      this.tags.push({name: value, id: ''});
+    if (this.tagControl.valid) {
+      this.messageService.confirm(
+        `Вы уверены, что хотите добавить новый тег '${value}'?`,
+        'Проверьте на грамматические ошибки.'
+      )
+        .pipe(
+          filter(isConfirmed => isConfirmed),
+          concatMap(() => this.http.post<Tag>('/api/tags', {tag: value}))
+        )
+        .subscribe(tag => {
+          this.messageService.info('Тег добавлен.')
+          this.tags.push(tag);
+        })
+    } else {
+      this.messageService.error(this.errorService.getError(this.tagControl))
     }
-
-    // Clear the input value
     event.chipInput!.clear();
 
-    this.tagControl.setValue(null);
+    this.tagControl.setValue('');
   }
 
   remove(tag: Tag): void {
-    const index = this.tags.findIndex(t => t.name === tag.name);
 
-    if (index >= 0) {
-      this.tags.splice(index, 1);
-    }
+    this.messageService.confirm(
+      `Вы уверены, что хотите убрать тег '${tag.displayTag}'?`
+    )
+      .pipe(
+        filter(isConfirmed => isConfirmed)
+      )
+      .subscribe(() => {
+        this.removed.emit(tag.tagId);
+        const index = this.tags.findIndex(t => t.tagId === tag.tagId);
+        this.tags.splice(index, 1);
+    })
+
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.tags.push(event.option.value as Tag);
-    this.fruitInput.nativeElement.value = '';
-    this.tagControl.setValue(null);
-  }
-
-  edit(tag: Tag, event: MatChipEditedEvent) {
-    const value = event.value.trim();
-
-    if (!value) {
-      this.remove(tag);
-      return;
-    }
-
-    const index = this.tags.indexOf(tag);
-    if (index >= 0) {
-      this.tags[index].name = value;
-    }
-  }
-
-  private _filter(value: string): Tag[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allTags.filter(tag => tag.name.toLowerCase().includes(filterValue));
+    this.tagInput.nativeElement.value = '';
+    this.tagControl.setValue('');
   }
 
 }
