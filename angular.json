@@ -64,7 +64,9 @@
                 "src/styles"
               ]
             },
-            "scripts": []
+            "scripts": [
+              "scripts/sockjs.min.js"
+            ]
           },
           "configurations": {
             "production": {

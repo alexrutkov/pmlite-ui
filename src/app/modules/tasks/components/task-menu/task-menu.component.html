@@ -4,7 +4,7 @@
     <mat-icon>add_circle_outline</mat-icon>
     <span>Подзадача</span>
   </button>
-  <button mat-menu-item>
+  <button *ngIf="enableTaskJoin$ | async" mat-menu-item>
     <mat-icon>person_add_alt</mat-icon>
     <span>Заявка на участие</span>
   </button>
@@ -13,10 +13,12 @@
     <span>Участие команды</span>
   </button>
   <mat-divider></mat-divider>
-  <strong class="pl-2">Управление</strong>
-  <button mat-menu-item [routerLink]="['/tasks', 'edit', taskId]">
-    <mat-icon>edit</mat-icon>
-    <span>Редактировать</span>
-  </button>
+  <ng-container *ngIf="enableEditTask$ | async">
+    <strong class="pl-2">Управление</strong>
+    <button  mat-menu-item [routerLink]="['/tasks', 'edit', taskId]">
+      <mat-icon>edit</mat-icon>
+      <span>Редактировать</span>
+    </button>
+  </ng-container>
 </mat-menu>
 

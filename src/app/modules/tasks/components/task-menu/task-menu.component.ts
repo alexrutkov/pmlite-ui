@@ -1,10 +1,14 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton, MatMiniFabButton} from "@angular/material/button";
 import {HttpClient} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterLink} from "@angular/router";
 import {MatDivider} from "@angular/material/divider";
+import {AccountStore} from "@stores/account.store";
+import {EMPTY, map, Observable} from "rxjs";
+import {UserTaskRole} from "@modules/tasks/model/UserTaskRole";
+import {AsyncPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-task-menu',
@@ -15,20 +19,34 @@ import {MatDivider} from "@angular/material/divider";
     MatMiniFabButton,
     MatMenuModule,
     RouterLink,
-    MatDivider
+    MatDivider,
+    AsyncPipe,
+    NgIf
   ],
   templateUrl: './task-menu.component.html',
   styleUrl: './task-menu.component.scss'
 })
-export class TaskMenuComponent {
+export class TaskMenuComponent implements OnInit {
 
   @Input() taskId!: number;
 
-  constructor(private http: HttpClient) {
+  enableEditTask$: Observable<boolean> = EMPTY;
+  enableTaskJoin$: Observable<boolean> = EMPTY;
+
+
+  constructor(
+    private http: HttpClient,
+    public accountStore: AccountStore
+  ) {
 
   }
 
   private update() {
 
+  }
+
+  ngOnInit(): void {
+    this.enableEditTask$ = this.accountStore.hasTaskRole(this.taskId, UserTaskRole.OWNER);
+    this.enableTaskJoin$ = this.accountStore.hasTask(this.taskId).pipe(map(isEnable => !isEnable));
   }
 }

@@ -20,5 +20,8 @@
 
 </div>
 <mat-toolbar class="actions">
-  <button (click)="saveTask()" [disabled]="taskForm.invalid" class="ml-auto" mat-raised-button color="primary">Создать</button>
+  <button (click)="saveTask()" [disabled]="taskForm.invalid"
+          class="ml-auto" mat-raised-button color="primary">
+    {{taskId ? 'Сохранить' : 'Создать'}}
+  </button>
 </mat-toolbar>
