@@ -30,5 +30,5 @@ export class TaskDetailsComponent implements OnInit{
       map(p => p['id'] as string),
       concatMap(id => this.http.get<TaskSummary>(`/api/tasks/${id}`))
     );
-    }
+  }
 }

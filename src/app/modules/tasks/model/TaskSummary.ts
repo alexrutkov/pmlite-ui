@@ -9,11 +9,11 @@ export interface TaskSummary {
 }
 
 export interface TaskUser {
-  user: UserSummary;
+  user: TaskUserSummary;
   role: string;
 }
 
-export interface UserSummary {
+export interface TaskUserSummary {
   id: number;
   name: string;
 }

@@ -10,7 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {AgreementTaskComponent} from './components/agreement-task/agreement-task.component';
 import {AgreementTeamComponent} from './components/agreement-team/agreement-team.component';
-import {UserDetailsComponent} from "@components/user-details/user-details.component";
+import {UserDetailsComponent} from "@modules/users/components/user-details/user-details.component";
 import {TaskDetailsComponent} from "@modules/tasks/components/task-details/task-details.component";
 import {TeamDetailsComponent} from "@modules/teams/components/team-details/team-details.component";
 import {MatTabsModule} from "@angular/material/tabs";

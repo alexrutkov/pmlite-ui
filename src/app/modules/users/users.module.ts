@@ -9,10 +9,29 @@ import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {UserDetailsComponent} from "@components/user-details/user-details.component";
+import {UserDetailsComponent} from "@modules/users/components/user-details/user-details.component";
+import {USERS_URL} from "@modules/users/tokens";
+import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
+import {UserShortDetailsComponent} from "@modules/users/components/user-short-details/user-short-details.component";
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
+  {
+    path: '',
+    component: MainComponent,
+    children: [
+      {path: '', redirectTo: 'all', pathMatch: 'full'},
+      {
+        path: 'all',
+        component: UsersComponent,
+        providers: [{provide: USERS_URL, useValue: '/api/users/all'}]
+      },
+      {
+        path: 'my',
+        component: UsersComponent,
+        providers: [{provide: USERS_URL, useValue: '/api/users/my'}]
+      },
+    ]
+  },
   {path: ':id', component: UserDetailsComponent}
 ];
 
@@ -30,7 +49,11 @@ const routes: Routes = [
     MatCardModule,
     MatChipsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    CdkVirtualScrollViewport,
+    UserShortDetailsComponent
   ]
 })
 export class UsersModule { }

@@ -1,4 +1,4 @@
-import {User} from "@modules/users/User";
+import {User} from "@modules/users/model/User";
 
 
 export enum AgreementTaskType {
