@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {UserSummary} from "@modules/users/model/UserSummary";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {
@@ -40,7 +40,8 @@ import {ShortNumberPipe} from "@pipes/short-number.pipe";
     ShortNumberPipe
   ],
   templateUrl: './user-short-details.component.html',
-  styleUrl: './user-short-details.component.scss'
+  styleUrl: './user-short-details.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserShortDetailsComponent {
   @Input() user!: UserSummary;

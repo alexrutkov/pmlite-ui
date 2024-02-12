@@ -29,9 +29,9 @@ export class WebsocketService {
       .pipe(map(m => JSON.parse(m.body) as WebsocketEvent));
   }
 
-  watchEventsByType(type: WebsocketEventType) {
+  watchEventsByType(...types: WebsocketEventType[]) {
     return this.acountEvents$.pipe(
-      filter(e => e.type == type)
+      filter(e => types.some(t => t == e.type))
     )
   }
 }

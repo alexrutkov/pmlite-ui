@@ -30,6 +30,6 @@ export class MessageToastService {
   confirm(message: string, hint: string | undefined = undefined): Observable<boolean> {
     const confirmMessage: ConfirmMessage = {message: message, hint: hint};
     return this.matDialog.open(ConfirmDialogComponent, {data: confirmMessage})
-      .afterClosed().pipe()
+      .afterClosed()
   }
 }

@@ -4,7 +4,6 @@ import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {UserSummary} from "@modules/users/model/UserSummary";
 import {UsersStore} from "@modules/users/users.store";
 import {provideComponentStore} from "@ngrx/component-store";
-import {AutoloadService} from "@services/autoload.service";
 
 @Component({
   selector: 'app-employers',
@@ -20,18 +19,14 @@ export class UsersComponent implements OnInit, AfterViewInit {
   @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
 
   constructor(
-    public usersStore: UsersStore,
-    private autoloadService: AutoloadService
+    public usersStore: UsersStore
   ) {
     this.users$ = this.usersStore.select(s => s)
       .pipe(tap(() => this.virtualScroll?.ngOnInit()));
   }
 
   ngAfterViewInit(): void {
-    this.autoloadService.initAutoloadStore(
-      this.virtualScroll,
-      this.usersStore
-    );
+    this.usersStore.initAutoloadStore(this.virtualScroll);
   }
 
 

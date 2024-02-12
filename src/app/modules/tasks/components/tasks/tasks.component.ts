@@ -4,7 +4,6 @@ import {EMPTY, Observable, tap} from "rxjs";
 import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {provideComponentStore} from "@ngrx/component-store";
-import {AutoloadService} from "@services/autoload.service";
 
 
 @Component({
@@ -22,18 +21,14 @@ export class TasksComponent implements OnInit, AfterViewInit {
   @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
 
   constructor(
-    public tasksStore: TasksStore,
-    private autoloadService: AutoloadService
+    public tasksStore: TasksStore
   ) {
     this.tasks$ = this.tasksStore.select(s => s)
       .pipe(tap(() => this.virtualScroll?.ngOnInit()));
   }
 
   ngAfterViewInit(): void {
-    this.autoloadService.initAutoloadStore(
-      this.virtualScroll,
-      this.tasksStore
-    );
+    this.tasksStore.initAutoloadStore(this.virtualScroll);
   }
 
 

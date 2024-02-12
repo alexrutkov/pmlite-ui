@@ -7,6 +7,7 @@ import {UserRole} from "@modules/account/model/AccountRole";
 import {UserTaskRole} from "@modules/tasks/model/UserTaskRole";
 import {WebsocketService} from "@services/websocket.service";
 import {WebsocketEventType} from "@core/WebsocketEvent";
+import {UserTask} from "@modules/users/model/UserTask";
 
 
 @Injectable()
@@ -17,7 +18,10 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
     private websocketService: WebsocketService
   ) {
     super();
-    this.websocketService.watchEventsByType(WebsocketEventType.ROLES_UPDATED)
+    this.websocketService.watchEventsByType(
+      WebsocketEventType.ROLES_UPDATED,
+      WebsocketEventType.TASK_CANCELLED
+    )
       .subscribe(() => this.ngrxOnStoreInit());
   }
 
@@ -39,5 +43,20 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
 
   hasTask(taskId: number) {
     return this.select((state: AccountState) => state.details.taskRoles.map(r => r.taskId).includes(taskId));
+  }
+
+  canManageTask(task: UserTask) {
+    return this.select((state: AccountState) =>
+      state.details.id == task.userId
+      && state.details.taskRoles.map(r => r.taskId).includes(task.id)
+    );
+  }
+
+  canCancelTask(task: UserTask) {
+    return this.select((state: AccountState) =>
+      state.details.id == task.userId
+      && state.details.taskRoles.map(r => r.taskId).includes(task.id)
+      && task.role != UserTaskRole.OWNER
+    );
   }
 }
