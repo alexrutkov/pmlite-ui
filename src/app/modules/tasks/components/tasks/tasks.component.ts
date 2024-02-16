@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {TasksStore} from "@modules/tasks/tasks.store";
 import {EMPTY, Observable, tap} from "rxjs";
 import {TaskSummary} from "@modules/tasks/model/TaskSummary";
@@ -14,7 +14,7 @@ import {provideComponentStore} from "@ngrx/component-store";
     provideComponentStore(TasksStore)
   ]
 })
-export class TasksComponent implements OnInit, AfterViewInit {
+export class TasksComponent implements AfterViewInit {
 
   tasks$: Observable<TaskSummary[]> = EMPTY;
 

@@ -1,18 +1,15 @@
 import {Component} from '@angular/core';
+import {TabRouterComponent} from "@core/TabRouterComponent";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
-  private selectedIndexTab = 0;
+export class MainComponent  extends TabRouterComponent {
 
-  isActive(index: number) {
-    return this.selectedIndexTab == index;
-  }
-
-  indexFocus(index: number) {
-    this.selectedIndexTab = index
+  constructor(router: Router) {
+    super(router);
   }
 }

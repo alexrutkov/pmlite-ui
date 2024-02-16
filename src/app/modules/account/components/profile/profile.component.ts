@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AccountStore} from "@stores/account.store";
+import {AccountStore} from "@modules/account/account.store";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 

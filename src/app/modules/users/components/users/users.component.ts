@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {EMPTY, Observable, tap} from "rxjs";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
-import {UserSummary} from "@modules/users/model/UserSummary";
+import {UserShortDetails} from "@modules/users/model/UserShortDetails";
 import {UsersStore} from "@modules/users/users.store";
 import {provideComponentStore} from "@ngrx/component-store";
 
@@ -14,7 +14,7 @@ import {provideComponentStore} from "@ngrx/component-store";
   ]
 })
 export class UsersComponent implements OnInit, AfterViewInit {
-  users$: Observable<UserSummary[]> = EMPTY;
+  users$: Observable<UserShortDetails[]> = EMPTY;
 
   @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
 

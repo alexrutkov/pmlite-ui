@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {MatChipsModule} from "@angular/material/chips";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {AgreementShortDetailsComponent} from "@components/agreement-short-details/agreement-short-details.component";
+import {
+  AgreementShortDetailsComponent
+} from "@modules/agreements/components/agreement-short-details/agreement-short-details.component";
 import {Agreement} from "@modules/agreements/model/AgreementTask";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {concatMap, EMPTY, Observable} from "rxjs";
-import {UserSummary} from "@modules/users/model/UserSummary";
+import {UserShortDetails} from "@modules/users/model/UserShortDetails";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {
@@ -32,17 +34,9 @@ import {UserTasksComponent} from "@modules/users/components/user-tasks/user-task
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-  user$: Observable<UserSummary> = EMPTY;
+  user$: Observable<UserShortDetails> = EMPTY;
 
-  events: Agreement<any>[] = [
-    {
-      id: '1', type: 'DECLINED', task: {
-        id: '1', type: 'CREATE_TAG', data: {name: 'Новый тег'},
-        employer: {id: '2', name: 'Аланхея'}
-      },
-      agreementBy: {id: '3', name: 'Анхей'}, agreementAt: new Date().toUTCString()
-    },
-  ];
+  events: Agreement<any>[] = [];
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute
@@ -52,7 +46,7 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.user$ = this.route.params.pipe(
       map(p => p['id'] as string),
-      concatMap(id => this.http.get<UserSummary>(`/api/users/${id}`))
+      concatMap(id => this.http.get<UserShortDetails>(`/api/users/${id}`))
     );
   }
 }

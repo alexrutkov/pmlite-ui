@@ -5,8 +5,14 @@
     </button>
     <span [routerLink]="['/']" class="ml-3 cursor-pointer">PM (lite)</span>
     <div class="ml-auto">
+
       <button *ngIf="enableCreateTask$ | async" class="ml-auto" [routerLink]="['/tasks', 'createRootTask']" mat-mini-fab>
         <mat-icon>add_task</mat-icon>
+      </button>
+      <button class="ml-2" *ngIf="(totalAgreements$ | async) as total" [matBadge]="total"
+              matBadgeColor="warn" mat-mini-fab
+              color="accent" [routerLink]="['/agreements']">
+        <mat-icon>handshake</mat-icon>
       </button>
       <button class="ml-2" mat-mini-fab color="primary" [matMenuTriggerFor]="accountMenu">
         <mat-icon>account_circle</mat-icon>

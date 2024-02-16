@@ -12,7 +12,9 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {provideComponentStore} from "@ngrx/component-store";
-import {AccountStore} from "@stores/account.store";
+import {AccountStore} from "@modules/account/account.store";
+import {MatBadge} from "@angular/material/badge";
+import {AgreementDetailsStore} from "@modules/agreements/agreement-details.store";
 
 
 @NgModule({
@@ -20,20 +22,22 @@ import {AccountStore} from "@stores/account.store";
     MainComponent,
     MenuComponent
   ],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    DashboardRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    OverlayPanelModule,
-    MatMenuModule,
-    MatExpansionModule
-  ],
+    imports: [
+        CommonModule,
+        MatToolbarModule,
+        DashboardRoutingModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        OverlayPanelModule,
+        MatMenuModule,
+        MatExpansionModule,
+        MatBadge
+    ],
   providers: [
-    provideComponentStore(AccountStore)
+    provideComponentStore(AccountStore),
+    provideComponentStore(AgreementDetailsStore),
   ]
 })
 export class DashboardModule {

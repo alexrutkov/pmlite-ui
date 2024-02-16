@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {UserSummary} from "@modules/users/model/UserSummary";
+import {UserShortDetails} from "@modules/users/model/UserShortDetails";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {
   MatCard,
@@ -44,6 +44,6 @@ import {ShortNumberPipe} from "@pipes/short-number.pipe";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserShortDetailsComponent {
-  @Input() user!: UserSummary;
+  @Input() user!: UserShortDetails;
 
 }

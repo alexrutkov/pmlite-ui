@@ -5,10 +5,11 @@ import {HttpClient} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterLink} from "@angular/router";
 import {MatDivider} from "@angular/material/divider";
-import {AccountStore} from "@stores/account.store";
-import {EMPTY, map, Observable} from "rxjs";
+import {AccountStore} from "@modules/account/account.store";
+import {concatMap, EMPTY, filter, map, Observable} from "rxjs";
 import {UserTaskRole} from "@modules/tasks/model/UserTaskRole";
 import {AsyncPipe, NgIf} from "@angular/common";
+import {MessageToastService} from "@services/message.service";
 
 @Component({
   selector: 'app-task-menu',
@@ -36,6 +37,7 @@ export class TaskMenuComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private messageService: MessageToastService,
     public accountStore: AccountStore
   ) {
 
@@ -48,5 +50,15 @@ export class TaskMenuComponent implements OnInit {
   ngOnInit(): void {
     this.enableEditTask$ = this.accountStore.hasTaskRole(this.taskId, UserTaskRole.OWNER);
     this.enableTaskJoin$ = this.accountStore.hasTask(this.taskId).pipe(map(isEnable => !isEnable));
+  }
+
+  joinToTask() {
+    this.messageService.confirm(
+      'Вы уверены, что хотите присоединиться к выполнению данной задаче?',
+      'Будет создана заявка, ожидайте согласования'
+    ).pipe(
+      filter(isConfirmed => isConfirmed),
+      concatMap(() => this.http.post(`/api/tasks/${this.taskId}/join`, null))
+    ).subscribe(() => this.messageService.success('Заявка создана!'))
   }
 }

@@ -6,7 +6,7 @@ export enum AgreementTaskType {
   PARTICIPATE_TASK
 }
 
-export enum AgreementType {
+export enum DecisionType {
   DECLINED, ACCEPTED
 }
 
@@ -19,7 +19,7 @@ export interface AgreementTask<T> {
 
 export interface Agreement<T> {
   id: string;
-  type: keyof typeof AgreementType;
+  type: keyof typeof DecisionType;
   agreementBy: User;
   agreementAt: string;
   task: AgreementTask<T>;

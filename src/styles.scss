@@ -8,10 +8,10 @@
 @import "styles/variables";
 @import "styles/accordion";
 
-* {    box-sizing: border-box;}
+* {  box-sizing: border-box;}
 html, body { height: 100%; }
 body { margin: 0; font-family:  'Inter', sans-serif; }
-ul {list-style: none;margin: 0;padding: 0;}
+ul, p {list-style: none;margin: 0;padding: 0;}
 
 .container {
   &.with-actions {

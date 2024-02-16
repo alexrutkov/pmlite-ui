@@ -1,0 +1,3 @@
+<cdk-virtual-scroll-viewport itemSize="255" class="virtual-box">
+  <app-agreement-short-details *cdkVirtualFor="let a of agreements$ | async; trackBy: agreementsStore.trackIdFn" [agreement]="a"></app-agreement-short-details>
+</cdk-virtual-scroll-viewport>

@@ -11,7 +11,7 @@ export class MenuComponent {
   @Output() route: EventEmitter<any> = new EventEmitter<any>(true);
 
   constructor(
-    private router: Router
+    private router: Router,
   ) {
   }
 

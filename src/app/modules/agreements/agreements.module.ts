@@ -16,12 +16,48 @@ import {TeamDetailsComponent} from "@modules/teams/components/team-details/team-
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {AgreementHistoryComponent} from './components/history/agreement-history.component';
-import {AgreementShortDetailsComponent} from "@components/agreement-short-details/agreement-short-details.component";
+import {
+  AgreementShortDetailsComponent
+} from "@modules/agreements/components/agreement-short-details/agreement-short-details.component";
 import {AgreementTagComponent} from './components/agreement-tag/agreement-tag.component';
+import {AgreementsComponent} from "@modules/agreements/components/agreements/agreements.component";
+import {MatBadge} from "@angular/material/badge";
+import {AGREEMENT_URL} from "@modules/agreements/tokens";
 
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
+  {
+    path: '',
+    component: MainComponent,
+    children: [
+      {path: '', redirectTo: 'tasks', pathMatch: 'full'},
+      {
+        path: 'tags',
+        component: AgreementsComponent,
+        providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/tags'}]
+      },
+      {
+        path: 'tasks',
+        component: AgreementsComponent,
+        providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/tasks'}]
+      },
+      {
+        path: 'taskUsers',
+        component: AgreementsComponent,
+        providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/taskUsers'}]
+      },
+      {
+        path: 'teams',
+        component: AgreementsComponent,
+        providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/teams'}]
+      },
+      {
+        path: 'teamUsers',
+        component: AgreementsComponent,
+        providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/teamUsers'}]
+      },
+    ]
+  },
   {path: 'history', component: AgreementHistoryComponent},
   {path: ':id/task', component: AgreementTaskComponent},
   {path: ':id/tag', component: AgreementTagComponent},
@@ -36,7 +72,6 @@ const routes: Routes = [
     AgreementTagComponent
   ],
   imports: [
-
     RouterModule.forChild(routes),
     CommonModule,
     MatCardModule,
@@ -50,7 +85,8 @@ const routes: Routes = [
     TeamDetailsComponent,
     MatTabsModule,
     MatToolbarModule,
-    AgreementShortDetailsComponent
+    AgreementShortDetailsComponent,
+    MatBadge
   ]
 })
 export class AgreementsModule { }

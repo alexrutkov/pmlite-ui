@@ -15,7 +15,7 @@ import {MatDivider} from "@angular/material/divider";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {UserTask} from "@modules/users/model/UserTask";
 import {RouterLink} from "@angular/router";
-import {AccountStore} from "@stores/account.store";
+import {AccountStore} from "@modules/account/account.store";
 import {MessageToastService} from "@services/message.service";
 import {concatMap, filter} from "rxjs";
 import {HttpClient} from "@angular/common/http";

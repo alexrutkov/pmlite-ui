@@ -1,21 +1,22 @@
 import {Component} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {AgreementTask, AgreementTaskType} from "@modules/agreements/model/AgreementTask";
+import {AgreementTask} from "@modules/agreements/model/AgreementTask";
+import {TabRouterComponent} from "@core/TabRouterComponent";
+import {AccountStore} from "@modules/account/account.store";
+import {AgreementDetailsStore} from "@modules/agreements/agreement-details.store";
+import {AgreementType} from "@modules/agreements/model/AgreementType";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-main',
+  selector: 'app-agreements-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
-
-  agreementTypes: {[key in keyof typeof AgreementTaskType]: string} = {
-    'CREATE_TAG': 'Создание нового тега',
-    'CREATE_TASK': 'Создание новой задачи',
-    'PARTICIPATE_TEAM': 'Участие в команде',
-    'PARTICIPATE_TASK': 'Участие в задаче'
-  }
-  typeControl = new FormControl<string>('', Validators.required);
+export class MainComponent extends TabRouterComponent{
+  countTaskAgreement$ = this.agreementStore.countByTypes(AgreementType.TASK);
+  countTaskUsersAgreement$ = this.agreementStore.countByTypes(AgreementType.TASK_USER);
+  countTaskTeamsAgreement$ = this.agreementStore.countByTypes(AgreementType.TASK_TEAM);
+  countTeamUsersAgreement$ = this.agreementStore.countByTypes(AgreementType.TEAM_USER);
+  countTagAgreement$ = this.agreementStore.countByTypes(AgreementType.TAG);
 
   events: AgreementTask<any>[] = [
     {id: '1', type: 'CREATE_TAG', data: '', employer: {id: '2', name: 'Аланхея'} },
@@ -25,13 +26,12 @@ export class MainComponent {
   ];
   filteredEvents: AgreementTask<any>[] = [];
 
-  constructor() {
+  constructor(
+    private accountStore: AccountStore,
+    private agreementStore: AgreementDetailsStore,
+    router: Router
+  ) {
+    super(router);
     this.filteredEvents = this.events;
-    this.typeControl.valueChanges
-      .subscribe(t => {
-        if (t !== '') {
-          this.filteredEvents = this.events.filter(e => e.type == t);
-        } else this.filteredEvents = this.events;
-      })
   }
 }

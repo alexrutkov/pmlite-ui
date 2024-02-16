@@ -1,13 +1,31 @@
-<div class="pt-2">
-  <mat-form-field class="w-full" appearance="outline">
-    <mat-label>Тип согласования</mat-label>
-    <mat-select [formControl]="typeControl">
-      <mat-option [value]="t.key" *ngFor="let t of agreementTypes | keyvalue">{{t.value}}</mat-option>
-    </mat-select>
-    <button matSuffix (click)="typeControl.setValue(''); $event.stopPropagation();" mat-icon-button><mat-icon>clear</mat-icon></button>
-  </mat-form-field>
-</div>
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" (indexFocused)="indexFocus($event)">
+  <a mat-tab-link *ngIf="(countTaskAgreement$ | async) as countTask" [routerLink]="['tasks']" [active]="isActive('tasks')">
+    <mat-icon>add_task</mat-icon>
+    <span class="ml-3" [matBadge]="countTask" matBadgeColor="warn"></span>
+  </a>
+  <a mat-tab-link *ngIf="(countTaskUsersAgreement$ | async) as countTaskUsers" [routerLink]="['taskUsers']" [active]="isActive('taskUsers')">
+    <mat-icon>person_add</mat-icon>
+    <span class="ml-3" [matBadge]="countTaskUsers" matBadgeColor="warn"></span>
+  </a>
+  <a mat-tab-link *ngIf="(countTaskTeamsAgreement$ | async) as countTaskTeams" [routerLink]="['taskTeams']" [active]="isActive('taskTeams')">
+    <mat-icon>group_add</mat-icon>
+    <span class="ml-3" [matBadge]="countTaskTeams" matBadgeColor="warn"></span>
+  </a>
+  <a mat-tab-link *ngIf="(countTeamUsersAgreement$ | async) as countTeamUsers" [routerLink]="['teams']" [active]="isActive('teams')">
+    <mat-icon>diversity_3</mat-icon>
+    <span class="ml-3" [matBadge]="countTeamUsers" matBadgeColor="warn"></span>
+  </a>
+  <a mat-tab-link *ngIf="(countTagAgreement$ | async) as tagCount" [routerLink]="['tags']" [active]="isActive('tags')">
+    <mat-icon>tag</mat-icon>
+    <span class="ml-3" [matBadge]="tagCount" matBadgeColor="warn"></span>
+  </a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
 
+
+<!--
 <ul class="flex flex-column gap-2">
   <li *ngFor="let e of filteredEvents">
     <mat-card [ngSwitch]="e.type">
@@ -39,4 +57,4 @@
       </mat-card-footer>
     </mat-card>
   </li>
-</ul>
+</ul>-->

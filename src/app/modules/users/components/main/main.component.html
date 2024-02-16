@@ -1,6 +1,6 @@
 <nav mat-tab-nav-bar [tabPanel]="tabPanel" (indexFocused)="indexFocus($event)">
-  <a mat-tab-link [routerLink]="['all']" [active]="isActive(0)">Все деятели</a>
-  <a mat-tab-link [routerLink]="['my']" [active]="isActive(1)">Избранное</a>
+  <a mat-tab-link [routerLink]="['all']" [active]="isActive('all')">Все деятели</a>
+  <a mat-tab-link [routerLink]="['my']" [active]="isActive('my')">Избранное</a>
 </nav>
 <mat-tab-nav-panel #tabPanel>
   <router-outlet></router-outlet>

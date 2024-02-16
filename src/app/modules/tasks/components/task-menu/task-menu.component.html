@@ -4,7 +4,7 @@
     <mat-icon>add_circle_outline</mat-icon>
     <span>Подзадача</span>
   </button>
-  <button *ngIf="enableTaskJoin$ | async" mat-menu-item>
+  <button *ngIf="enableTaskJoin$ | async" (click)="joinToTask()" mat-menu-item>
     <mat-icon>person_add_alt</mat-icon>
     <span>Заявка на участие</span>
   </button>

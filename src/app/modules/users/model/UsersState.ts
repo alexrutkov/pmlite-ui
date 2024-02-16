@@ -1,6 +1,6 @@
-import {UserSummary} from "@modules/users/model/UserSummary";
+import {UserShortDetails} from "@modules/users/model/UserShortDetails";
 
 
 export interface UsersState {
-  users: UserSummary[];
+  users: UserShortDetails[];
 }
