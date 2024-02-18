@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Agreement} from "@modules/agreements/model/AgreementTask";
 
 @Component({
   selector: 'app-history',
@@ -7,7 +6,7 @@ import {Agreement} from "@modules/agreements/model/AgreementTask";
   styleUrls: ['./agreement-history.component.scss']
 })
 export class AgreementHistoryComponent {
-  events: Agreement<any>[] = [
+/*  events: Agreement<any>[] = [
     {
       id: '1', type: 'DECLINED', task: {
         id: '1', type: 'CREATE_TAG', data: {name: 'Новый тег'},
@@ -15,5 +14,5 @@ export class AgreementHistoryComponent {
       },
       agreementBy: {id: '3', name: 'Анхей'}, agreementAt: new Date().toUTCString()
     },
-  ];
+  ];*/
 }

@@ -9,15 +9,8 @@
   </mat-tab>
   <mat-tab label="Команда">
     <app-team-details></app-team-details>
-
   </mat-tab>
 </mat-tab-group>
 </div>
-<mat-toolbar class="actions">
-  <button (click)="decline()" class="mr-auto" mat-raised-button color="warn">
-    <mat-icon>thumb_down</mat-icon>Отклонить
-  </button>
-  <button  class="ml-auto" mat-raised-button color="primary">
-    <mat-icon>thumb_up</mat-icon>Принять
-  </button>
-</mat-toolbar>
+<app-decision-actions></app-decision-actions>
+

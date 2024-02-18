@@ -6,7 +6,6 @@ import {MatChipsModule} from "@angular/material/chips";
 import {RouterLink} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {AgreementSummary} from "@modules/agreements/model/AgreementSummary";
-import {AgreementType} from "@modules/agreements/model/AgreementType";
 import {
   AgreementTaskDetailsComponent
 } from "@modules/agreements/components/agreement-task-details/agreement-task-details.component";
@@ -32,19 +31,4 @@ import {
 })
 export class AgreementShortDetailsComponent {
   @Input() agreement!: AgreementSummary;
-
-  getAgreementUrl(type: keyof typeof AgreementType) {
-    switch(type) {
-      case 'TASK':
-        return 'task';
-      case 'TAG':
-        return 'tag';
-      case 'TASK_USER':
-        return 'task-user';
-      case 'TASK_TEAM':
-        return 'task-team';
-      case 'TEAM_USER':
-        return 'team-user';
-    }
-  }
 }

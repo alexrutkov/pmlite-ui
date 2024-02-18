@@ -1,10 +1,10 @@
 <div *ngIf="(task$ | async) as task" class="flex flex-column gap-2 w-full pt-3">
-  <div class="flex flex-row">
-    <div class="flex-column flex gap-1 align-items-center flex-grow-1 text-center">
+  <div class="flex flex-row align-items-center">
+    <div class="flex-column flex gap-1 align-items-center flex-grow-1">
       <span>Задача №{{task.id}}</span>
       <strong>{{task.name}}</strong>
     </div>
-    <app-task-menu [taskId]="task.id"></app-task-menu>
+    <app-task-menu class="flex-shrink-0" [taskId]="task.id"></app-task-menu>
 
   </div>
 

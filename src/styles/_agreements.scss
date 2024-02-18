@@ -1,0 +1,8 @@
+@import "mixins";
+
+.agreement {
+  strong {
+    word-break: break-all;
+    @include ellipseText(3);
+  }
+}

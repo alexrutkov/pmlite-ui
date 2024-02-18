@@ -7,6 +7,7 @@
 @import "styles/virtual";
 @import "styles/variables";
 @import "styles/accordion";
+@import "styles/agreements";
 
 * {  box-sizing: border-box;}
 html, body { height: 100%; }
@@ -15,6 +16,11 @@ ul, p {list-style: none;margin: 0;padding: 0;}
 
 .container {
   &.with-actions {
+    .agreement {
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
     margin-bottom: var(--mat-toolbar-standard-height);
     @include respond(phone) {
       margin-bottom: var(--mat-toolbar-mobile-height);

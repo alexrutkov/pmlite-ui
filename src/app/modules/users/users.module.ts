@@ -9,10 +9,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {UserDetailsComponent} from "@modules/users/components/user-details/user-details.component";
 import {USERS_URL} from "@modules/users/tokens";
 import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {UserShortDetailsComponent} from "@modules/users/components/user-short-details/user-short-details.component";
+import {UserDetailsRouteComponent} from "@modules/users/components/user-details.route/user-details.route.component";
 
 const routes: Routes = [
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
       },
     ]
   },
-  {path: ':id', component: UserDetailsComponent}
+  {path: ':userId', component: UserDetailsRouteComponent}
 ];
 
 @NgModule({

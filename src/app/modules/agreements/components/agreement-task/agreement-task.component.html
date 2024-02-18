@@ -1,24 +1,17 @@
 
 <div class="container with-actions">
-  <mat-toolbar class="agreement">
-    Согласовать участие в задаче?
+  <mat-toolbar class="agreement justify-content-center">
+      @switch (agreement.type) {
+        @case ('TASK') {создание задачи}
+        @case ('TASK_USER') {участие в задаче}
+      }
   </mat-toolbar>
   <mat-tab-group>
     <mat-tab label="Деятель">
-      <app-user-details></app-user-details>
+      <app-user-details [userId]="agreement.user.id"></app-user-details>
     </mat-tab>
     <mat-tab label="Задача">
-      <app-task-details></app-task-details>
+      <app-task-details [taskId]="details.taskId"></app-task-details>
     </mat-tab>
   </mat-tab-group>
 </div>
-
-
-<mat-toolbar class="actions">
-  <button (click)="decline()" class="mr-auto" mat-raised-button color="warn">
-    <mat-icon>thumb_down</mat-icon>Отклонить
-  </button>
-  <button  class="ml-auto" mat-raised-button color="primary">
-    <mat-icon>thumb_up</mat-icon>Принять
-  </button>
-</mat-toolbar>

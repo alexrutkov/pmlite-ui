@@ -46,6 +46,6 @@ export class AgreementDetailsStore extends ComponentStore<AgreementState> implem
           .filter(p => types.find( t => t == p.type))
           .map(p => p.count)
           .reduceRight((prev, current) => prev + current, 0)
-    ).pipe(concatMap(c => c > 0 ? of(c) : EMPTY))
+    )
   }
 }

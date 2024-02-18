@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {MatChipsModule} from "@angular/material/chips";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {concatMap, EMPTY, Observable} from "rxjs";
+import {EMPTY, Observable} from "rxjs";
 import {TaskSummary} from "@modules/tasks/model/TaskSummary";
-import {map} from "rxjs/operators";
 import {MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {TaskMenuComponent} from "@modules/tasks/components/task-menu/task-menu.component";
@@ -17,18 +16,15 @@ import {TaskMenuComponent} from "@modules/tasks/components/task-menu/task-menu.c
   templateUrl: './task-details.component.html',
   styleUrls: ['./task-details.component.scss']
 })
-export class TaskDetailsComponent implements OnInit{
+export class TaskDetailsComponent {
   task$: Observable<TaskSummary> = EMPTY;
+
+  @Input() set taskId(id: number) {
+    this.task$ = this.http.get<TaskSummary>(`/api/tasks/${id}`);
+  }
   constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute
+    private http: HttpClient
   ) {
   }
 
-  ngOnInit(): void {
-    this.task$ = this.route.params.pipe(
-      map(p => p['id'] as string),
-      concatMap(id => this.http.get<TaskSummary>(`/api/tasks/${id}`))
-    );
-  }
 }

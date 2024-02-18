@@ -1,14 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {MatChipsModule} from "@angular/material/chips";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {
   AgreementShortDetailsComponent
 } from "@modules/agreements/components/agreement-short-details/agreement-short-details.component";
-import {Agreement} from "@modules/agreements/model/AgreementTask";
 import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
-import {concatMap, EMPTY, Observable} from "rxjs";
+import {EMPTY, Observable} from "rxjs";
 import {UserShortDetails} from "@modules/users/model/UserShortDetails";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -33,20 +31,15 @@ import {UserTasksComponent} from "@modules/users/components/user-tasks/user-task
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
 })
-export class UserDetailsComponent implements OnInit {
+export class UserDetailsComponent {
   user$: Observable<UserShortDetails> = EMPTY;
 
-  events: Agreement<any>[] = [];
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute
-  ) {
+  @Input() set userId(id: number) {
+    this.user$ = this.http.get<UserShortDetails>(`/api/users/${id}`);
   }
 
-  ngOnInit(): void {
-    this.user$ = this.route.params.pipe(
-      map(p => p['id'] as string),
-      concatMap(id => this.http.get<UserShortDetails>(`/api/users/${id}`))
-    );
+  constructor(
+    private http: HttpClient
+  ) {
   }
 }

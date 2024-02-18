@@ -1,5 +1,5 @@
 
-<mat-card>
+<mat-card class="agreement">
   <mat-card-header class="relative">
     <mat-card-title>{{agreement.user.name}}</mat-card-title>
     <mat-card-subtitle>&#64;id{{ agreement.user.id }}</mat-card-subtitle>
@@ -16,7 +16,7 @@
     }
   </mat-card-content>
   <mat-card-actions>
-    <button [routerLink]="['/agreements', agreement.id, getAgreementUrl(agreement.type)]"
+    <button [routerLink]="['/agreements', agreement.id]"
             mat-raised-button color="primary" class="ml-auto">Просмотр</button>
   </mat-card-actions>
 <mat-card-footer class="pr-2 pb-2 text-bluegray-300 text-sm flex">

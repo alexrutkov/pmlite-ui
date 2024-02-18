@@ -1,4 +1,4 @@
-<button mat-mini-fab [matMenuTriggerFor]="menu" color="primary" > <mat-icon>more_vert</mat-icon> </button>
+<button mat-icon-button [matMenuTriggerFor]="menu" class="shadow-5"> <mat-icon>more_vert</mat-icon> </button>
 <mat-menu #menu="matMenu">
   <button [routerLink]="['/tasks', 'create']" [queryParams]="{parentId: taskId}" mat-menu-item>
     <mat-icon>add_circle_outline</mat-icon>

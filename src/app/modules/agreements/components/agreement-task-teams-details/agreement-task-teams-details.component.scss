@@ -1,0 +1,6 @@
+@import "mixins";
+
+strong {
+  word-break: break-all;
+  @include ellipseText(2);
+}

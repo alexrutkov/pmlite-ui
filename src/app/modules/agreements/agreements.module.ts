@@ -8,7 +8,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
-import {AgreementTaskComponent} from './components/agreement-task/agreement-task.component';
 import {AgreementTeamComponent} from './components/agreement-team/agreement-team.component';
 import {UserDetailsComponent} from "@modules/users/components/user-details/user-details.component";
 import {TaskDetailsComponent} from "@modules/tasks/components/task-details/task-details.component";
@@ -23,6 +22,8 @@ import {AgreementTagComponent} from './components/agreement-tag/agreement-tag.co
 import {AgreementsComponent} from "@modules/agreements/components/agreements/agreements.component";
 import {MatBadge} from "@angular/material/badge";
 import {AGREEMENT_URL} from "@modules/agreements/tokens";
+import {DecisionActionsComponent} from "@modules/agreements/components/decision-actions/decision-actions.component";
+import {AgreementComponent} from "@modules/agreements/components/agreement/agreement.component";
 
 
 const routes: Routes = [
@@ -30,7 +31,6 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     children: [
-      {path: '', redirectTo: 'tasks', pathMatch: 'full'},
       {
         path: 'tags',
         component: AgreementsComponent,
@@ -59,14 +59,11 @@ const routes: Routes = [
     ]
   },
   {path: 'history', component: AgreementHistoryComponent},
-  {path: ':id/task', component: AgreementTaskComponent},
-  {path: ':id/tag', component: AgreementTagComponent},
-  {path: ':id/team', component: AgreementTeamComponent}
+  {path: ':id', component: AgreementComponent}
 ];
 @NgModule({
   declarations: [
     MainComponent,
-    AgreementTaskComponent,
     AgreementTeamComponent,
     AgreementHistoryComponent,
     AgreementTagComponent
@@ -86,7 +83,8 @@ const routes: Routes = [
     MatTabsModule,
     MatToolbarModule,
     AgreementShortDetailsComponent,
-    MatBadge
+    MatBadge,
+    DecisionActionsComponent
   ]
 })
 export class AgreementsModule { }

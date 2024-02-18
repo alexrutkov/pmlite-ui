@@ -16,13 +16,13 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {TasksComponent} from './components/tasks/tasks.component';
 import {MatCardModule} from "@angular/material/card";
-import {TaskDetailsComponent} from "@modules/tasks/components/task-details/task-details.component";
 import {urlData} from "@core/symbols";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {TaskShortDetailsComponent} from "@modules/tasks/components/task-short-details/task-short-details.component";
 import {TASKS_URL} from "@modules/tasks/tokens";
 import {ShortNumberPipe} from "@pipes/short-number.pipe";
 import {SelectTagsComponent} from "@components/select-tags/select-tags.component";
+import {TaskDetailsRouteComponent} from "@modules/tasks/components/task-details.route/task-details.route.component";
 
 
 const routes: Routes = [
@@ -46,7 +46,7 @@ const routes: Routes = [
   {path: 'create', component: CreateTaskComponent, data: {[urlData]: '/api/tasks'}},
   {path: 'edit/:id', component: CreateTaskComponent, data: {[urlData]: '/api/tasks'}},
   {path: 'createRootTask', component: CreateTaskComponent, data: {[urlData]: '/api/tasks/createRootTask'}},
-  {path: ':id', component: TaskDetailsComponent}
+  {path: ':taskId', component: TaskDetailsRouteComponent}
 ];
 
 @NgModule({

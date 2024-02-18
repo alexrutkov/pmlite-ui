@@ -1,4 +1,4 @@
-
+@import "mixins";
 
 .sign {
   top: 10px;
@@ -6,5 +6,21 @@
   color: green;
   &.decline {
     color: red;
+  }
+}
+.agreement {
+  height: 235px;
+  margin-bottom: 20px;
+
+  .mat-mdc-card-title {
+    @include ellipseText(2);
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .mat-mdc-card-content {
+    height: 80px;
+    font-size: 16px;
   }
 }
