@@ -10,8 +10,8 @@ import {filter, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {FormControl, Validators} from "@angular/forms";
 import {MatBadge} from "@angular/material/badge";
-import {DecisionType} from "@modules/agreements/model/AgreementTask";
 import {Router} from "@angular/router";
+import {DecisionType} from "@modules/decisions/model/DecisionSummary";
 
 @Component({
   selector: 'app-decision-actions',

@@ -1,6 +1,7 @@
 @import "mixins";
 
-strong {
-  word-break: break-all;
-  @include ellipseText(2);
+.content {
+  @include ellipseText(1);
+  line-height: 20px;
+  height: 20px;
 }

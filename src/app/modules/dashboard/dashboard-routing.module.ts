@@ -10,6 +10,7 @@ const routes: Routes = [
       {path: 'users', loadChildren: () => import('@modules/users/users.module').then(mod => mod.UsersModule)},
       {path: 'teams', loadChildren: () => import('@modules/teams/teams.module').then(mod => mod.TeamsModule)},
       {path: 'account', loadChildren: () => import('@modules/account/account.module').then(mod => mod.AccountModule)},
+      {path: 'decisions', loadChildren: () => import('@modules/decisions/decisions.module').then(mod => mod.DecisionsModule)},
       {path: 'agreements', loadChildren: () => import('@modules/agreements/agreements.module').then(mod => mod.AgreementsModule)}
     ]
   }

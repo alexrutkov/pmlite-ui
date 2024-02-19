@@ -1,0 +1,7 @@
+@import "mixins";
+
+.content {
+  @include ellipseText(1);
+  line-height: 20px;
+  height: 20px;
+}

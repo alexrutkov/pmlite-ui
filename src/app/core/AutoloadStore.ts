@@ -13,7 +13,7 @@ export abstract class AutoloadStore<T extends Id> extends ComponentStore<T[]> im
 
   private page = -1;
   private pageSize = 25;
-  private sizeParam = new HttpParams().set('size', this.pageSize);
+  protected httpParams = new HttpParams().set('size', this.pageSize);
 
   private isDone = new Subject<void>();
   public isDone$ = this.isDone.asObservable();
@@ -54,7 +54,7 @@ export abstract class AutoloadStore<T extends Id> extends ComponentStore<T[]> im
     if (!this.isLoading && this.apiUrl) {
       this.isLoading = true;
 
-      this.http.get<T[]>(this.apiUrl, {params: this.sizeParam.set('page', ++this.page)})
+      this.http.get<T[]>(this.apiUrl, {params: this.httpParams.set('page', ++this.page)})
         .subscribe(content => {
           this.saveToStore(content);
           this.isLastPage(content);
