@@ -2,8 +2,8 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {EMPTY, Observable, tap} from "rxjs";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {UserShortDetails} from "@modules/users/model/UserShortDetails";
-import {UsersStore} from "@modules/users/users.store";
 import {provideComponentStore} from "@ngrx/component-store";
+import {UsersStore} from "@modules/users/stores/users.store";
 
 @Component({
   selector: 'app-employers',

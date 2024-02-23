@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
-import {AccountStore} from "@modules/account/account.store";
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {Profile} from "@modules/account/model/Profile";
+import {MessageToastService} from "@services/message.service";
 
 
 @Component({
@@ -8,20 +10,25 @@ import {FormBuilder, FormGroup} from "@angular/forms";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
 
   profileForm: FormGroup = this._fb.group({
     name: [''],
-    username: [''],
-    tags: [[]],
-    about: ['']
+    description: [''],
+    tags: [[]]
   })
 
   constructor(
-    private accountStore: AccountStore,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private http: HttpClient,
+    private messageService: MessageToastService
   ) {
   }
+
+  ngOnInit(): void {
+        this.http.get<Profile>('/api/account/profile')
+          .subscribe(p => this.profileForm.patchValue(p))
+    }
 
   onImageChanged(target: EventTarget | null) {
     if (target instanceof HTMLInputElement) {
@@ -40,7 +47,12 @@ export class ProfileComponent {
   }
 
   saveProfile() {
+    this.http.post('/api/account/profile', this.profileForm.getRawValue())
+      .subscribe(() => this.messageService.success('Профиль сохранён!'))
+  }
 
+  removeUserTag(tagId: number) {
+    this.http.delete(`/api/account/profile/tags/${tagId}`).subscribe()
   }
 
 

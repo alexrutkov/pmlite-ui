@@ -8,15 +8,11 @@
     <mat-label>Имя</mat-label>
     <input type="text" matInput formControlName="name">
   </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>&#64;Имя пользователя</mat-label>
-    <input type="text" matInput formControlName="username">
-  </mat-form-field>
   <mat-form-field>
     <mat-label>О себе (кратко)</mat-label>
-    <textarea cdkTextareaAutosize [cdkAutosizeMinRows]="4" formControlName="about" matInput></textarea>
+    <textarea cdkTextareaAutosize [cdkAutosizeMinRows]="4" formControlName="description" matInput></textarea>
   </mat-form-field>
-  <app-select-tags formControlName="tags"></app-select-tags>
+  <app-select-tags (removed)="removeUserTag($event)" formControlName="tags"></app-select-tags>
 </div>
 <mat-toolbar class="actions">
   <button (click)="saveProfile()" class="ml-auto" mat-raised-button color="primary">Сохранить</button>
