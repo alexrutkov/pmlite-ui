@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {TasksStore} from "@modules/tasks/tasks.store";
+import {TasksStore} from "@modules/tasks/stores/tasks.store";
 import {EMPTY, Observable, tap} from "rxjs";
 import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";

@@ -14,20 +14,6 @@
     <mat-chip>Физика</mat-chip>
   </mat-chip-set>
   <mat-accordion class="w-full">
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Команды
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <ng-template matExpansionPanelContent>
-        <ol>
-          <li><a [routerLink]="['/teams', '1']">Творческая команда</a></li>
-          <li><a [routerLink]="['/teams', '1']">Обычная команда</a></li>
-        </ol>
-      </ng-template>
-
-    </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -37,17 +23,6 @@
       <ng-template matExpansionPanelContent>
         <app-user-tasks [userId]="user.id"></app-user-tasks>
       </ng-template>
-
     </mat-expansion-panel>
-
   </mat-accordion>
 </div>
-
-<!--
-<section>
-  <h3>Согласования</h3>
-  <ul class="flex flex-column gap-2">
-    <li *ngFor="let e of events"><app-agreement-short-details [agreement]="e"></app-agreement-short-details></li>
-  </ul>
-
-</section>-->

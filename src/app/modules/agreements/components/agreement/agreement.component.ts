@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DecisionActionsComponent} from "@modules/agreements/components/decision-actions/decision-actions.component";
+import {DecisionActionsComponent} from "@modules/decisions/components/decision-actions/decision-actions.component";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {MatToolbar} from "@angular/material/toolbar";
 import {TeamDetailsComponent} from "@modules/teams/components/team-details/team-details.component";

@@ -14,7 +14,7 @@ import {AsyncPipe, NgIf, TitleCasePipe} from "@angular/common";
 import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {UserTaskDetailsComponent} from "@modules/users/components/user-task-details/user-task-details.component";
 import {EMPTY, Observable, tap} from "rxjs";
-import {UserTasksStore} from "@modules/users/user-tasks.store";
+import {UserTasksStore} from "@modules/users/stores/user-tasks.store";
 import {UserTask} from "@modules/users/model/UserTask";
 import {provideComponentStore} from "@ngrx/component-store";
 import {UserShortDetailsComponent} from "@modules/users/components/user-short-details/user-short-details.component";
@@ -52,7 +52,7 @@ export class UserTasksComponent implements AfterViewInit {
 
   @Input()
   set userId(id: number) {
-    this.userTasksStore.updateApiUrl(`/api/users/${id}/tasks`);
+    this.userTasksStore.setApiUrl(`/api/users/${id}/tasks`);
   }
 
   task$: Observable<UserTask[]> = EMPTY;

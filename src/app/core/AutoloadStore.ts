@@ -38,7 +38,7 @@ export abstract class AutoloadStore<T extends Id> extends ComponentStore<T[]> im
       return [...state, ...users];
     });
 
-  updateApiUrl(url: string) {
+  setApiUrl(url: string) {
     this.apiUrl = url;
     this.ngrxOnStoreInit();
   }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {MatToolbar} from "@angular/material/toolbar";
@@ -6,12 +6,14 @@ import {ReasonDialogComponent} from "@components/reason.dialog/reason.dialog.com
 import {MatDialog} from "@angular/material/dialog";
 import {MessageToastService} from "@services/message.service";
 import {AgreementSummary} from "@modules/agreements/model/AgreementSummary";
-import {filter, tap} from "rxjs";
+import {EMPTY, filter, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {FormControl, Validators} from "@angular/forms";
 import {MatBadge} from "@angular/material/badge";
 import {Router} from "@angular/router";
 import {DecisionType} from "@modules/decisions/model/DecisionSummary";
+import {AsyncPipe, NgIf} from "@angular/common";
+import {catchError, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-decision-actions',
@@ -21,16 +23,18 @@ import {DecisionType} from "@modules/decisions/model/DecisionSummary";
     MatIcon,
     MatToolbar,
     MatIconButton,
-    MatBadge
+    MatBadge,
+    AsyncPipe,
+    NgIf
   ],
   templateUrl: './decision-actions.component.html',
   styleUrl: './decision-actions.component.scss'
 })
-export class DecisionActionsComponent {
+export class DecisionActionsComponent implements OnInit {
   @Input() agreement!: AgreementSummary;
   @Output() resolved: EventEmitter<void> = new EventEmitter<void>();
   commentControl = new FormControl('', Validators.required);
-
+  isDecideAllowed$: Observable<any> = EMPTY;
 
   constructor(
     private matDialog: MatDialog,
@@ -39,6 +43,14 @@ export class DecisionActionsComponent {
     private router: Router
   ) {
   }
+
+  ngOnInit(): void {
+       this.isDecideAllowed$ = this.http.get(`/api/agreements/${this.agreement.id}/decision`)
+         .pipe(
+           map(() => true),
+           catchError(() => EMPTY)
+         )
+    }
   decline() {
     this.matDialog.open(ReasonDialogComponent)
       .afterClosed()

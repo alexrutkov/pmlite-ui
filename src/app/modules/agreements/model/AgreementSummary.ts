@@ -7,6 +7,10 @@ export interface AgreementSummary {
   type: keyof typeof AgreementType;
   user: UserSummary;
   details: AgreementDetails;
+  state: keyof typeof AgreementState;
+}
+export enum AgreementState {
+  PENDING = "PENDING", APPROVED = "APPROVED", CANCELLED = "CANCELLED"
 }
 
 export interface AgreementTaskSummary {

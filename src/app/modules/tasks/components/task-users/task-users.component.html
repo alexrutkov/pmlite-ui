@@ -1,0 +1,6 @@
+<cdk-virtual-scroll-viewport *ngIf="(users$ | async) as users" itemSize="190"
+                             [style.height.px]="190 * (users.length > 4 ? 4 : users.length) + 10">
+  <app-task-user-details
+    *cdkVirtualFor="let u of users; trackBy: taskUsersStore.trackIdFn"
+    [taskUser]="u"></app-task-user-details>
+</cdk-virtual-scroll-viewport>

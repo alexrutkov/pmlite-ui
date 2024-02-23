@@ -22,7 +22,7 @@ import {AgreementTagComponent} from './components/agreement-tag/agreement-tag.co
 import {AgreementsComponent} from "@modules/agreements/components/agreements/agreements.component";
 import {MatBadge} from "@angular/material/badge";
 import {AGREEMENT_URL} from "@modules/agreements/tokens";
-import {DecisionActionsComponent} from "@modules/agreements/components/decision-actions/decision-actions.component";
+import {DecisionActionsComponent} from "@modules/decisions/components/decision-actions/decision-actions.component";
 import {AgreementComponent} from "@modules/agreements/components/agreement/agreement.component";
 
 
