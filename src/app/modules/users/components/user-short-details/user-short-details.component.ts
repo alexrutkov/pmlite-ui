@@ -16,6 +16,7 @@ import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {DatePipe, TitleCasePipe} from "@angular/common";
 import {ShortNumberPipe} from "@pipes/short-number.pipe";
+import {DefaultAvatarDirective} from "@directives/default-avatar.directive";
 
 @Component({
   selector: 'app-user-short-details',
@@ -37,7 +38,8 @@ import {ShortNumberPipe} from "@pipes/short-number.pipe";
     TitleCasePipe,
     DatePipe,
     MatCardFooter,
-    ShortNumberPipe
+    ShortNumberPipe,
+    DefaultAvatarDirective
   ],
   templateUrl: './user-short-details.component.html',
   styleUrl: './user-short-details.component.scss',

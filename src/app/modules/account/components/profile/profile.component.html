@@ -1,8 +1,8 @@
 <div [formGroup]="profileForm" class="profile flex flex-column gap-2 pt-3">
-  <div [ngStyle]="{'background-image': getBackgroundImage()}"
-       class=" relative align-self-center picture flex-shrink-0"  >
+
+  <div *ngIf="!isUploading; else progress" bgAvatar class="relative align-self-center picture flex-shrink-0"  >
     <button color="primary" class="absolute" (click)="imageFile.click()" mat-icon-button><mat-icon>add_a_photo</mat-icon></button>
-    <input #imageFile hidden (change)="onImageChanged($event.target)"  (click)="imageFile.value = ''" type="file" accept=".png">
+    <input #imageFile hidden (change)="onImageChanged($event.target)"  (click)="imageFile.value = ''" type="file" accept=".jpg">
   </div>
   <mat-form-field appearance="outline">
     <mat-label>Имя</mat-label>
@@ -17,3 +17,9 @@
 <mat-toolbar class="actions">
   <button (click)="saveProfile()" class="ml-auto" mat-raised-button color="primary">Сохранить</button>
 </mat-toolbar>
+<ng-template #progress>
+  <div class="w-full justify-content-center flex mb-4">
+    <mat-spinner></mat-spinner>
+  </div>
+
+</ng-template>

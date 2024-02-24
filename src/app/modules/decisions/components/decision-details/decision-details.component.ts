@@ -32,6 +32,7 @@ import {MatChip} from "@angular/material/chips";
 import {MatIcon} from "@angular/material/icon";
 import {MatTooltip} from "@angular/material/tooltip";
 import {OverlayModule} from "@angular/cdk/overlay";
+import {DefaultAvatarDirective} from "@directives/default-avatar.directive";
 
 @Component({
   selector: 'app-decision-details',
@@ -59,6 +60,7 @@ import {OverlayModule} from "@angular/cdk/overlay";
     NgClass,
     MatTooltip,
     OverlayModule,
+    DefaultAvatarDirective,
   ],
   templateUrl: './decision-details.component.html',
   styleUrl: './decision-details.component.scss',

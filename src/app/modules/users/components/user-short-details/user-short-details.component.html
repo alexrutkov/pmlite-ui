@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>{{ user.name | titlecase }}</mat-card-title>
     <mat-card-subtitle>&#64;id{{ user.id }}</mat-card-subtitle>
-    <img mat-card-avatar src="https://via.placeholder.com/80x80" alt="Photo Avatar">
+    <img mat-card-avatar defaultAvatar [src]="'/api/users/' + user.id + '/avatar.jpg'" alt="Photo Avatar">
   </mat-card-header>
   <mat-card-content>
     {{ user.description }}

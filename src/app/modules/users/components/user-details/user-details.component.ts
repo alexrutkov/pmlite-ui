@@ -23,11 +23,12 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {ShortNumberPipe} from "@pipes/short-number.pipe";
 import {UserTasksComponent} from "@modules/users/components/user-tasks/user-tasks.component";
+import {DefaultAvatarDirective} from "@directives/default-avatar.directive";
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, MatChipsModule, RouterLink, AgreementShortDetailsComponent, MatExpansionModule, MatButton, MatCard, MatCardActions, MatCardAvatar, MatCardContent, MatCardFooter, MatCardHeader, MatCardSubtitle, MatCardTitle, MatIcon, ShortNumberPipe, MatIconButton, UserTasksComponent],
+  imports: [CommonModule, NgOptimizedImage, MatChipsModule, RouterLink, AgreementShortDetailsComponent, MatExpansionModule, MatButton, MatCard, MatCardActions, MatCardAvatar, MatCardContent, MatCardFooter, MatCardHeader, MatCardSubtitle, MatCardTitle, MatIcon, ShortNumberPipe, MatIconButton, UserTasksComponent, DefaultAvatarDirective],
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
 })

@@ -11,6 +11,7 @@ import {MessageToastService} from "@services/message.service";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit{
+  isUploading = false;
 
   profileForm: FormGroup = this._fb.group({
     name: [''],
@@ -34,16 +35,16 @@ export class ProfileComponent implements OnInit{
     if (target instanceof HTMLInputElement) {
       const file = target.files && target.files.length > 0 ? target.files[0] : null;
       if (!!file) {
-
+        const data = new FormData();
+        data.set('file', file);
+        this.isUploading = true;
+        this.http.post('/api/account/avatar', data)
+          .subscribe(() => {
+            this.messageService.success('Аватарка загружена!');
+            this.isUploading = false;
+          });
       }
-
     }
-  }
-
-  getBackgroundImage() {
-    let imageUrl = 'https://via.placeholder.com/120x120';
-
-    return `url(${imageUrl})`;
   }
 
   saveProfile() {

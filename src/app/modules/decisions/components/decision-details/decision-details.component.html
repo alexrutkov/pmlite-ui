@@ -2,7 +2,7 @@
   <mat-card-header class="relative">
     <mat-card-title>{{decision.agreement.user.name}}</mat-card-title>
     <mat-card-subtitle>&#64;id{{ decision.agreement.user.id }}</mat-card-subtitle>
-    <img mat-card-avatar src="https://via.placeholder.com/80x80" alt="Photo of a Shiba Inu">
+    <img mat-card-avatar defaultAvatar [src]="'/api/users/' + decision.agreement.user.id + '/avatar.jpg'" alt="Photo of a Shiba Inu">
     <mat-icon class="sign absolute" [ngClass]="{'decline': decision.decision == 'DECLINE'}">
       @switch (decision.decision) {
         @case ('APPROVE') {check_circle}
