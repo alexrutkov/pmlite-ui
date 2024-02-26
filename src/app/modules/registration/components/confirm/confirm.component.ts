@@ -6,6 +6,7 @@ import {INVISIBLE_CAPTCHA_KEY} from "@modules/registration/const";
 import {InvisibleReCaptchaComponent} from "ngx-captcha";
 import {MessageToastService} from "@services/message.service";
 import {catchError, map} from "rxjs/operators";
+import {AppValidators} from "@validators/RulesPasswordValidator";
 
 
 @Component({
@@ -15,16 +16,11 @@ import {catchError, map} from "rxjs/operators";
 })
 export class ConfirmComponent implements OnInit, AfterViewInit {
   siteKey = INVISIBLE_CAPTCHA_KEY;
-  isLowerValid: boolean = false;
-  isUpperValid: boolean = false;
-  isDigitValid: boolean = false;
-  isSpecialValid: boolean = false;
-  isLengthValid: boolean = false;
   token: string = '';
   isTokenValid: boolean = false;
 
   passwordForm: FormGroup = this._fb.group({
-    password: ['', [Validators.required, this.rulesValidator.bind(this)]],
+    password: ['', [Validators.required, AppValidators.passwordRuleValidator]],
     confirmPassword: ['', [Validators.required, this.compareValidator.bind(this)]],
     recaptcha: ['', Validators.required]
   })
@@ -50,22 +46,6 @@ export class ConfirmComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-  }
-
-  rulesValidator(control: FormControl) {
-    const passwd = control.value;
-    this.isLowerValid = /[a-z]/.test(passwd)
-    this.isUpperValid = /[A-Z]/.test(passwd)
-    this.isDigitValid = /[0-9]/.test(passwd)
-    this.isSpecialValid = /\W/.test(passwd)
-    this.isLengthValid = passwd.length > 7
-    if (this.isLengthValid
-      && this.isUpperValid
-      && this.isLowerValid
-      && this.isDigitValid
-      && this.isSpecialValid
-    ) return null
-    return {rules: true};
   }
 
   compareValidator(control: FormControl) {

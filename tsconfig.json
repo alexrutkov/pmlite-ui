@@ -26,6 +26,7 @@
       "@stores/*": ["src/app/stores/*"],
       "@core/*": ["src/app/core/*"],
       "@pipes/*": ["src/app/pipes/*"],
+      "@validators/*": ["src/app/validators/*"],
       "@directives/*": ["src/app/directives/*"],
       "@redux/*": ["src/app/redux/*"]
     },

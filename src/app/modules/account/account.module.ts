@@ -16,6 +16,11 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {SelectTagsComponent} from "@components/select-tags/select-tags.component";
 import {BgAvatarDirective} from "@directives/bg-avatar.directive";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {PanelModule} from "primeng/panel";
+import {DividerModule} from "primeng/divider";
+import {NgxCaptchaModule} from "ngx-captcha";
+import {PasswordModule} from "primeng/password";
+import {PasswordRulesComponent} from "@components/password-rules/password-rules.component";
 
 const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
@@ -30,20 +35,25 @@ const routes: Routes = [
     NotificationsComponent,
     ChangePasswordComponent
   ],
-    imports: [
-        RouterModule.forChild(routes),
-        CommonModule,
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
-        MatToolbarModule,
-        PaginatorModule,
-        ReactiveFormsModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        SelectTagsComponent,
-        BgAvatarDirective,
-        MatProgressSpinner
-    ]
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule,
+    PaginatorModule,
+    ReactiveFormsModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    SelectTagsComponent,
+    BgAvatarDirective,
+    MatProgressSpinner,
+    PanelModule,
+    DividerModule,
+    NgxCaptchaModule,
+    PasswordModule,
+    PasswordRulesComponent
+  ]
 })
 export class AccountModule { }

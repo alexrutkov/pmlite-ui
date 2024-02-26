@@ -1,1 +1,49 @@
-<p>privacy works!</p>
+<p-panel header="Смена пароля">
+  <div [formGroup]="passwordForm" class="flex flex-column align-items-center">
+    <div class="flex flex-column gap-2 mb-4">
+      <div class="flex flex-row align-items-center gap-2">
+        <span class="p-float-label ">
+          <p-password styleClass="w-full" formControlName="currentPassword" [toggleMask]="true" autocomplete="off"/>
+          <label>Текущий пароль</label>
+        </span>
+        <i *ngIf="passwordForm.get('currentPassword')?.valid" class="pi pi-check-circle text-green-700"></i>
+
+      </div>
+
+      <span class="mat-error"
+            *ngIf="passwordForm.get('currentPassword')?.hasError('validatePassword')">
+        * Текущий пароль не совпадает
+      </span>
+    </div>
+    <div class="flex mb-4">
+      <span class="p-float-label">
+        <p-password styleClass="w-full" formControlName="password" [toggleMask]="true" autocomplete="off"/>
+        <label>Новый пароль</label>
+      </span>
+    </div>
+
+    <div class="flex flex-column gap-2 mb-4">
+      <div class="flex">
+        <span class="p-float-label">
+          <p-password styleClass="w-full" formControlName="confirmPassword" autocomplete="off"
+                      [feedback]="false"
+                      [toggleMask]="true"
+          />
+          <label>Новый пароль</label>
+        </span>
+      </div>
+      <span class="mat-error"
+            *ngIf="passwordForm.get('confirmPassword')?.hasError('compare')">
+        * Пароли должны совпадать
+      </span>
+    </div>
+    <p-divider class="w-full"/>
+    <app-password-rules *ngIf="passwordForm.get('password') as passwordControl" [passwordControl]="passwordControl"/>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="flex flex-row">
+      <button mat-raised-button color="primary" [disabled]="passwordForm.invalid" (click)="savePassword()">Сохранить</button>
+    </div>
+  </ng-template>
+</p-panel>

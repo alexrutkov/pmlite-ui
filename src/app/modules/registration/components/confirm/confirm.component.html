@@ -19,36 +19,7 @@
 
         </div>
         <p-divider></p-divider>
-        <div>
-          <p class="mt-1 font-bold">Требование к паролю</p>
-          <ul class="hints pl-2 ml-2 mt-0" style="line-height: 1.5">
-            <li class="flex flex-row justify-content-between"
-                [style.color]="isLowerValid ? 'green' : 'red'">
-              <span>Нижний регистр</span>
-              <i *ngIf="isLowerValid; else error" class="pi pi-check"></i>
-            </li>
-            <li [style.color]="isUpperValid ? 'green' : 'red'"
-                class="flex flex-row justify-content-between">
-              <span>Верхний регистр</span>
-              <i *ngIf="isUpperValid; else error" class="pi pi-check"></i>
-            </li>
-            <li [style.color]="isDigitValid ? 'green' : 'red'"
-                class="flex flex-row justify-content-between">
-              <span>Цифра</span>
-              <i *ngIf="isDigitValid; else error" class="pi pi-check"></i>
-            </li>
-            <li [style.color]="isSpecialValid ? 'green' : 'red'"
-                class="flex flex-row justify-content-between">
-              <span>Спец символ</span>
-              <i *ngIf="isSpecialValid; else error" class="pi pi-check"></i>
-            </li>
-            <li [style.color]="isLengthValid ? 'green' : 'red'"
-                class="flex flex-row justify-content-between">
-              <span>Минимум 8 символов</span>
-              <i *ngIf="isLengthValid; else error" class="pi pi-check"></i>
-            </li>
-          </ul>
-        </div>
+        <app-password-rules *ngIf="passwordForm.get('password') as passwordControl" [passwordControl]="passwordControl"/>
 
         <ngx-invisible-recaptcha [siteKey]="siteKey" #captchaElem
           (ready)="onReadyCaptcha()"
@@ -64,9 +35,4 @@
     </ng-template>
   </p-card>
 </section>
-
-
-
-<ng-template #error>
-  <i class="pi pi-times-circle"></i>
-</ng-template>
+<ng-template #done><i class="pi pi-check"></i></ng-template>

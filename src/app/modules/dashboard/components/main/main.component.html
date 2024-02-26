@@ -22,7 +22,6 @@
     <mat-menu #accountMenu="matMenu">
       <a [routerLink]="['/account', 'profile']" mat-menu-item><mat-icon>face</mat-icon>Профиль</a>
       <a [routerLink]="['/account', 'privacy']" mat-menu-item><mat-icon>manage_accounts</mat-icon>Настройки</a>
-      <a [routerLink]="['/account', 'notifications']" mat-menu-item><mat-icon>notifications</mat-icon>Оповещения</a>
     </mat-menu>
   </mat-toolbar>
   <p-overlayPanel [dismissable]="true" styleClass="overlay--menu" #menu>

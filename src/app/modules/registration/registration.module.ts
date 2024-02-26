@@ -15,6 +15,7 @@ import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {RegistrationComponent} from "@modules/registration/components/registration/registration.component";
 import {RecoverComponent} from "@modules/registration/components/recover/recover.component";
+import {PasswordRulesComponent} from "@components/password-rules/password-rules.component";
 
 
 const routes: Route[] = [
@@ -32,21 +33,22 @@ const routes: Route[] = [
     ExpiredComponent,
     RecoverComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        NgxCaptchaModule,
-        CardModule,
-        ButtonModule,
-        InputTextModule,
-        RouterModule.forChild(routes),
-        PasswordModule,
-        DividerModule,
-        MatButton,
-        MatError,
-        MatFormField,
-        MatInput,
-        MatLabel
-    ]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgxCaptchaModule,
+    CardModule,
+    ButtonModule,
+    InputTextModule,
+    RouterModule.forChild(routes),
+    PasswordModule,
+    DividerModule,
+    MatButton,
+    MatError,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    PasswordRulesComponent
+  ]
 })
 export class RegistrationModule { }
