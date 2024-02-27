@@ -13,7 +13,7 @@ import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {SelectTagsComponent} from "@components/select-tags/select-tags.component";
+import {SelectTagsComponent} from "@modules/tags/components/select-tags/select-tags.component";
 import {BgAvatarDirective} from "@directives/bg-avatar.directive";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {PanelModule} from "primeng/panel";

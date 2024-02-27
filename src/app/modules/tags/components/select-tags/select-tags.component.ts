@@ -13,7 +13,8 @@ import {ErrorService} from "@services/error.service";
 import {MatInput} from "@angular/material/input";
 import {MessageToastService} from "@services/message.service";
 import {HttpClient} from "@angular/common/http";
-import {Tag} from "@core/Tag";
+
+import {Tag} from "@modules/tags/model/Tag";
 
 
 @Component({

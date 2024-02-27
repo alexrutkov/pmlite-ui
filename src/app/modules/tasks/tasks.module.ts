@@ -21,7 +21,7 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
 import {TaskShortDetailsComponent} from "@modules/tasks/components/task-short-details/task-short-details.component";
 import {TASKS_URL} from "@modules/tasks/tokens";
 import {ShortNumberPipe} from "@pipes/short-number.pipe";
-import {SelectTagsComponent} from "@components/select-tags/select-tags.component";
+import {SelectTagsComponent} from "@modules/tags/components/select-tags/select-tags.component";
 import {TaskDetailsRouteComponent} from "@modules/tasks/components/task-details.route/task-details.route.component";
 
 

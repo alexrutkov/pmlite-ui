@@ -1,4 +1,4 @@
-import {Tag} from "@core/Tag";
+import {Tag} from "@modules/tags/model/Tag";
 
 
 export interface TaskSummary {

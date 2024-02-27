@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Добавить тег для поиска</h1>
+<mat-dialog-content>
+  <app-select-tags [formControl]="tagsControl" class="w-full"></app-select-tags>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary"
+          (click)="addAccountTags()"
+          [disabled]="tagsControl.value.length == 0">Добавить</button>
+</mat-dialog-actions>
