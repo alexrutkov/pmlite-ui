@@ -1,41 +1,41 @@
-import {Component, ViewChild} from '@angular/core';
-import {tap} from "rxjs";
+import {Component} from '@angular/core';
 import {
-  AgreementShortDetailsComponent
+	AgreementShortDetailsComponent
 } from "@modules/agreements/components/agreement-short-details/agreement-short-details.component";
 import {AsyncPipe} from "@angular/common";
 import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
-import {DecisionsStore} from "@modules/decisions/decisions.store";
 import {DecisionDetailsComponent} from "@modules/decisions/components/decision-details/decision-details.component";
 import {CdkAutoSizeVirtualScroll} from "@angular/cdk-experimental/scrolling";
-import {provideComponentStore} from "@ngrx/component-store";
+import {MatTabLink, MatTabNav, MatTabNavPanel} from "@angular/material/tabs";
+import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {TabRouterComponent} from "@core/TabRouterComponent";
 
 @Component({
   selector: 'app-decisions-main',
   standalone: true,
-  imports: [
-    AgreementShortDetailsComponent,
-    AsyncPipe,
-    CdkVirtualForOf,
-    CdkVirtualScrollViewport,
-    DecisionDetailsComponent,
-    CdkAutoSizeVirtualScroll,
-    CdkFixedSizeVirtualScroll
-  ],
+	imports: [
+		AgreementShortDetailsComponent,
+		AsyncPipe,
+		CdkVirtualForOf,
+		CdkVirtualScrollViewport,
+		DecisionDetailsComponent,
+		CdkAutoSizeVirtualScroll,
+		CdkFixedSizeVirtualScroll,
+		MatTabLink,
+		MatTabNav,
+		MatTabNavPanel,
+		RouterOutlet,
+		RouterLink
+	],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss',
-  providers: [
-    provideComponentStore(DecisionsStore)
-  ]
+  styleUrl: './main.component.scss'
 })
-export class MainComponent {
-  @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
-
-  protected readonly decisions$ = this.decisionStore.select(s => s)
-    .pipe(tap(() => this.virtualScroll?.ngOnInit()))
+export class MainComponent  extends TabRouterComponent {
 
   constructor(
-    public decisionStore: DecisionsStore
+		router: Router
   ) {
+		super(router);
+
   }
 }

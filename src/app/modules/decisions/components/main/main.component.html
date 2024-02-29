@@ -1,3 +1,10 @@
-<cdk-virtual-scroll-viewport itemSize="265" class="virtual-box">
-  <app-decision-details *cdkVirtualFor="let d of decisions$ | async; trackBy: decisionStore.trackIdFn" [decision]="d"></app-decision-details>
-</cdk-virtual-scroll-viewport>
+
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" (indexFocused)="indexFocus($event)">
+	<a mat-tab-link [routerLink]="['all']" [active]="isActive('all')">Все события</a>
+	<a mat-tab-link [routerLink]="['my']" [active]="isActive('my')">Мои решения</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+	<router-outlet></router-outlet>
+</mat-tab-nav-panel>
+
+

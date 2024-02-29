@@ -1,0 +1,3 @@
+<cdk-virtual-scroll-viewport itemSize="265" class="virtual-box">
+	<app-decision-details *cdkVirtualFor="let d of decisions$ | async; trackBy: decisionStore.trackIdFn" [decision]="d"></app-decision-details>
+</cdk-virtual-scroll-viewport>

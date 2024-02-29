@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {TabRouterComponent} from "@core/TabRouterComponent";
 
 @Component({
@@ -9,7 +9,6 @@ import {TabRouterComponent} from "@core/TabRouterComponent";
 })
 export class MainComponent extends TabRouterComponent {
   constructor(
-    private route: ActivatedRoute,
     router: Router
   ) {
     super(router);

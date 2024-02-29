@@ -1,16 +1,18 @@
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {AutoloadStore} from "@core/AutoloadStore";
 import {AgreementType} from "@modules/agreements/model/AgreementType";
 import {DecisionSummary} from "@modules/decisions/model/DecisionSummary";
+import {DECISIONS_URL} from "@modules/decisions/tokens";
 
 
 @Injectable()
 export class DecisionsStore extends AutoloadStore<DecisionSummary> {
   constructor(
-    http: HttpClient
+    http: HttpClient,
+		@Inject(DECISIONS_URL) apiUrl: string
   ) {
-    super(http, '/api/decisions');
+    super(http, apiUrl);
   }
 
   setAgreementType(type: keyof typeof AgreementType) {
