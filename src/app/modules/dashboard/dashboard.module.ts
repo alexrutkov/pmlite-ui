@@ -16,31 +16,33 @@ import {AccountStore} from "@modules/account/account.store";
 import {MatBadge} from "@angular/material/badge";
 import {AgreementDetailsStore} from "@modules/agreements/agreement-details.store";
 import {TagsStore} from "@modules/tags/stores/tags.store";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    MenuComponent
-  ],
-    imports: [
-        CommonModule,
-        MatToolbarModule,
-        DashboardRoutingModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatListModule,
-        OverlayPanelModule,
-        MatMenuModule,
-        MatExpansionModule,
-        MatBadge
-    ],
-  providers: [
-    provideComponentStore(AccountStore),
-    provideComponentStore(TagsStore),
-    provideComponentStore(AgreementDetailsStore),
-  ]
+	declarations: [
+		MainComponent,
+		MenuComponent
+	],
+	imports: [
+		CommonModule,
+		MatToolbarModule,
+		DashboardRoutingModule,
+		MatIconModule,
+		MatButtonModule,
+		MatSidenavModule,
+		MatListModule,
+		OverlayPanelModule,
+		MatMenuModule,
+		MatExpansionModule,
+		MatBadge,
+		MatDialogModule,
+	],
+	providers: [
+		provideComponentStore(AccountStore),
+		provideComponentStore(TagsStore),
+		provideComponentStore(AgreementDetailsStore),
+	]
 })
 export class DashboardModule {
 }

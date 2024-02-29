@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Список тегов</h1>
+<mat-dialog-content>
+	<mat-list>
+		@for (tag of tags$ | async; track tag.id) {
+			<mat-list-item>
+				<mat-checkbox labelPosition="after" (change)="toggleTag(tag, $event)" [checked]="tag.state == 'ACTIVE'"/>
+				{{tag.tag.displayTag}}
+				<button mat-icon-button matListItemMeta (click)="deleteTag(tag)"><mat-icon>delete</mat-icon></button>
+			</mat-list-item>
+		}
+	</mat-list>
+</mat-dialog-content>

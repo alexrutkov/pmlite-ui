@@ -10,7 +10,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {QuillModule} from "ngx-quill";
 import {registerLocaleData} from "@angular/common";
 import localeRu from '@angular/common/locales/ru';
-import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
 import {HandlerInterceptor} from "@services/handler.interceptor";
 
 
@@ -26,7 +26,6 @@ registerLocaleData(localeRu, 'ru');
     HttpClientModule,
     AppRoutingModule,
     ToastModule,
-    MatDialogModule,
     QuillModule.forRoot()
   ],
   providers: [
