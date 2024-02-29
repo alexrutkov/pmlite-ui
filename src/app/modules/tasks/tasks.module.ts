@@ -23,6 +23,7 @@ import {TASKS_URL} from "@modules/tasks/tokens";
 import {ShortNumberPipe} from "@pipes/short-number.pipe";
 import {SelectTagsComponent} from "@modules/tags/components/select-tags/select-tags.component";
 import {TaskDetailsRouteComponent} from "@modules/tasks/components/task-details.route/task-details.route.component";
+import {SearchComponent} from "@components/search/search.component";
 
 
 const routes: Routes = [
@@ -73,7 +74,8 @@ const routes: Routes = [
         MatCardModule,
         ScrollingModule,
         ShortNumberPipe,
-        SelectTagsComponent
+        SelectTagsComponent,
+        SearchComponent
     ]
 })
 export class TasksModule {

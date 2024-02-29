@@ -1,3 +1,5 @@
 <cdk-virtual-scroll-viewport itemSize="255" class="virtual-box">
   <app-task-short-details *cdkVirtualFor="let t of tasks$ | async; trackBy: tasksStore.trackIdFn" [task]="t"></app-task-short-details>
 </cdk-virtual-scroll-viewport>
+<app-search></app-search>
+

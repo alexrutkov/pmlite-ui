@@ -1,0 +1,13 @@
+<div
+	class="absolute search flex flex-row align-items-start gap-2"
+	[ngClass]="{'active': isActive}"
+>
+	<mat-form-field *ngIf="isActive" class="w-full" appearance="fill">
+		<input matInput type="text">
+	</mat-form-field>
+	<button mat-fab (click)="isActive = !isActive"
+					class="ml-auto"
+					color="primary">
+		<mat-icon>{{ isActive ? 'clear' : 'search' }}</mat-icon>
+	</button>
+</div>

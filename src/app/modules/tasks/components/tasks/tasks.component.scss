@@ -1,4 +1,6 @@
-
+:host {
+	position: relative;
+}
 .mat-mdc-card-title {
   line-height: normal;
 }
@@ -9,4 +11,5 @@
     - var(--mdc-secondary-navigation-tab-container-height)
   );
 }
+
 
