@@ -17,6 +17,7 @@ export abstract class AutoloadStore<T extends Id> extends ComponentStore<T[]> im
 
   private isDone = new Subject<void>();
   public isDone$ = this.isDone.asObservable();
+	private virtualScroll: CdkVirtualScrollViewport | undefined;
 
 
 
@@ -28,14 +29,17 @@ export abstract class AutoloadStore<T extends Id> extends ComponentStore<T[]> im
   }
 
   ngrxOnStoreInit() {
-    this.page = -1;
+
+		this.resetPage();
     this.setState([]);
+
     this.tryLoadMore();
+
   }
 
   saveToStore: (content: T[]) => void = this.updater(
-    (state, users: T[]): T[] => {
-      return [...state, ...users];
+    (state, content: T[]): T[] => {
+      return [...state, ...content];
     });
 
   setApiUrl(url: string) {
@@ -69,6 +73,7 @@ export abstract class AutoloadStore<T extends Id> extends ComponentStore<T[]> im
 
   initAutoloadStore(
     virtualScroll: CdkVirtualScrollViewport) {
+		if (this.virtualScroll == undefined) this.virtualScroll = virtualScroll;
     virtualScroll.elementScrolled()
       .pipe(
         filter(() => this.isScrollOnBottom(virtualScroll)),
@@ -87,4 +92,15 @@ export abstract class AutoloadStore<T extends Id> extends ComponentStore<T[]> im
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
+
+	private resetPage() {
+		this.page = -1;
+		this.isDone.next();
+		this.isDone.complete();
+		this.isDone = new Subject();
+		this.isDone$ = this.isDone.asObservable();
+		if (this.virtualScroll) {
+			this.initAutoloadStore(this.virtualScroll);
+		}
+	}
 }

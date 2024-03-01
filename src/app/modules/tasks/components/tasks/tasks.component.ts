@@ -4,6 +4,7 @@ import {EMPTY, Observable, tap} from "rxjs";
 import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {provideComponentStore} from "@ngrx/component-store";
+import {FormControl} from "@angular/forms";
 
 
 @Component({
@@ -20,11 +21,17 @@ export class TasksComponent implements AfterViewInit {
 
   @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
 
+	searchControl = new FormControl('');
+
   constructor(
     public tasksStore: TasksStore
   ) {
     this.tasks$ = this.tasksStore.select(s => s)
       .pipe(tap(() => this.virtualScroll?.ngOnInit()));
+		this.searchControl.valueChanges.subscribe(v => {
+			console.log(v);
+			this.tasksStore.setSearch(v);
+		})
   }
 
   ngAfterViewInit(): void {

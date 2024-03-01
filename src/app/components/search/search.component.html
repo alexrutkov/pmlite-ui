@@ -3,11 +3,14 @@
 	[ngClass]="{'active': isActive}"
 >
 	<mat-form-field *ngIf="isActive" class="w-full" appearance="fill">
-		<input matInput type="text">
+		<input matInput [formControl]="searchControl" type="text">
+		<button (click)="searchControl.reset(''); isActive = false" mat-icon-button matSuffix><mat-icon>clear</mat-icon></button>
 	</mat-form-field>
 	<button mat-fab (click)="isActive = !isActive"
+					matBadge="!" matBadgeColor="warn"
+					[matBadgeHidden]="searchControl.invalid"
 					class="ml-auto"
 					color="primary">
-		<mat-icon>{{ isActive ? 'clear' : 'search' }}</mat-icon>
+		<mat-icon>{{ isActive ? 'exit_to_app' : 'search' }}</mat-icon>
 	</button>
 </div>
