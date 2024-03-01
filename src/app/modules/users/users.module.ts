@@ -13,6 +13,8 @@ import {USERS_URL} from "@modules/users/tokens";
 import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {UserShortDetailsComponent} from "@modules/users/components/user-short-details/user-short-details.component";
 import {UserDetailsRouteComponent} from "@modules/users/components/user-details.route/user-details.route.component";
+import {SearchComponent} from "@components/search/search.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -40,20 +42,22 @@ const routes: Routes = [
     MainComponent,
     UsersComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatTabsModule,
-    MatListModule,
-    NgOptimizedImage,
-    MatCardModule,
-    MatChipsModule,
-    MatButtonModule,
-    MatIconModule,
-    CdkFixedSizeVirtualScroll,
-    CdkVirtualForOf,
-    CdkVirtualScrollViewport,
-    UserShortDetailsComponent
-  ]
+	imports: [
+		CommonModule,
+		RouterModule.forChild(routes),
+		MatTabsModule,
+		MatListModule,
+		NgOptimizedImage,
+		MatCardModule,
+		MatChipsModule,
+		MatButtonModule,
+		MatIconModule,
+		CdkFixedSizeVirtualScroll,
+		CdkVirtualForOf,
+		CdkVirtualScrollViewport,
+		UserShortDetailsComponent,
+		SearchComponent,
+		ReactiveFormsModule
+	]
 })
 export class UsersModule { }

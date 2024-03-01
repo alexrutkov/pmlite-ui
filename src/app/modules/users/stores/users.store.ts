@@ -25,5 +25,15 @@ export class UsersStore extends AutoloadStore<UserShortDetails>  {
 			.subscribe(() => this.ngrxOnStoreInit());
   }
 
+	setSearch(search: string | null) {
+		if (search) {
+			this.httpParams = this.httpParams.set('search', search);
+			this.ngrxOnStoreInit();
+		} else if (this.httpParams.keys().includes('search')) {
+			this.httpParams = this.httpParams.delete('search');
+			this.ngrxOnStoreInit();
+		}
+	}
+
 
 }

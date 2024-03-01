@@ -1,3 +1,4 @@
 <cdk-virtual-scroll-viewport itemSize="255" class="virtual-box">
   <app-user-short-details *cdkVirtualFor="let u of users$ | async; trackBy: usersStore.trackIdFn" [user]="u"></app-user-short-details>
 </cdk-virtual-scroll-viewport>
+<app-search [formControl]="searchControl"></app-search>
