@@ -28,10 +28,7 @@ export class TasksComponent implements AfterViewInit {
   ) {
     this.tasks$ = this.tasksStore.select(s => s)
       .pipe(tap(() => this.virtualScroll?.ngOnInit()));
-		this.searchControl.valueChanges.subscribe(v => {
-			console.log(v);
-			this.tasksStore.setSearch(v);
-		})
+		this.searchControl.valueChanges.subscribe(v => this.tasksStore.setSearch(v))
   }
 
   ngAfterViewInit(): void {

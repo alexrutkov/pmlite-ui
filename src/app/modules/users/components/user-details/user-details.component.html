@@ -2,7 +2,7 @@
   *ngIf="(user$ | async) as user"
   class="flex flex-column gap-2 w-full align-items-center">
   <div>
-    <img defaultAvatar [src]="'/api/users/' + user.id + '/avatar.jpg'" width="200" height="200"  alt="">
+    <img *defaultAvatar="user.id; url as u" [src]="u" width="200" height="200"  alt="">
   </div>
   <div class="flex-column flex gap-1">
     <strong>{{ user.name }}</strong>

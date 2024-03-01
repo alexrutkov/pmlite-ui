@@ -3,15 +3,23 @@ import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 import {HttpClient} from "@angular/common/http";
 import {TASKS_URL} from "@modules/tasks/tokens";
 import {AutoloadStore} from "@core/AutoloadStore";
+import {TagsStore} from "@modules/tags/stores/tags.store";
+import {takeUntil} from "rxjs";
 
 
 @Injectable()
 export class TasksStore extends AutoloadStore<TaskSummary> {
   constructor(
     http: HttpClient,
-    @Inject(TASKS_URL) apiUrl: string
+    @Inject(TASKS_URL) apiUrl: string,
+		tagsStore: TagsStore
   ) {
     super(http, apiUrl);
+		tagsStore.state$
+			.pipe(
+				takeUntil(this.unsubscribe)
+			)
+			.subscribe(() => this.ngrxOnStoreInit());
   }
 
 	setSearch(search: string | null) {

@@ -1,39 +1,53 @@
-import {Directive, ElementRef, Input, OnInit} from '@angular/core';
-import {ImageSrc} from "@core/types/ImageSrc";
+import {ChangeDetectorRef, Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {finalize} from "rxjs";
 
+class UrlContext {
+	url: string = '/assets/person.png';
+	userId: number = 0;
+}
 
 @Directive({
   selector: '[defaultAvatar]',
   standalone: true
 })
 export class DefaultAvatarDirective implements OnInit {
-  @Input({ required: true }) src: ImageSrc = null;
+
+	src: string = '/assets/person.png';
   private defaultLocalImage = '/assets/person.png';
+	private isViewCreated = false;
+	private readonly context = new UrlContext();
+	@Input('defaultAvatar') set state(id: number) {
+		this.context.userId = id;
+		if (!this.isViewCreated) {
+			this.http.head(`/api/users/${id}/avatar.jpg`)
+				.pipe(
+					finalize(() => this.isViewCreated = true)
+				)
+				.subscribe({
+					next: () => {
+						// this.src = `/api/users/${id}/avatar.jpg`;
+						this.context.url = `/api/users/${id}/avatar.jpg`;
+						this.viewContainerRef.createEmbeddedView(this.templateRef, this.context);
+						this.changeRef.detectChanges();
+					},
+					error: () => {
+						this.context.url = '/assets/person.png';
+						this.viewContainerRef.createEmbeddedView(this.templateRef, this.context);
+						this.changeRef.detectChanges();
+					}
+				})
+		}
+	}
   constructor(
-    private imageRef: ElementRef
+		private readonly viewContainerRef: ViewContainerRef,
+		private readonly templateRef: TemplateRef<UrlContext>,
+		private changeRef: ChangeDetectorRef,
+		private http: HttpClient
   ) { }
 
   ngOnInit(): void {
-    this.initImage();
-  }
 
-  private initImage() {
-    const img = new Image();
-    img.onload = () => this.setImage(this.resolveImage(this.src));
-    img.onerror = () => this.setImage(this.defaultLocalImage);
-    img.src = this.resolveImage(this.src);
-  }
-
-  private setImage(src: ImageSrc) {
-    this.imageRef.nativeElement.setAttribute('src', src);
-  }
-
-  private resolveImage(src: ImageSrc): string {
-    if (!src) {
-      return this.defaultLocalImage;
-    }
-
-    return src;
   }
 
 }

@@ -7,25 +7,26 @@ import {RouterLink} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {AgreementSummary} from "@modules/agreements/model/AgreementSummary";
 import {
-  AgreementTaskDetailsComponent
+	AgreementTaskDetailsComponent
 } from "@modules/agreements/components/agreement-task-details/agreement-task-details.component";
 import {
-  AgreementTaskUsersDetailsComponent
+	AgreementTaskUsersDetailsComponent
 } from "@modules/agreements/components/agreement-task-users-details/agreement-task-users-details.component";
 import {
-  AgreementTaskTeamsDetailsComponent
+	AgreementTaskTeamsDetailsComponent
 } from "@modules/agreements/components/agreement-task-teams-details/agreement-task-teams-details.component";
 import {
-  AgreementTagDetailsComponent
+	AgreementTagDetailsComponent
 } from "@modules/agreements/components/agreement-tag-details/agreement-tag-details.component";
 import {
-  AgreementTeamUsersDetailsComponent
+	AgreementTeamUsersDetailsComponent
 } from "@modules/agreements/components/agreement-team-users-details/agreement-team-users-details.component";
+import {AvatarComponent} from "@components/avatar/avatar.component";
 
 @Component({
   selector: 'app-agreement-short-details',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, MatChipsModule, RouterLink, MatIconModule, AgreementTaskDetailsComponent, AgreementTaskUsersDetailsComponent, AgreementTaskTeamsDetailsComponent, AgreementTagDetailsComponent, AgreementTeamUsersDetailsComponent],
+    imports: [CommonModule, MatButtonModule, MatCardModule, MatChipsModule, RouterLink, MatIconModule, AgreementTaskDetailsComponent, AgreementTaskUsersDetailsComponent, AgreementTaskTeamsDetailsComponent, AgreementTagDetailsComponent, AgreementTeamUsersDetailsComponent, AvatarComponent],
   templateUrl: './agreement-short-details.component.html',
   styleUrls: ['./agreement-short-details.component.scss']
 })

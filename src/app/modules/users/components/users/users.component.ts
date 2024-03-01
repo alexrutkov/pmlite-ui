@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     public usersStore: UsersStore
   ) {
     this.users$ = this.usersStore.select(s => s)
-      .pipe(tap(() => this.virtualScroll?.ngOnInit()));
+      .pipe(tap(() => setTimeout(() => this.virtualScroll?.checkViewportSize(), 500 )));
   }
 
   ngAfterViewInit(): void {
