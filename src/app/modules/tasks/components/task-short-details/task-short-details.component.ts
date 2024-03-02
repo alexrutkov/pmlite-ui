@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {TaskSummary} from "@modules/tasks/model/TaskSummary";
+import {LikesService} from "@services/likes.service";
 
 @Component({
   selector: 'app-task-short-details',
@@ -9,4 +10,9 @@ import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 export class TaskShortDetailsComponent {
 
   @Input() task!: TaskSummary;
+
+	constructor(
+		public likeService: LikesService
+	) {
+	}
 }

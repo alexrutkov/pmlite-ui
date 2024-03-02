@@ -7,7 +7,9 @@
   </mat-card-content>
   <mat-card-actions>
     <div>
-      <button mat-button><mat-icon color="warn">favorite</mat-icon> {{4212 | shortNumber }}</button>
+      <button mat-button (click)="likeService.likeTask(task)">
+				<mat-icon [color]="task.isLiked ? 'warn' : null">favorite</mat-icon> {{task.likeAmount | shortNumber }}
+			</button>
       <button mat-button><mat-icon color="warn">star</mat-icon> {{251233 | shortNumber }}</button>
     </div>
     <button [routerLink]="['/tasks', task.id]" class="ml-auto" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
