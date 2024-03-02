@@ -7,7 +7,7 @@
   </mat-card-content>
   <mat-card-actions>
     <div>
-      <button mat-button (click)="likeService.likeTask(task)">
+      <button mat-button (click)="like()">
 				<mat-icon [color]="task.isLiked ? 'warn' : null">favorite</mat-icon> {{task.likeAmount | shortNumber }}
 			</button>
       <button mat-button><mat-icon color="warn">star</mat-icon> {{251233 | shortNumber }}</button>

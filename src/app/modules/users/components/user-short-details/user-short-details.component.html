@@ -14,7 +14,9 @@
   </mat-card-content>
   <mat-card-actions>
     <div>
-      <button mat-button><mat-icon color="warn">favorite</mat-icon> {{4212 | shortNumber }}</button>
+			<button mat-button (click)="like()">
+				<mat-icon [color]="user.isLiked ? 'warn' : null">favorite</mat-icon> {{user.likeAmount | shortNumber }}
+			</button>
       <button mat-button><mat-icon color="warn">star</mat-icon> {{251233 | shortNumber }}</button>
     </div>
     <button [routerLink]="['/users', user.id]" class="ml-auto" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>

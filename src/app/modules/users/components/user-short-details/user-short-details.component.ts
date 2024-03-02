@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@angular/core';
 import {UserShortDetails} from "@modules/users/model/UserShortDetails";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {
@@ -18,10 +18,11 @@ import {DatePipe, TitleCasePipe} from "@angular/common";
 import {ShortNumberPipe} from "@pipes/short-number.pipe";
 import {DefaultAvatarDirective} from "@directives/default-avatar.directive";
 import {AvatarComponent} from "@components/avatar/avatar.component";
+import {LikesService} from "@services/likes.service";
 
 @Component({
-  selector: 'app-user-short-details',
-  standalone: true,
+	selector: 'app-user-short-details',
+	standalone: true,
 	imports: [
 		MatButton,
 		MatCard,
@@ -43,11 +44,24 @@ import {AvatarComponent} from "@components/avatar/avatar.component";
 		DefaultAvatarDirective,
 		AvatarComponent
 	],
-  templateUrl: './user-short-details.component.html',
-  styleUrl: './user-short-details.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+	templateUrl: './user-short-details.component.html',
+	styleUrl: './user-short-details.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserShortDetailsComponent {
-  @Input() user!: UserShortDetails;
+	@Input() user!: UserShortDetails;
 
+	constructor(
+		public likeService: LikesService,
+		private changeRef: ChangeDetectorRef
+	) {
+	}
+
+	like() {
+		this.likeService.likeUser(this.user)
+			.subscribe(() => {
+				this.user.isLiked = !this.user.isLiked;
+				this.changeRef.detectChanges();
+			})
+	}
 }
