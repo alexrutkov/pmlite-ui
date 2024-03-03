@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 import {EMPTY, tap} from "rxjs";
 import {UserShortDetails} from "@modules/users/model/UserShortDetails";
+import {MessageToastService} from "@services/message.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class LikesService {
 	private loadingTasks: number[] = [];
 	private loadingUsers: number[] = [];
   constructor(
-		private http: HttpClient
+		private http: HttpClient,
+		private messageService: MessageToastService
 	) { }
 
 	likeTask(task: TaskSummary) {
@@ -36,7 +38,10 @@ export class LikesService {
 				? this.http.delete(`/api/stars/${task.id}`, {params: {type: 'TASK'}})
 					.pipe(tap(() => task.starAmount--))
 				: this.http.post('/api/stars', {entityId: task.id, type: 'TASK'})
-					.pipe(tap(() => task.starAmount++));
+					.pipe(
+						tap(() => task.starAmount++),
+						tap(() => this.messageService.success('Добавлено в избранное!'))
+					);
 			return request.pipe(
 				tap(() =>  this.loadingTasks.splice(this.loadingTasks.indexOf(task.id), 1))
 			);
@@ -64,7 +69,10 @@ export class LikesService {
 				? this.http.delete(`/api/stars/${user.id}`, {params: {type: 'USER'}})
 					.pipe(tap(() => user.starAmount--))
 				: this.http.post('/api/stars', {entityId: user.id, type: 'USER'})
-					.pipe(tap(() => user.starAmount++));
+					.pipe(
+						tap(() => user.starAmount++),
+						tap(() => this.messageService.success('Добавлено в избранное!'))
+					);
 			return request.pipe(
 				tap(() =>  this.loadingUsers.splice(this.loadingUsers.indexOf(user.id), 1))
 			);

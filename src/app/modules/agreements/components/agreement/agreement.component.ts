@@ -11,21 +11,23 @@ import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 import {map} from "rxjs/operators";
 import {AgreementTaskComponent} from "@modules/agreements/components/agreement-task/agreement-task.component";
+import {AgreementTagComponent} from "@modules/agreements/components/agreement-tag/agreement-tag.component";
 
 @Component({
   selector: 'app-agreement',
   standalone: true,
-  imports: [
-    DecisionActionsComponent,
-    MatTab,
-    MatTabGroup,
-    MatToolbar,
-    TeamDetailsComponent,
-    UserDetailsComponent,
-    AsyncPipe,
-    NgIf,
-    AgreementTaskComponent
-  ],
+	imports: [
+		DecisionActionsComponent,
+		MatTab,
+		MatTabGroup,
+		MatToolbar,
+		TeamDetailsComponent,
+		UserDetailsComponent,
+		AsyncPipe,
+		NgIf,
+		AgreementTaskComponent,
+		AgreementTagComponent
+	],
   templateUrl: './agreement.component.html',
   styleUrl: './agreement.component.scss'
 })

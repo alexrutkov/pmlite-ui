@@ -3,6 +3,7 @@
     @switch (agreement.type) {
       @case('TASK') {<app-agreement-task [agreement]="agreement"></app-agreement-task>}
       @case('TASK_USER') {<app-agreement-task [agreement]="agreement"></app-agreement-task>}
+      @case('TAG') {<app-agreement-tag [agreement]="agreement"></app-agreement-tag>}
     }
   </div>
   <app-decision-actions [agreement]="agreement"></app-decision-actions>

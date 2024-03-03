@@ -14,16 +14,15 @@ import {TaskDetailsComponent} from "@modules/tasks/components/task-details/task-
 import {TeamDetailsComponent} from "@modules/teams/components/team-details/team-details.component";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {AgreementHistoryComponent} from './components/history/agreement-history.component';
 import {
-  AgreementShortDetailsComponent
+	AgreementShortDetailsComponent
 } from "@modules/agreements/components/agreement-short-details/agreement-short-details.component";
-import {AgreementTagComponent} from './components/agreement-tag/agreement-tag.component';
 import {AgreementsComponent} from "@modules/agreements/components/agreements/agreements.component";
 import {MatBadge} from "@angular/material/badge";
 import {AGREEMENT_URL} from "@modules/agreements/tokens";
 import {DecisionActionsComponent} from "@modules/decisions/components/decision-actions/decision-actions.component";
 import {AgreementComponent} from "@modules/agreements/components/agreement/agreement.component";
+import {AgreementSummaryComponent} from "@modules/agreements/components/agreement-summary/agreement-summary.component";
 
 
 const routes: Routes = [
@@ -31,6 +30,10 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     children: [
+			{
+				path: '',
+				component: AgreementSummaryComponent
+			},
       {
         path: 'tags',
         component: AgreementsComponent,
@@ -58,15 +61,12 @@ const routes: Routes = [
       },
     ]
   },
-  {path: 'history', component: AgreementHistoryComponent},
   {path: ':id', component: AgreementComponent}
 ];
 @NgModule({
   declarations: [
     MainComponent,
-    AgreementTeamComponent,
-    AgreementHistoryComponent,
-    AgreementTagComponent
+    AgreementTeamComponent
   ],
   imports: [
     RouterModule.forChild(routes),

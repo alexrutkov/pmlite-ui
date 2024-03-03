@@ -4,12 +4,11 @@
   </mat-toolbar>
   <div class="mb-3">
     <h3>Тег:</h3>
-    <mat-chip>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, soluta?</mat-chip>
+    <mat-chip>{{details.tag}}</mat-chip>
   </div>
   <div>
     <h3>Деятель:</h3>
-    <app-user-details></app-user-details>
-
+		<app-user-details [userId]="agreement.user.id"></app-user-details>
   </div>
 
 </div>

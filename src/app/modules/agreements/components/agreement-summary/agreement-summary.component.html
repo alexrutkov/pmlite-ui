@@ -1,0 +1,35 @@
+
+<mat-nav-list>
+	@for (d of details$ | async; track d.type) {
+		@switch (d.type) {
+			@case ('TAG') {
+				<a mat-list-item  [routerLink]="['tags']">
+					<div class="flex flex-row align-items-center gap-2 pr-4">
+						<mat-icon>tag</mat-icon><span>Теги</span>
+						<span class="ml-auto" [matBadge]="d.count" matBadgeColor="warn"></span>
+					</div>
+				</a>
+			}
+			@case ('TASK') {
+				<a mat-list-item  [routerLink]="['tasks']">
+					<div class="flex flex-row align-items-center gap-2 pr-4">
+						<mat-icon>add_task</mat-icon><span>Создание задачи</span>
+						<span class="ml-auto" [matBadge]="d.count" matBadgeColor="warn"></span>
+					</div>
+				</a>
+			}
+			@case ('TASK_USER') {
+				<a mat-list-item  [routerLink]="['taskUsers']">
+					<div class="flex flex-row align-items-center gap-2 pr-4">
+						<mat-icon>person_add</mat-icon><span>Участие в задаче</span>
+						<span class="ml-auto" [matBadge]="d.count" matBadgeColor="warn"></span>
+					</div>
+				</a>
+			}
+		}
+	} @empty {
+		<div>
+			<h2 class="text-center">Доступных согласований нет</h2>
+		</div>
+	}
+</mat-nav-list>
