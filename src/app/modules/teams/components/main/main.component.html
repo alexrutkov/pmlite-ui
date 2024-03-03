@@ -1,15 +1,7 @@
-<div>
-    <mat-tab-group>
-        <mat-tab label="Все команды">
-            <app-teams></app-teams>
-        </mat-tab>
-        <mat-tab label="Мои команды" >
-            <div class="p-2 flex flex-column">
-                <button class="ml-auto" [routerLink]="['create']" color="primary" mat-raised-button >
-                    <mat-icon>group_add</mat-icon>Добавить команду
-                </button>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-</div>
-
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" (indexFocused)="indexFocus($event)">
+	<a mat-tab-link [routerLink]="['all']" [active]="isActive('all')">Все команды</a>
+	<a mat-tab-link [routerLink]="['my']" [active]="isActive('my')">Мои команды</a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+	<router-outlet></router-outlet>
+</mat-tab-nav-panel>

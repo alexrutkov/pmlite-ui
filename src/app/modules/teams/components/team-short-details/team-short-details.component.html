@@ -1,0 +1,22 @@
+<mat-card class="task">
+	<mat-card-header>
+		<mat-card-title class="overflow-hidden">{{team.name}}</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		{{team.description}}
+	</mat-card-content>
+	<mat-card-actions>
+		<div>
+			<button mat-button (click)="like()">
+				<mat-icon [color]="team.isLiked ? 'warn' : null">favorite</mat-icon> {{team.likeAmount | shortNumber }}
+			</button>
+			<button mat-button (click)="star()">
+				<mat-icon [color]="team.isStared ? 'warn' : null">star</mat-icon> {{team.starAmount | shortNumber }}
+			</button>
+		</div>
+		<button [routerLink]="['/teams', team.id]" class="ml-auto" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
+	</mat-card-actions>
+	<mat-card-footer class="pr-2 pb-2 text-bluegray-300 text-sm flex">
+		<span class="ml-auto">{{team.createdAt | date: 'short'}}</span>
+	</mat-card-footer>
+</mat-card>

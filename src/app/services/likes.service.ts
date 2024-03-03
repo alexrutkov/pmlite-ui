@@ -4,6 +4,7 @@ import {TaskSummary} from "@modules/tasks/model/TaskSummary";
 import {EMPTY, tap} from "rxjs";
 import {UserShortDetails} from "@modules/users/model/UserShortDetails";
 import {MessageToastService} from "@services/message.service";
+import {TeamSummary} from "@modules/teams/model/TeamSummary";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class LikesService {
 
 	private loadingTasks: number[] = [];
 	private loadingUsers: number[] = [];
+	private loadingTeams: number[] = [];
   constructor(
 		private http: HttpClient,
 		private messageService: MessageToastService
@@ -79,4 +81,34 @@ export class LikesService {
 		} else return EMPTY;
 	}
 
+	likeTeam(team: TeamSummary) {
+		if (!this.loadingTeams.includes(team.id)) {
+			this.loadingTeams.push(team.id);
+			const request = team.isLiked
+				? this.http.delete(`/api/likes/${team.id}`, {params: {type: 'TEAM'}})
+					.pipe(tap(() => team.likeAmount--))
+				: this.http.post('/api/likes', {entityId: team.id, type: 'TEAM'})
+					.pipe(tap(() => team.likeAmount++));
+			return request.pipe(
+				tap(() =>  this.loadingTeams.splice(this.loadingTeams.indexOf(team.id), 1))
+			);
+		} else return EMPTY;
+	}
+
+	starTeam(team: TeamSummary) {
+		if (!this.loadingTeams.includes(team.id)) {
+			this.loadingTeams.push(team.id);
+			const request = team.isStared
+				? this.http.delete(`/api/stars/${team.id}`, {params: {type: 'TEAM'}})
+					.pipe(tap(() => team.starAmount--))
+				: this.http.post('/api/stars', {entityId: team.id, type: 'TEAM'})
+					.pipe(
+						tap(() => team.starAmount++),
+						tap(() => this.messageService.success('Добавлено в избранное!'))
+					);
+			return request.pipe(
+				tap(() =>  this.loadingTeams.splice(this.loadingTeams.indexOf(team.id), 1))
+			);
+		} else return EMPTY;
+	}
 }
