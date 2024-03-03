@@ -1,0 +1,27 @@
+<div class="flex flex-column gap-2 task with-actions" [formGroup]="teamForm">
+	<h2>Создание новой команды</h2>
+	<mat-form-field appearance="outline">
+		<mat-label>Название</mat-label>
+		<input matInput formControlName="name" type="text">
+		@if (errorService.hasError(teamForm.get('name'))) {
+			<mat-error>{{errorService.getError(teamForm.get('name'))}}</mat-error>
+		}
+	</mat-form-field>
+
+	<mat-form-field>
+		<mat-label>Краткое описание</mat-label>
+		<textarea cdkTextareaAutosize [cdkAutosizeMinRows]="8" formControlName="description" matInput></textarea>
+		@if (errorService.hasError(teamForm.get('description'))) {
+			<mat-error>{{errorService.getError(teamForm.get('description'))}}</mat-error>
+		}
+	</mat-form-field>
+
+	<app-select-tags (removed)="removeTaskTag($event)" formControlName="tags"></app-select-tags>
+
+</div>
+<mat-toolbar class="actions">
+	<button (click)="saveTask()" [disabled]="teamForm.invalid"
+					class="ml-auto" mat-raised-button color="primary">
+		{{teamId ? 'Сохранить' : 'Создать'}}
+	</button>
+</mat-toolbar>

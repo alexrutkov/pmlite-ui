@@ -9,10 +9,13 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {MatChipsModule} from "@angular/material/chips";
 import {TeamDetailsComponent} from "@modules/teams/components/team-details/team-details.component";
+import {CreateTeamComponent} from "@modules/teams/components/create-team/create-team.component";
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  {path: ':id', component: TeamDetailsComponent},
+	{path: 'create', component: CreateTeamComponent},
+	{path: 'edit/:id', component: CreateTeamComponent},
+	{path: ':id', component: TeamDetailsComponent},
 ];
 
 @NgModule({
