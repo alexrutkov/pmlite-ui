@@ -9,10 +9,7 @@
   </div>
 
   <p style="text-indent: 30px">{{task.shortDescription}}</p>
-  <mat-chip-set>
-    <mat-chip>Скульптура</mat-chip>
-    <mat-chip>Физика</mat-chip>
-  </mat-chip-set>
+	<app-tags [tags]="task.tags"></app-tags>
   <mat-accordion class="w-full">
     <mat-expansion-panel>
       <mat-expansion-panel-header>

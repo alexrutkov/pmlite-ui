@@ -1,0 +1,9 @@
+<mat-chip-listbox>
+	@for (tag of tags; track tag.tagId) {
+		<mat-chip [matMenuTriggerFor]="tagMenu">{{ tag.displayTag }}</mat-chip>
+		<mat-menu #tagMenu="matMenu">
+			<button (click)="addToSearch(tag)" mat-menu-item><mat-icon>search</mat-icon>Добавить в поиск</button>
+		</mat-menu>
+	}
+</mat-chip-listbox>
+

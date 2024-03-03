@@ -2,17 +2,15 @@
   *ngIf="(user$ | async) as user"
   class="flex flex-column gap-2 w-full align-items-center">
   <div>
-    <img *defaultAvatar="user.id; url as u" [src]="u" width="200" height="200"  alt="">
+    <img *defaultAvatar="user.details.id; url as u" [src]="u" width="200" height="200"  alt="">
   </div>
   <div class="flex-column flex gap-1">
-    <strong>{{ user.name }}</strong>
-    <span>&#64;id{{ user.id }}</span>
+    <strong>{{ user.details.name }}</strong>
+    <span>&#64;id{{ user.details.id }}</span>
   </div>
-  <p style="text-indent: 30px">{{user.description}}</p>
-  <mat-chip-set>
-    <mat-chip>Скульптура</mat-chip>
-    <mat-chip>Физика</mat-chip>
-  </mat-chip-set>
+  <p style="text-indent: 30px">{{user.details.description}}</p>
+	<app-tags [tags]="user.tags"></app-tags>
+
   <mat-accordion class="w-full">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -21,7 +19,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <ng-template matExpansionPanelContent>
-        <app-user-tasks [userId]="user.id"></app-user-tasks>
+        <app-user-tasks [userId]="user.details.id"></app-user-tasks>
       </ng-template>
     </mat-expansion-panel>
   </mat-accordion>
