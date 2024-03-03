@@ -27,8 +27,20 @@ export class LikesService {
 				tap(() =>  this.loadingTasks.splice(this.loadingTasks.indexOf(task.id), 1))
 			);
 		} else return EMPTY;
+	}
 
-
+	starTask(task: TaskSummary) {
+		if (!this.loadingTasks.includes(task.id)) {
+			this.loadingTasks.push(task.id);
+			const request = task.isStared
+				? this.http.delete(`/api/stars/${task.id}`, {params: {type: 'TASK'}})
+					.pipe(tap(() => task.starAmount--))
+				: this.http.post('/api/stars', {entityId: task.id, type: 'TASK'})
+					.pipe(tap(() => task.starAmount++));
+			return request.pipe(
+				tap(() =>  this.loadingTasks.splice(this.loadingTasks.indexOf(task.id), 1))
+			);
+		} else return EMPTY;
 	}
 
 	likeUser(user: UserShortDetails) {
@@ -44,4 +56,19 @@ export class LikesService {
 			);
 		} else return EMPTY;
 	}
+
+	starUser(user: UserShortDetails) {
+		if (!this.loadingUsers.includes(user.id)) {
+			this.loadingUsers.push(user.id);
+			const request = user.isStared
+				? this.http.delete(`/api/stars/${user.id}`, {params: {type: 'USER'}})
+					.pipe(tap(() => user.starAmount--))
+				: this.http.post('/api/stars', {entityId: user.id, type: 'USER'})
+					.pipe(tap(() => user.starAmount++));
+			return request.pipe(
+				tap(() =>  this.loadingUsers.splice(this.loadingUsers.indexOf(user.id), 1))
+			);
+		} else return EMPTY;
+	}
+
 }

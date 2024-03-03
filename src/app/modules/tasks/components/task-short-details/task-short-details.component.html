@@ -10,7 +10,9 @@
       <button mat-button (click)="like()">
 				<mat-icon [color]="task.isLiked ? 'warn' : null">favorite</mat-icon> {{task.likeAmount | shortNumber }}
 			</button>
-      <button mat-button><mat-icon color="warn">star</mat-icon> {{251233 | shortNumber }}</button>
+			<button mat-button (click)="star()">
+				<mat-icon [color]="task.isStared ? 'warn' : null">star</mat-icon> {{task.starAmount | shortNumber }}
+			</button>
     </div>
     <button [routerLink]="['/tasks', task.id]" class="ml-auto" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
   </mat-card-actions>

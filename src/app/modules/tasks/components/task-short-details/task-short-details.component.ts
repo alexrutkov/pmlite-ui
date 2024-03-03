@@ -23,6 +23,14 @@ export class TaskShortDetailsComponent {
 			.subscribe(() => {
 				this.task.isLiked = !this.task.isLiked;
 				this.changeRef.detectChanges();
-			})
+			});
+	}
+
+	star() {
+		this.likeService.starTask(this.task)
+			.subscribe(() => {
+				this.task.isStared = !this.task.isStared;
+				this.changeRef.detectChanges();
+			});
 	}
 }

@@ -62,6 +62,14 @@ export class UserShortDetailsComponent {
 			.subscribe(() => {
 				this.user.isLiked = !this.user.isLiked;
 				this.changeRef.detectChanges();
-			})
+			});
+	}
+
+	star() {
+		this.likeService.starUser(this.user)
+			.subscribe(() => {
+				this.user.isStared = !this.user.isStared;
+				this.changeRef.detectChanges();
+			});
 	}
 }
