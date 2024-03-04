@@ -2,9 +2,9 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import {
-  AgreementShortDetailsComponent
+	AgreementShortDetailsComponent
 } from "@modules/agreements/components/agreement-short-details/agreement-short-details.component";
-import {AgreementsStore} from "@modules/agreements/agreements.store";
+import {AgreementsStore} from "@modules/agreements/stores/agreements.store";
 import {EMPTY, Observable, tap} from "rxjs";
 import {AgreementSummary} from "@modules/agreements/model/AgreementSummary";
 import {provideComponentStore} from "@ngrx/component-store";

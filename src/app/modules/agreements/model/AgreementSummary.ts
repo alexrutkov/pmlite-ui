@@ -17,6 +17,10 @@ export interface AgreementTaskSummary {
   taskName: string;
   taskId: number;
 }
+export interface AgreementTeamSummary {
+	teamName: string;
+	teamId: number;
+}
 export interface AgreementTagSummary {
   tag: string;
   tagId: number;

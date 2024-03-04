@@ -9,9 +9,10 @@
   <mat-card-content >
     @switch (agreement.type) {
       @case ('TASK') { <app-agreement-task-details [details]="agreement.details"></app-agreement-task-details>}
-      @case ('TASK_USER') { <app-agreement-task-users-details [details]="agreement.details"></app-agreement-task-users-details>}
-      @case ('TASK_TEAM') { <app-agreement-task-teams-details [details]="agreement.details"></app-agreement-task-teams-details>  }
-      @case ('TAG') { <app-agreement-tag-details [details]="agreement.details"></app-agreement-tag-details> }
+			@case ('TEAM') { <app-agreement-team-details [details]="agreement.details"></app-agreement-team-details>}
+			@case ('TAG') { <app-agreement-tag-details [details]="agreement.details"></app-agreement-tag-details> }
+			@case ('TASK_USER') { <app-agreement-task-users-details [details]="agreement.details"></app-agreement-task-users-details>}
+			@case ('TASK_TEAM') { <app-agreement-task-teams-details [details]="agreement.details"></app-agreement-task-teams-details>  }
       @case ('TEAM_USER') { <app-agreement-team-users-details [details]="agreement.details"></app-agreement-team-users-details> }
     }
   </mat-card-content>

@@ -22,11 +22,14 @@ import {
 	AgreementTeamUsersDetailsComponent
 } from "@modules/agreements/components/agreement-team-users-details/agreement-team-users-details.component";
 import {AvatarComponent} from "@components/avatar/avatar.component";
+import {
+	AgreementTeamDetailsComponent
+} from "@modules/agreements/components/agreement-team-details/agreement-team-details.component";
 
 @Component({
   selector: 'app-agreement-short-details',
   standalone: true,
-    imports: [CommonModule, MatButtonModule, MatCardModule, MatChipsModule, RouterLink, MatIconModule, AgreementTaskDetailsComponent, AgreementTaskUsersDetailsComponent, AgreementTaskTeamsDetailsComponent, AgreementTagDetailsComponent, AgreementTeamUsersDetailsComponent, AvatarComponent],
+	imports: [CommonModule, MatButtonModule, MatCardModule, MatChipsModule, RouterLink, MatIconModule, AgreementTaskDetailsComponent, AgreementTaskUsersDetailsComponent, AgreementTaskTeamsDetailsComponent, AgreementTagDetailsComponent, AgreementTeamUsersDetailsComponent, AvatarComponent, AgreementTeamDetailsComponent],
   templateUrl: './agreement-short-details.component.html',
   styleUrls: ['./agreement-short-details.component.scss']
 })

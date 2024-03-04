@@ -34,6 +34,9 @@ import {MatTooltip} from "@angular/material/tooltip";
 import {OverlayModule} from "@angular/cdk/overlay";
 import {DefaultAvatarDirective} from "@directives/default-avatar.directive";
 import {AvatarComponent} from "@components/avatar/avatar.component";
+import {
+	AgreementTeamDetailsComponent
+} from "@modules/agreements/components/agreement-team-details/agreement-team-details.component";
 
 @Component({
   selector: 'app-decision-details',
@@ -63,6 +66,7 @@ import {AvatarComponent} from "@components/avatar/avatar.component";
 		OverlayModule,
 		DefaultAvatarDirective,
 		AvatarComponent,
+		AgreementTeamDetailsComponent,
 	],
   templateUrl: './decision-details.component.html',
   styleUrl: './decision-details.component.scss',

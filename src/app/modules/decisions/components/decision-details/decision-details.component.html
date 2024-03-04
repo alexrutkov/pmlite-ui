@@ -13,11 +13,12 @@
 
   <mat-card-content >
     @switch (decision.agreement.type) {
-      @case ('TASK') { <app-agreement-task-details [details]="decision.agreement.details"></app-agreement-task-details>}
-      @case ('TASK_USER') { <app-agreement-task-users-details [details]="decision.agreement.details"></app-agreement-task-users-details>}
-      @case ('TASK_TEAM') { <app-agreement-task-teams-details [details]="decision.agreement.details"></app-agreement-task-teams-details>  }
-      @case ('TAG') { <app-agreement-tag-details [details]="decision.agreement.details"></app-agreement-tag-details> }
-      @case ('TEAM_USER') { <app-agreement-team-users-details [details]="decision.agreement.details"></app-agreement-team-users-details> }
+      @case ('TASK') { <app-agreement-task-details [details]="decision.agreement.details"/>}
+			@case ('TAG') { <app-agreement-tag-details [details]="decision.agreement.details"/> }
+			@case ('TEAM') { <app-agreement-team-details [details]="decision.agreement.details"/> }
+      @case ('TASK_USER') { <app-agreement-task-users-details [details]="decision.agreement.details"/>}
+      @case ('TASK_TEAM') { <app-agreement-task-teams-details [details]="decision.agreement.details"/>  }
+      @case ('TEAM_USER') { <app-agreement-team-users-details [details]="decision.agreement.details"/> }
     }
     <div  class="comment">
       <span >

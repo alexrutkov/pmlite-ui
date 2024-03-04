@@ -18,10 +18,37 @@
 					</div>
 				</a>
 			}
+			@case ('TEAM') {
+				<a mat-list-item  [routerLink]="['teams']">
+					<div class="flex flex-row align-items-center gap-2 pr-4">
+						<mat-icon>groups</mat-icon><span>Создание команды</span>
+						<span class="ml-auto" [matBadge]="d.count" matBadgeColor="warn"></span>
+					</div>
+				</a>
+			}
+
 			@case ('TASK_USER') {
 				<a mat-list-item  [routerLink]="['taskUsers']">
 					<div class="flex flex-row align-items-center gap-2 pr-4">
 						<mat-icon>person_add</mat-icon><span>Участие в задаче</span>
+						<span class="ml-auto" [matBadge]="d.count" matBadgeColor="warn"></span>
+					</div>
+				</a>
+			}
+
+			@case ('TASK_TEAM') {
+				<a mat-list-item  [routerLink]="['taskTeams']">
+					<div class="flex flex-row align-items-center gap-2 pr-4">
+						<mat-icon>group_add</mat-icon><span>Участие в задаче</span>
+						<span class="ml-auto" [matBadge]="d.count" matBadgeColor="warn"></span>
+					</div>
+				</a>
+			}
+
+			@case ('TEAM_USER') {
+				<a mat-list-item  [routerLink]="['taskTeams']">
+					<div class="flex flex-row align-items-center gap-2 pr-4">
+						<mat-icon>person_add</mat-icon><span>Участие в команде</span>
 						<span class="ml-auto" [matBadge]="d.count" matBadgeColor="warn"></span>
 					</div>
 				</a>

@@ -8,7 +8,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
-import {AgreementTeamComponent} from './components/agreement-team/agreement-team.component';
 import {UserDetailsComponent} from "@modules/users/components/user-details/user-details.component";
 import {TaskDetailsComponent} from "@modules/tasks/components/task-details/task-details.component";
 import {TeamDetailsComponent} from "@modules/teams/components/team-details/team-details.component";
@@ -44,29 +43,33 @@ const routes: Routes = [
         component: AgreementsComponent,
         providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/tasks'}]
       },
+			{
+				path: 'teams',
+				component: AgreementsComponent,
+				providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/teams'}]
+			},
       {
         path: 'taskUsers',
         component: AgreementsComponent,
         providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/taskUsers'}]
       },
-      {
-        path: 'teams',
-        component: AgreementsComponent,
-        providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/teams'}]
-      },
-      {
-        path: 'teamUsers',
-        component: AgreementsComponent,
-        providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/teamUsers'}]
-      },
-    ]
+			{
+				path: 'taskTeams',
+				component: AgreementsComponent,
+				providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/taskTeams'}]
+			},
+			{
+				path: 'teamUsers',
+				component: AgreementsComponent,
+				providers: [{provide: AGREEMENT_URL, useValue: '/api/agreements/teamUsers'}]
+			},
+		]
   },
   {path: ':id', component: AgreementComponent}
 ];
 @NgModule({
   declarations: [
-    MainComponent,
-    AgreementTeamComponent
+    MainComponent
   ],
   imports: [
     RouterModule.forChild(routes),

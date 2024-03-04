@@ -3,6 +3,14 @@
     <mat-icon>add_task</mat-icon>
     <span class="ml-3" [matBadge]="countTask" matBadgeColor="warn"></span>
   </a>
+	<a mat-tab-link *ngIf="(countTeamAgreement$ | async) as tagCount" [routerLink]="['teams']" [active]="isActive('teams')">
+		<mat-icon>groups</mat-icon>
+		<span class="ml-3" [matBadge]="tagCount" matBadgeColor="warn"></span>
+	</a>
+	<a mat-tab-link *ngIf="(countTagAgreement$ | async) as tagCount" [routerLink]="['tags']" [active]="isActive('tags')">
+		<mat-icon>tag</mat-icon>
+		<span class="ml-3" [matBadge]="tagCount" matBadgeColor="warn"></span>
+	</a>
   <a mat-tab-link *ngIf="(countTaskUsersAgreement$ | async) as countTaskUsers" [routerLink]="['taskUsers']" [active]="isActive('taskUsers')">
     <mat-icon>person_add</mat-icon>
     <span class="ml-3" [matBadge]="countTaskUsers" matBadgeColor="warn"></span>
@@ -11,14 +19,10 @@
     <mat-icon>group_add</mat-icon>
     <span class="ml-3" [matBadge]="countTaskTeams" matBadgeColor="warn"></span>
   </a>
-  <a mat-tab-link *ngIf="(countTeamUsersAgreement$ | async) as countTeamUsers" [routerLink]="['teams']" [active]="isActive('teams')">
-    <mat-icon>diversity_3</mat-icon>
-    <span class="ml-3" [matBadge]="countTeamUsers" matBadgeColor="warn"></span>
-  </a>
-  <a mat-tab-link *ngIf="(countTagAgreement$ | async) as tagCount" [routerLink]="['tags']" [active]="isActive('tags')">
-    <mat-icon>tag</mat-icon>
-    <span class="ml-3" [matBadge]="tagCount" matBadgeColor="warn"></span>
-  </a>
+	<a mat-tab-link *ngIf="(countTeamUsersAgreement$ | async) as countTeamUsers" [routerLink]="['teamUsers']" [active]="isActive('teamUsers')">
+		<mat-icon>diversity_3</mat-icon>
+		<span class="ml-3" [matBadge]="countTeamUsers" matBadgeColor="warn"></span>
+	</a>
 </nav>
 <mat-tab-nav-panel #tabPanel>
   <router-outlet></router-outlet>

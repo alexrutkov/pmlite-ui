@@ -14,7 +14,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {provideComponentStore} from "@ngrx/component-store";
 import {AccountStore} from "@modules/account/account.store";
 import {MatBadge} from "@angular/material/badge";
-import {AgreementDetailsStore} from "@modules/agreements/agreement-details.store";
+import {AgreementDetailsStore} from "@modules/agreements/stores/agreement-details.store";
 import {TagsStore} from "@modules/tags/stores/tags.store";
 import {MatDialogModule} from "@angular/material/dialog";
 

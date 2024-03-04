@@ -12,6 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 import {map} from "rxjs/operators";
 import {AgreementTaskComponent} from "@modules/agreements/components/agreement-task/agreement-task.component";
 import {AgreementTagComponent} from "@modules/agreements/components/agreement-tag/agreement-tag.component";
+import {AgreementTeamComponent} from "@modules/agreements/components/agreement-team/agreement-team.component";
 
 @Component({
   selector: 'app-agreement',
@@ -26,7 +27,8 @@ import {AgreementTagComponent} from "@modules/agreements/components/agreement-ta
 		AsyncPipe,
 		NgIf,
 		AgreementTaskComponent,
-		AgreementTagComponent
+		AgreementTagComponent,
+		AgreementTeamComponent
 	],
   templateUrl: './agreement.component.html',
   styleUrl: './agreement.component.scss'

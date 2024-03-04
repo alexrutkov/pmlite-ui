@@ -1,13 +1,14 @@
+
 <div class="container">
 	<mat-toolbar class="agreement justify-content-center">
-		@switch (agreement.type) {
-			@case ('TEAM') {Создание команды}
-			@case ('TEAM_USER') {Участие в команде}
-		}
+		Участие команды в задаче
 	</mat-toolbar>
 	<mat-tab-group>
 		<mat-tab label="Команда">
 			<app-team-details [teamId]="details.teamId" />
+		</mat-tab>
+		<mat-tab label="Задача">
+			<app-task-details [taskId]="details.taskId"/>
 		</mat-tab>
 		<mat-tab label="Деятель">
 			<app-user-details [userId]="agreement.user.id"/>

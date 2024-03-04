@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AgreementDetailsStore} from "@modules/agreements/agreement-details.store";
+import {AgreementDetailsStore} from "@modules/agreements/stores/agreement-details.store";
 import {MatListItem, MatNavList} from "@angular/material/list";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";

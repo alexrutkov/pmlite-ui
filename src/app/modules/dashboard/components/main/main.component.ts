@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountStore} from "@modules/account/account.store";
 import {UserRole} from "@modules/account/model/AccountRole";
-import {AgreementDetailsStore} from "@modules/agreements/agreement-details.store";
+import {AgreementDetailsStore} from "@modules/agreements/stores/agreement-details.store";
 import {TagsStore} from "@modules/tags/stores/tags.store";
 import {concatMap, filter} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
