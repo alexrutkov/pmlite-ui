@@ -21,5 +21,15 @@
 				<app-team-users [teamId]="team.summary.id"/>
 			</ng-template>
 		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Задачи
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<ng-template matExpansionPanelContent>
+				<app-team-tasks [teamId]="team.summary.id"/>
+			</ng-template>
+		</mat-expansion-panel>
 	</mat-accordion>
 </div>

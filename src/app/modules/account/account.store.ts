@@ -11,6 +11,7 @@ import {UserTask} from "@modules/users/model/UserTask";
 import {TaskUser} from "@modules/tasks/model/TaskUser";
 import {TeamUser} from "@modules/teams/model/TeamUser";
 import {UserTeamRole} from "@modules/teams/model/UserTeamRole";
+import {TeamTask} from "@modules/teams/model/TeamTask";
 
 
 @Injectable()
@@ -89,6 +90,14 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
 		return this.select((state: AccountState) =>
 			state.details.teamRoles
 				.find(r => r.teamId == user.teamId)
+				?.role == UserTeamRole.OWNER
+		);
+	}
+
+	canManageTeamTask(teamTask: TeamTask) {
+		return this.select((state: AccountState) =>
+			state.details.teamRoles
+				.find(r => r.teamId == teamTask.teamId)
 				?.role == UserTeamRole.OWNER
 		);
 	}

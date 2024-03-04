@@ -17,11 +17,12 @@ import {HttpClient} from "@angular/common/http";
 import {TeamDetails} from "@modules/teams/model/TeamDetails";
 import {TeamMenuComponent} from "@modules/teams/components/team-menu/team-menu.component";
 import {TeamUsersComponent} from "@modules/teams/components/team-users/team-users.component";
+import {TeamTasksComponent} from "@modules/teams/components/team-tasks/team-tasks.component";
 
 @Component({
   selector: 'app-team-details',
   standalone: true,
-	imports: [CommonModule, MatChipsModule, NgOptimizedImage, RouterLink, MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle, TagsComponent, TaskMenuComponent, TaskUsersComponent, TeamMenuComponent, TeamUsersComponent],
+	imports: [CommonModule, MatChipsModule, NgOptimizedImage, RouterLink, MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle, TagsComponent, TaskMenuComponent, TaskUsersComponent, TeamMenuComponent, TeamUsersComponent, TeamTasksComponent],
   templateUrl: './team-details.component.html',
   styleUrls: ['./team-details.component.scss']
 })
