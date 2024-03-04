@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {
-  MatCard,
-  MatCardActions,
-  MatCardContent,
-  MatCardFooter,
-  MatCardHeader,
-  MatCardSubtitle,
-  MatCardTitle
+	MatCard,
+	MatCardActions,
+	MatCardContent,
+	MatCardFooter,
+	MatCardHeader,
+	MatCardSubtitle,
+	MatCardTitle
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
@@ -63,7 +63,7 @@ export class UserTaskDetailsComponent {
       `Вы уверены, что хотите выйти из выполнения задачи ${userTask.name}?`
     ).pipe(
       filter(isConfirmed => isConfirmed),
-      concatMap(() => this.http.delete(`/api/tasks/${userTask.id}`))
+      concatMap(() => this.http.delete(`/api/users/tasks/${userTask.taskId}`))
     ).subscribe(() => this.messageService.info('Выполнение задачи отменено!'));
   }
 }

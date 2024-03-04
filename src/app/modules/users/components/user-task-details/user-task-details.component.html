@@ -4,7 +4,7 @@
     <mat-card-subtitle>{{ task.role }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions>
-    <button [routerLink]="['/tasks', task.id]"  mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
+    <button [routerLink]="['/tasks', task.taskId]"  mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
     <button [matMenuTriggerFor]="menu" *ngIf="accountStore.canManageTask(task) | async" class="ml-auto" mat-icon-button>
       <mat-icon>settings</mat-icon>
     </button>

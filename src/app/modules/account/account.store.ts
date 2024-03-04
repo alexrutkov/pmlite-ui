@@ -66,14 +66,14 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
   canManageTask(task: UserTask) {
     return this.select((state: AccountState) =>
       state.details.id == task.userId
-      && state.details.taskRoles.map(r => r.taskId).includes(task.id)
+      && state.details.taskRoles.map(r => r.taskId).includes(task.taskId)
     );
   }
 
   canCancelTask(task: UserTask) {
     return this.select((state: AccountState) =>
       state.details.id == task.userId
-      && state.details.taskRoles.map(r => r.taskId).includes(task.id)
+      && state.details.taskRoles.map(r => r.taskId).includes(task.taskId)
       && task.role != UserTaskRole.OWNER
     );
   }
