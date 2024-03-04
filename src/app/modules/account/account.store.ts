@@ -12,6 +12,7 @@ import {TaskUser} from "@modules/tasks/model/TaskUser";
 import {TeamUser} from "@modules/teams/model/TeamUser";
 import {UserTeamRole} from "@modules/teams/model/UserTeamRole";
 import {TeamTask} from "@modules/teams/model/TeamTask";
+import {UserTeam} from "@modules/users/model/UserTeam";
 
 
 @Injectable()
@@ -88,9 +89,15 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
 
 	canManageTeamUser(user: TeamUser) {
 		return this.select((state: AccountState) =>
-			state.details.teamRoles
-				.find(r => r.teamId == user.teamId)
-				?.role == UserTeamRole.OWNER
+			state.details.id == user.user.id
+			&& state.details.teamRoles.map(r => r.teamId).includes(user.teamId)
+		);
+	}
+
+	canManageUserTeam(userTeam: UserTeam) {
+		return this.select((state: AccountState) =>
+			state.details.id == userTeam.userId
+			&& state.details.teamRoles.map(r => r.teamId).includes(userTeam.teamId)
 		);
 	}
 
@@ -110,6 +117,17 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
         ?.role == UserTaskRole.OWNER
     );
   }
+
+	canCancelUserTeam(userTeam: UserTeam) {
+		return this.select((state: AccountState) =>
+			state.details.id == userTeam.userId
+			&& state.details.teamRoles
+				.find(r => r.teamId == userTeam.teamId)
+				?.role != UserTeamRole.OWNER
+		);
+	}
+
+
 
 	canCancelTeamUser(user: TeamUser) {
 		return this.select((state: AccountState) =>

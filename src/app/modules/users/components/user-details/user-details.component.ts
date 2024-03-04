@@ -25,11 +25,12 @@ import {ShortNumberPipe} from "@pipes/short-number.pipe";
 import {UserTasksComponent} from "@modules/users/components/user-tasks/user-tasks.component";
 import {DefaultAvatarDirective} from "@directives/default-avatar.directive";
 import {TagsComponent} from "@modules/tags/components/tags/tags.component";
+import {UserTeamsComponent} from "@modules/users/components/user-team/user-teams.component";
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-	imports: [CommonModule, NgOptimizedImage, MatChipsModule, RouterLink, AgreementShortDetailsComponent, MatExpansionModule, MatButton, MatCard, MatCardActions, MatCardAvatar, MatCardContent, MatCardFooter, MatCardHeader, MatCardSubtitle, MatCardTitle, MatIcon, ShortNumberPipe, MatIconButton, UserTasksComponent, DefaultAvatarDirective, TagsComponent],
+	imports: [CommonModule, NgOptimizedImage, MatChipsModule, RouterLink, AgreementShortDetailsComponent, MatExpansionModule, MatButton, MatCard, MatCardActions, MatCardAvatar, MatCardContent, MatCardFooter, MatCardHeader, MatCardSubtitle, MatCardTitle, MatIcon, ShortNumberPipe, MatIconButton, UserTasksComponent, DefaultAvatarDirective, TagsComponent, UserTeamsComponent],
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
 })

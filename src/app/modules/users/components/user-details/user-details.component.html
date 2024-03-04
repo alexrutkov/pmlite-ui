@@ -14,13 +14,15 @@
   <mat-accordion class="w-full">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          Задачи
-        </mat-panel-title>
+        <mat-panel-title>Задачи</mat-panel-title>
       </mat-expansion-panel-header>
-      <ng-template matExpansionPanelContent>
-        <app-user-tasks [userId]="user.details.id"></app-user-tasks>
-      </ng-template>
+      <ng-template matExpansionPanelContent><app-user-tasks [userId]="user.details.id"/></ng-template>
     </mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>Команды</mat-panel-title>
+			</mat-expansion-panel-header>
+			<ng-template matExpansionPanelContent><app-user-teams [userId]="user.details.id"/></ng-template>
+		</mat-expansion-panel>
   </mat-accordion>
 </div>
