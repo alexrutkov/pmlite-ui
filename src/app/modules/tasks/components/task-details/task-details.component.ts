@@ -18,11 +18,12 @@ import {
 import {UserTasksComponent} from "@modules/users/components/user-tasks/user-tasks.component";
 import {TaskUsersComponent} from "@modules/tasks/components/task-users/task-users.component";
 import {TagsComponent} from "@modules/tags/components/tags/tags.component";
+import {TaskTeamsComponent} from "@modules/tasks/components/task-team/task-teams.component";
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-	imports: [CommonModule, MatChipsModule, NgOptimizedImage, RouterLink, MatIconButton, MatIcon, TaskMenuComponent, MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle, UserTasksComponent, TaskUsersComponent, TagsComponent],
+	imports: [CommonModule, MatChipsModule, NgOptimizedImage, RouterLink, MatIconButton, MatIcon, TaskMenuComponent, MatAccordion, MatExpansionPanel, MatExpansionPanelContent, MatExpansionPanelHeader, MatExpansionPanelTitle, UserTasksComponent, TaskUsersComponent, TagsComponent, TaskTeamsComponent],
   templateUrl: './task-details.component.html',
   styleUrls: ['./task-details.component.scss']
 })

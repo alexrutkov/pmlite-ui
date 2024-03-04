@@ -3,13 +3,13 @@ import {TaskUser} from "@modules/tasks/model/TaskUser";
 import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {
-  MatCard,
-  MatCardActions,
-  MatCardAvatar,
-  MatCardFooter,
-  MatCardHeader,
-  MatCardSubtitle,
-  MatCardTitle
+	MatCard,
+	MatCardActions,
+	MatCardAvatar,
+	MatCardFooter,
+	MatCardHeader,
+	MatCardSubtitle,
+	MatCardTitle
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
@@ -47,7 +47,7 @@ import {concatMap, filter} from "rxjs";
 })
 export class TaskUserDetailsComponent {
 
-  @Input() taskUser!: TaskUser;
+  @Input({required: true}) taskUser!: TaskUser;
 
   constructor(
     public accountStore: AccountStore,

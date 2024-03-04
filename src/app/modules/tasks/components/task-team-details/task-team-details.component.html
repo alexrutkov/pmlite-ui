@@ -1,1 +1,23 @@
-<p>task-team-details works!</p>
+<mat-card class="task mat-elevation-z4">
+	<mat-card-header>
+		<mat-card-title>{{taskTeam.name}}</mat-card-title>
+	</mat-card-header>
+	<mat-card-actions>
+		<button [routerLink]="['/teams', taskTeam.teamId]"  mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
+		<button [matMenuTriggerFor]="menu" *ngIf="accountStore.canManageTaskTeam(taskTeam) | async" class="ml-auto" mat-icon-button>
+			<mat-icon>settings</mat-icon>
+		</button>
+	</mat-card-actions>
+	<mat-card-footer class="pr-2 pb-2 text-bluegray-300 text-sm flex">
+		<span class="ml-auto">{{ taskTeam.createdAt | date: 'short' }}</span>
+	</mat-card-footer>
+</mat-card>
+
+
+<mat-menu #menu="matMenu">
+	<button [disabled]="!(accountStore.canCancelTaskTeam(taskTeam) | async)"
+					(click)="cancelTeam(taskTeam)"      mat-menu-item>
+		<mat-icon>cancel</mat-icon>
+		<span>Отменить выполнение</span>
+	</button>
+</mat-menu>

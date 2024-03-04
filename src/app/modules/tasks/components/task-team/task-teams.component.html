@@ -1,0 +1,6 @@
+<cdk-virtual-scroll-viewport *ngIf="(teams$ | async) as teams" itemSize="190"
+														 [style.height.px]="190 * (teams.length > 4 ? 4 : teams.length) + 10">
+	<app-task-team-details
+		*cdkVirtualFor="let u of teams; trackBy: taskTeamsStore.trackIdFn"
+		[taskTeam]="u"/>
+</cdk-virtual-scroll-viewport>
