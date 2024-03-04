@@ -1,8 +1,4 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {AccountStore} from "@modules/account/account.store";
-import {MessageToastService} from "@services/message.service";
-import {HttpClient} from "@angular/common/http";
-import {concatMap, filter} from "rxjs";
 import {TaskTeam} from "@modules/tasks/model/TaskTeam";
 import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -10,6 +6,7 @@ import {MatCard, MatCardActions, MatCardFooter, MatCardHeader, MatCardTitle} fro
 import {MatIcon} from "@angular/material/icon";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {RouterLink} from "@angular/router";
+import {TaskTeamManagerService} from "@modules/tasks/services/task-team-manager.service";
 
 @Component({
   selector: 'app-task-team-details',
@@ -39,19 +36,9 @@ export class TaskTeamDetailsComponent {
 	@Input({required: true}) taskTeam!: TaskTeam;
 
 	constructor(
-		public accountStore: AccountStore,
-		private messageService: MessageToastService,
-		private http: HttpClient
+		public manager: TaskTeamManagerService
 	) {
 	}
 
-	cancelTeam(team: TaskTeam) {
-		this.messageService.confirm(
-			`Вы уверены, что хотите отклонить Команду?`,
-			team.name
-		).pipe(
-			filter(isConfirmed => isConfirmed),
-			concatMap(() => this.http.delete(`/api/tasks/${team.taskId}/teams/${team.teamId}`))
-		).subscribe(() => this.messageService.info('Деятель отклонен!'));
-	}
+
 }

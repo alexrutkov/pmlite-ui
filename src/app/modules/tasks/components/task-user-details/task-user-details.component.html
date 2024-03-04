@@ -2,12 +2,13 @@
   <mat-card-header>
     <mat-card-title>{{taskUser.user.name}}</mat-card-title>
     <mat-card-subtitle>{{ taskUser.role }}</mat-card-subtitle>
-    <img mat-card-avatar src="https://via.placeholder.com/80x80" alt="Photo of a Shiba Inu">
+		<app-avatar [userId]="taskUser.user.id" mat-card-avatar ></app-avatar>
 
-  </mat-card-header>
+
+	</mat-card-header>
   <mat-card-actions>
     <button [routerLink]="['/users', taskUser.user.id]" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
-    <button [matMenuTriggerFor]="menu" *ngIf="accountStore.canManageTaskUser(taskUser) | async" class="ml-auto" mat-icon-button>
+    <button [matMenuTriggerFor]="menu" *ngIf="manager.canManageTaskUser(taskUser) | async" class="ml-auto" mat-icon-button>
       <mat-icon>settings</mat-icon>
     </button>
   </mat-card-actions>
@@ -18,8 +19,8 @@
 
 
 <mat-menu #menu="matMenu">
-  <button [disabled]="!(accountStore.canCancelTaskUser(taskUser) | async)"
-          (click)="cancelUser(taskUser)" mat-menu-item>
+  <button [disabled]="!(manager.canCancelTaskUser(taskUser) | async)"
+          (click)="manager.cancelUser(taskUser)" mat-menu-item>
     <mat-icon>cancel</mat-icon>
     <span>Отклонить деятеля</span>
   </button>

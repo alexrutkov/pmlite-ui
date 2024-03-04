@@ -1,8 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {AccountStore} from "@modules/account/account.store";
-import {MessageToastService} from "@services/message.service";
-import {HttpClient} from "@angular/common/http";
-import {concatMap, filter} from "rxjs";
 import {UserTeam} from "@modules/users/model/UserTeam";
 import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -17,6 +13,7 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {RouterLink} from "@angular/router";
+import {UserTeamManagerService} from "@modules/users/services/user-team-manager.service";
 
 @Component({
   selector: 'app-user-team-details',
@@ -46,18 +43,7 @@ export class UserTeamDetailsComponent {
 	@Input({required: true}) userTeam!: UserTeam;
 
 	constructor(
-		public accountStore: AccountStore,
-		private messageService: MessageToastService,
-		private http: HttpClient
+		public manager: UserTeamManagerService
 	) {
-	}
-
-	cancelTeam(userTask: UserTeam) {
-		this.messageService.confirm(
-			`Вы уверены, что хотите выйти из команды ${userTask.name}?`
-		).pipe(
-			filter(isConfirmed => isConfirmed),
-			concatMap(() => this.http.delete(`/api/users/teams/${userTask.teamId}`))
-		).subscribe(() => this.messageService.info('Выполнение задачи отменено!'));
 	}
 }

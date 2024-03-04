@@ -1,8 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {AccountStore} from "@modules/account/account.store";
-import {MessageToastService} from "@services/message.service";
-import {HttpClient} from "@angular/common/http";
-import {concatMap, filter} from "rxjs";
 import {TeamTask} from "@modules/teams/model/TeamTask";
 import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -18,6 +14,7 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {RouterLink} from "@angular/router";
+import {TeamTaskManagerService} from "@modules/teams/services/team-task-manager.service";
 
 @Component({
   selector: 'app-team-task-details',
@@ -48,19 +45,9 @@ export class TeamTaskDetailsComponent {
 	@Input({required: true}) teamTask!: TeamTask;
 
 	constructor(
-		public accountStore: AccountStore,
-		private messageService: MessageToastService,
-		private http: HttpClient
+		public manager: TeamTaskManagerService
 	) {
 	}
 
-	cancelTask(task: TeamTask) {
-		this.messageService.confirm(
-			`Вы уверены, что хотите выйти отменить участие в команде?`,
-			task.name
-		).pipe(
-			filter(isConfirmed => isConfirmed),
-			concatMap(() => this.http.delete(`/api/teams/${task.teamId}/tasks/${task.taskId}`))
-		).subscribe(() => this.messageService.info('Участие Деятеля отклонено!'));
-	}
+
 }

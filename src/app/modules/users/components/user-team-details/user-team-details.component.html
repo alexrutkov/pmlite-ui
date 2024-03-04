@@ -4,7 +4,7 @@
 	</mat-card-header>
 	<mat-card-actions>
 		<button [routerLink]="['/teams', userTeam.teamId]"  mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
-		<button [matMenuTriggerFor]="menu" *ngIf="accountStore.canManageUserTeam(userTeam) | async" class="ml-auto" mat-icon-button>
+		<button [matMenuTriggerFor]="menu" *ngIf="manager.canManageUserTeam(userTeam) | async" class="ml-auto" mat-icon-button>
 			<mat-icon>settings</mat-icon>
 		</button>
 	</mat-card-actions>
@@ -15,8 +15,8 @@
 
 
 <mat-menu #menu="matMenu">
-	<button [disabled]="!(accountStore.canCancelUserTeam(userTeam) | async)"
-					(click)="cancelTeam(userTeam)"      mat-menu-item>
+	<button [disabled]="!(manager.canCancelUserTeam(userTeam) | async)"
+					(click)="manager.cancelTeam(userTeam)"      mat-menu-item>
 		<mat-icon>cancel</mat-icon>
 		<span>Отменить выполнение</span>
 	</button>

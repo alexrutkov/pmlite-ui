@@ -2,12 +2,13 @@
 	<mat-card-header>
 		<mat-card-title>{{teamUser.user.name}}</mat-card-title>
 		<mat-card-subtitle>{{ teamUser.role }}</mat-card-subtitle>
-		<img mat-card-avatar src="https://via.placeholder.com/80x80" alt="Photo of a Shiba Inu">
+		<app-avatar [userId]="teamUser.user.id" mat-card-avatar ></app-avatar>
+
 
 	</mat-card-header>
 	<mat-card-actions>
 		<button [routerLink]="['/users', teamUser.user.id]" mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
-		<button [matMenuTriggerFor]="menu" *ngIf="accountStore.canManageTeamUser(teamUser) | async" class="ml-auto" mat-icon-button>
+		<button [matMenuTriggerFor]="menu" *ngIf="manager.canManageTeamUser(teamUser) | async" class="ml-auto" mat-icon-button>
 			<mat-icon>settings</mat-icon>
 		</button>
 	</mat-card-actions>
@@ -18,8 +19,8 @@
 
 
 <mat-menu #menu="matMenu">
-	<button [disabled]="!(accountStore.canCancelTeamUser(teamUser) | async)"
-					(click)="cancelUser(teamUser)" mat-menu-item>
+	<button [disabled]="!(manager.canCancelTeamUser(teamUser) | async)"
+					(click)="manager.cancelUser(teamUser)" mat-menu-item>
 		<mat-icon>cancel</mat-icon>
 		<span>Отклонить деятеля</span>
 	</button>

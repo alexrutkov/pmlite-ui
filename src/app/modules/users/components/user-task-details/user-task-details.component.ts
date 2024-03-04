@@ -15,10 +15,7 @@ import {MatDivider} from "@angular/material/divider";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {UserTask} from "@modules/users/model/UserTask";
 import {RouterLink} from "@angular/router";
-import {AccountStore} from "@modules/account/account.store";
-import {MessageToastService} from "@services/message.service";
-import {concatMap, filter} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {UserTaskManagerService} from "@modules/users/services/user-task-manager.service";
 
 @Component({
   selector: 'app-user-task-details',
@@ -52,18 +49,9 @@ export class UserTaskDetailsComponent {
   @Input() task!: UserTask;
 
   constructor(
-    public accountStore: AccountStore,
-    private messageService: MessageToastService,
-    private http: HttpClient
+		public taskManagerService: UserTaskManagerService
   ) {
   }
 
-  cancelTask(userTask: UserTask) {
-    this.messageService.confirm(
-      `Вы уверены, что хотите выйти из выполнения задачи ${userTask.name}?`
-    ).pipe(
-      filter(isConfirmed => isConfirmed),
-      concatMap(() => this.http.delete(`/api/users/tasks/${userTask.taskId}`))
-    ).subscribe(() => this.messageService.info('Выполнение задачи отменено!'));
-  }
+
 }

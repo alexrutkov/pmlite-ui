@@ -4,7 +4,7 @@
 	</mat-card-header>
 	<mat-card-actions>
 		<button [routerLink]="['/tasks', teamTask.taskId]"  mat-button><mat-icon>visibility</mat-icon> Просмотр</button>
-		<button [matMenuTriggerFor]="menu" *ngIf="accountStore.canManageTeamTask(teamTask) | async" class="ml-auto" mat-icon-button>
+		<button [matMenuTriggerFor]="menu" *ngIf="manager.canManageTeamTask(teamTask) | async" class="ml-auto" mat-icon-button>
 			<mat-icon>settings</mat-icon>
 		</button>
 	</mat-card-actions>
@@ -15,8 +15,8 @@
 
 
 <mat-menu #menu="matMenu">
-	<button [disabled]="!(accountStore.canManageTeamTask(teamTask) | async)"
-					(click)="cancelTask(teamTask)"      mat-menu-item>
+	<button [disabled]="!(manager.canCancelTeamTask(teamTask) | async)"
+					(click)="manager.cancelTask(teamTask)"      mat-menu-item>
 		<mat-icon>cancel</mat-icon>
 		<span>Отменить выполнение</span>
 	</button>
