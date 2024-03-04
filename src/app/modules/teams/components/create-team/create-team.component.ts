@@ -12,7 +12,7 @@ import {MessageToastService} from "@services/message.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ErrorService} from "@services/error.service";
 import {concatMap, filter} from "rxjs";
-import {TaskSummary} from "@modules/tasks/model/TaskSummary";
+import {TeamDetails} from "@modules/teams/model/TeamDetails";
 
 @Component({
   selector: 'app-create-team',
@@ -55,17 +55,19 @@ export class CreateTeamComponent implements OnInit {
 
 		this.route.params.pipe(
 			filter(params => params['id']),
-			concatMap(params => this.http.get<TaskSummary>(`/api/teams/${params['id']}`))
+			concatMap(params => this.http.get<TeamDetails>(`/api/teams/${params['id']}`))
 		)
-			.subscribe(task => {
-				this.teamId = task.id;
-				this.teamForm.patchValue(task);
+			.subscribe(team => {
+				this.teamId = team.summary.id;
+				this.teamForm.patchValue(team.summary);
+				this.teamForm.patchValue(team);
 			});
 	}
 
-	saveTask() {
+	saveTeam() {
 		const method = this.isEditMode() ? 'put' : 'post';
-		this.http.request(method, '/api/teams', {body: this.teamForm.getRawValue()})
+		const url = this.isEditMode() ? `/api/teams/${this.teamId}` : '/api/teams';
+		this.http.request(method, url, {body: this.teamForm.getRawValue()})
 			.subscribe(() => {
 				const message = this.isEditMode() ? 'Команда сохранена' : 'Команда создана';
 				this.messageService.success(message);

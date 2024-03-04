@@ -1,28 +1,25 @@
-<div class="flex flex-column gap-2 w-full align-items-center">
+<div *ngIf="(team$ | async) as team" class="flex flex-column gap-2 w-full pt-3">
+	<div class="flex flex-row align-items-center">
+		<div class="flex-column flex gap-1 align-items-center flex-grow-1">
+			<span>Команда №{{team.summary.id}}</span>
+			<strong>{{team.summary.name}}</strong>
+		</div>
+		<app-team-menu class="flex-shrink-0" [teamId]="team.summary.id"/>
 
-  <div class="flex-column flex gap-1">
-    <strong>Команда №1</strong>
-    <span>&#64;tm234234</span>
-  </div>
-  <p style="text-indent: 30px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi aspernatur atque blanditiis delectus dicta distinctio dolorem doloremque dolores dolorum eaque eligendi error, eveniet explicabo facilis labore laborum nam nesciunt nihil nisi officiis praesentium quia quod ratione reprehenderit, sit suscipit ullam ut vel veniam vero vitae voluptatibus voluptatum! Repellat, vitae.</p>
-  <mat-chip-set>
-    <mat-chip>Скульптура</mat-chip>
-    <mat-chip>Физика</mat-chip>
-  </mat-chip-set>
+	</div>
 
+	<p style="text-indent: 30px">{{team.summary.description}}</p>
+	<app-tags [tags]="team.tags"/>
+	<mat-accordion class="w-full">
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Участники
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<ng-template matExpansionPanelContent>
+				<app-team-users [teamId]="team.summary.id"/>
+			</ng-template>
+		</mat-expansion-panel>
+	</mat-accordion>
 </div>
-<section>
-  <h3>Участники</h3>
-  <ol>
-    <li><a [routerLink]="['/employers', '1']">Анхей </a> - руководитель</li>
-    <li><a [routerLink]="['/employers', '1']">Сатор</a></li>
-  </ol>
-</section>
-
-<section>
-  <h3>Задачи</h3>
-  <ol>
-    <li><a [routerLink]="['/tasks', '991c97dd-9a80-4669-986c-117d8d116c0f']">Необычная задача</a></li>
-    <li><a [routerLink]="['/tasks', '991c97dd-9a80-4669-986c-117d8d116c0f']">Моя первая задача</a></li>
-  </ol>
-</section>

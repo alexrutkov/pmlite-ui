@@ -29,7 +29,7 @@ import {MessageToastService} from "@services/message.service";
 })
 export class TaskMenuComponent implements OnInit {
 
-  @Input() taskId!: number;
+  @Input({required: true}) taskId!: number;
 
   enableEditTask$: Observable<boolean> = EMPTY;
   enableTaskJoin$: Observable<boolean> = EMPTY;

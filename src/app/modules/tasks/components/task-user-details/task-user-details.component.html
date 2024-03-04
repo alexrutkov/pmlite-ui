@@ -18,7 +18,7 @@
 
 
 <mat-menu #menu="matMenu">
-  <button [disabled]="!(accountStore.canCancelUser(taskUser) | async)"
+  <button [disabled]="!(accountStore.canCancelTaskUser(taskUser) | async)"
           (click)="cancelUser(taskUser)" mat-menu-item>
     <mat-icon>cancel</mat-icon>
     <span>Отклонить деятеля</span>

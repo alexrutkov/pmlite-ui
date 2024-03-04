@@ -1,0 +1,16 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" class="shadow-5"> <mat-icon>more_vert</mat-icon> </button>
+<mat-menu #menu="matMenu">
+	<button *ngIf="enableTeamJoin$ | async" (click)="joinToTask()" mat-menu-item>
+		<mat-icon>person_add_alt</mat-icon>
+		<span>Заявка на участие</span>
+	</button>
+	<mat-divider></mat-divider>
+	<ng-container *ngIf="enableEditTeam$ | async">
+		<strong class="pl-2">Управление</strong>
+		<button  mat-menu-item [routerLink]="['/teams', 'edit', teamId]">
+			<mat-icon>edit</mat-icon>
+			<span>Редактировать</span>
+		</button>
+	</ng-container>
+</mat-menu>
+

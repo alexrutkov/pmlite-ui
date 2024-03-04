@@ -9,6 +9,8 @@ import {WebsocketService} from "@services/websocket.service";
 import {WebsocketEventType} from "@core/WebsocketEvent";
 import {UserTask} from "@modules/users/model/UserTask";
 import {TaskUser} from "@modules/tasks/model/TaskUser";
+import {TeamUser} from "@modules/teams/model/TeamUser";
+import {UserTeamRole} from "@modules/teams/model/UserTeamRole";
 
 
 @Injectable()
@@ -42,9 +44,23 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
     );
   }
 
+	hasTeamRole(teamId: number, role: UserTaskRole) {
+		return this.select((state: AccountState) =>
+			!!state.details.teamRoles.find(r => r.role == role && r.teamId == teamId)
+		);
+	}
+
   hasTask(taskId: number) {
-    return this.select((state: AccountState) => state.details.taskRoles.map(r => r.taskId).includes(taskId));
+    return this.select((state: AccountState) => state.details.taskRoles
+			.map(r => r.taskId).includes(taskId)
+		);
   }
+
+	hasTeam(teamId: number) {
+		return this.select((state: AccountState) => state.details.teamRoles
+			.map(r => r.teamId).includes(teamId)
+		);
+	}
 
   canManageTask(task: UserTask) {
     return this.select((state: AccountState) =>
@@ -69,7 +85,15 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
     );
   }
 
-  canCancelUser(user: TaskUser) {
+	canManageTeamUser(user: TeamUser) {
+		return this.select((state: AccountState) =>
+			state.details.teamRoles
+				.find(r => r.teamId == user.teamId)
+				?.role == UserTeamRole.OWNER
+		);
+	}
+
+  canCancelTaskUser(user: TaskUser) {
     return this.select((state: AccountState) =>
       state.details.id != user.user.id
       && state.details.taskRoles
@@ -77,4 +101,13 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
         ?.role == UserTaskRole.OWNER
     );
   }
+
+	canCancelTeamUser(user: TeamUser) {
+		return this.select((state: AccountState) =>
+			state.details.id != user.user.id
+			&& state.details.teamRoles
+				.find(r => r.teamId == user.teamId)
+				?.role == UserTeamRole.OWNER
+		);
+	}
 }

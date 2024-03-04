@@ -20,8 +20,8 @@
 
 </div>
 <mat-toolbar class="actions">
-	<button (click)="saveTask()" [disabled]="teamForm.invalid"
-					class="ml-auto" mat-raised-button color="primary">
+	<button (click)="saveTeam()" [disabled]="teamForm.invalid"
+            class="ml-auto" mat-raised-button color="primary">
 		{{teamId ? 'Сохранить' : 'Создать'}}
 	</button>
 </mat-toolbar>
