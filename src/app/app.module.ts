@@ -7,7 +7,6 @@ import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {QuillModule} from "ngx-quill";
 import {registerLocaleData} from "@angular/common";
 import localeRu from '@angular/common/locales/ru';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
@@ -27,7 +26,6 @@ registerLocaleData(localeRu, 'ru');
     HttpClientModule,
     AppRoutingModule,
     ToastModule,
-    QuillModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
