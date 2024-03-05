@@ -1,12 +1,12 @@
 <ng-container *ngIf="(agreement$ | async) as agreement">
   <div class="container with-actions">
     @switch (agreement.type) {
-      @case('TASK') {<app-agreement-task [agreement]="agreement"></app-agreement-task>}
-			@case('TAG') {<app-agreement-tag [agreement]="agreement"></app-agreement-tag>}
-			@case('TEAM') {<app-agreement-team [agreement]="agreement"></app-agreement-team>}
-			@case('TASK_USER') {<app-agreement-task [agreement]="agreement"></app-agreement-task>}
-			@case('TASK_TEAM') {<app-agreement-task [agreement]="agreement"></app-agreement-task>}
-			@case('TEAM_USER') {<app-agreement-team [agreement]="agreement"></app-agreement-team>}
+      @case('TASK') {<app-agreement-task [agreement]="agreement"/>}
+			@case('TAG') {<app-agreement-tag [agreement]="agreement"/>}
+			@case('TEAM') {<app-agreement-team [agreement]="agreement"/>}
+			@case('TASK_USER') {<app-agreement-task [agreement]="agreement"/>}
+			@case('TASK_TEAM') {<app-agreement-task-team [agreement]="agreement"/>}
+			@case('TEAM_USER') {<app-agreement-team [agreement]="agreement"/>}
     }
   </div>
   <app-decision-actions [agreement]="agreement"></app-decision-actions>

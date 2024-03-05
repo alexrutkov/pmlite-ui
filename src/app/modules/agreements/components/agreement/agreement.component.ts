@@ -13,6 +13,9 @@ import {map} from "rxjs/operators";
 import {AgreementTaskComponent} from "@modules/agreements/components/agreement-task/agreement-task.component";
 import {AgreementTagComponent} from "@modules/agreements/components/agreement-tag/agreement-tag.component";
 import {AgreementTeamComponent} from "@modules/agreements/components/agreement-team/agreement-team.component";
+import {
+	AgreementTaskTeamComponent
+} from "@modules/agreements/components/agreement-task-team/agreement-task-team.component";
 
 @Component({
   selector: 'app-agreement',
@@ -28,7 +31,8 @@ import {AgreementTeamComponent} from "@modules/agreements/components/agreement-t
 		NgIf,
 		AgreementTaskComponent,
 		AgreementTagComponent,
-		AgreementTeamComponent
+		AgreementTeamComponent,
+		AgreementTaskTeamComponent
 	],
   templateUrl: './agreement.component.html',
   styleUrl: './agreement.component.scss'
