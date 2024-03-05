@@ -7,6 +7,7 @@ export interface AccountDetails {
   roles: string[];
   taskRoles: AccountTaskRole[];
   teamRoles: AccountTeamRole[];
+  taskTeams: AccountTaskTeamRole[];
 }
 
 export interface AccountTaskRole {
@@ -17,4 +18,9 @@ export interface AccountTaskRole {
 export interface AccountTeamRole {
 	teamId: number;
 	role: keyof typeof UserTeamRole;
+}
+
+export interface AccountTaskTeamRole {
+	taskId: number;
+	teamId: number;
 }

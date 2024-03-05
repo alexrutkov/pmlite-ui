@@ -58,4 +58,14 @@ export class AccountStore extends ComponentStore<AccountState> implements OnStor
 		);
 	}
 
+	canJoinTeamToTask(taskId: number) {
+		return this.select((state: AccountState) => {
+				const allTeams = state.details.teamRoles.map(r => r.teamId);
+				const taskTeams = state.details.taskTeams
+					.filter(t => t.taskId == taskId)
+					.map(t => t.teamId);
+				return allTeams.every(t => taskTeams.includes(t))
+			}
+		);
+	}
 }

@@ -10,6 +10,8 @@ import {concatMap, EMPTY, filter, map, Observable} from "rxjs";
 import {UserTaskRole} from "@modules/tasks/model/UserTaskRole";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {MessageToastService} from "@services/message.service";
+import {MatDialog} from "@angular/material/dialog";
+import {SelectTeamDialogComponent} from "@modules/teams/components/select-team.dialog/select-team.dialog.component";
 
 @Component({
   selector: 'app-task-menu',
@@ -33,12 +35,14 @@ export class TaskMenuComponent implements OnInit {
 
   enableEditTask$: Observable<boolean> = EMPTY;
   enableTaskJoin$: Observable<boolean> = EMPTY;
+	enableTeamJoin$: Observable<boolean> = EMPTY;
 
 
   constructor(
     private http: HttpClient,
     private messageService: MessageToastService,
-    public accountStore: AccountStore
+    public accountStore: AccountStore,
+		private matDialog: MatDialog
   ) {
 
   }
@@ -50,6 +54,7 @@ export class TaskMenuComponent implements OnInit {
   ngOnInit(): void {
     this.enableEditTask$ = this.accountStore.hasTaskRole(this.taskId, UserTaskRole.OWNER);
     this.enableTaskJoin$ = this.accountStore.hasTask(this.taskId).pipe(map(isEnable => !isEnable));
+    this.enableTeamJoin$ = this.accountStore.canJoinTeamToTask(this.taskId).pipe(map(isEnable => !isEnable));
   }
 
   joinToTask() {
@@ -61,4 +66,8 @@ export class TaskMenuComponent implements OnInit {
       concatMap(() => this.http.post(`/api/tasks/${this.taskId}/join`, null))
     ).subscribe(() => this.messageService.success('Заявка создана!'))
   }
+
+	joinTeamToTask() {
+		this.matDialog.open(SelectTeamDialogComponent, {data: this.taskId, minWidth: 300})
+	}
 }

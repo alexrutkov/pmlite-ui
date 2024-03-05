@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Выберите группу для добавление к задаче:</h2>
+<mat-dialog-content>
+	<mat-radio-group [formControl]="teamControl" class="flex flex-column" >
+		@for (t of teams$ | async; track t.id) {
+			<mat-radio-button  [value]="t.id"><span class="font-bold text-xl">{{t.name}}</span></mat-radio-button>
+		}
+	</mat-radio-group>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+	<button (click)="joinTeam()" [disabled]="teamControl.invalid" mat-raised-button color="primary">Подтвердить</button>
+	<button mat-raised-button mat-dialog-close class="ml-auto">Отмена</button>
+</mat-dialog-actions>
