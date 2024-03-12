@@ -8,7 +8,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {PaginatorModule} from "primeng/paginator";
 import {concatMap, debounceTime, filter, Observable} from "rxjs";
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators} from "@angular/forms";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {ENTER} from "@angular/cdk/keycodes";
 import {ErrorService} from "@services/error.service";
 import {MatInput} from "@angular/material/input";
 import {MessageToastService} from "@services/message.service";
@@ -36,7 +36,7 @@ export class SelectTagsComponent implements ControlValueAccessor {
 
   @Output() removed: EventEmitter<number> = new EventEmitter<number>();
 
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  separatorKeysCodes: number[] = [ENTER];
   tagControl = new FormControl<string>(
     '',
     [
