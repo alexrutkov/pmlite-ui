@@ -115,7 +115,11 @@ export class SelectTagsComponent implements ControlValueAccessor {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.value as Tag);
+		const tag = event.option.value as Tag;
+		const tagIndex = this.tags.findIndex(t => t.tagId == tag.tagId);
+		if (tagIndex == -1) {
+			this.tags.push(tag);
+		}
     this.tagInput.nativeElement.value = '';
     this.tagControl.setValue('');
   }

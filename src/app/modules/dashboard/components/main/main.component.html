@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="menu.toggle($event)">
       <mat-icon>{{menu.render ? 'menu_open' : 'menu'}}</mat-icon>
     </button>
-    <span [routerLink]="['/']" class="ml-3 cursor-pointer">PM (lite)</span>
+    <span [routerLink]="['/']" class="ml-3 cursor-pointer">Проект</span>
     <div class="ml-auto">
 
       <button *ngIf="enableCreateTask$ | async" class="ml-auto" [routerLink]="['/tasks', 'createRootTask']" mat-mini-fab>
@@ -26,6 +26,14 @@
     <mat-menu #accountMenu="matMenu">
       <a [routerLink]="['/account', 'profile']" mat-menu-item><mat-icon>face</mat-icon>Профиль</a>
       <a [routerLink]="['/account', 'privacy']" mat-menu-item><mat-icon>manage_accounts</mat-icon>Настройки</a>
+			<mat-divider/>
+      <a href="https://www.youtube.com/channel/UCifZAoAJHYU8cpxwyzhZ5lA" target="_blank"  mat-menu-item>
+				<div class="flex flex-row align-items-center gap-2">
+					<i class="pi pi-youtube"></i><span>Инструкции</span>
+
+				</div>
+			</a>
+      <button (click)="copySupport()" mat-menu-item><mat-icon>help</mat-icon>support&commat;pmlite.ru</button>
     </mat-menu>
 
     <mat-menu #tagMenu="matMenu">

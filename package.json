@@ -7,6 +7,7 @@
     "build": "ng build --output-hashing none",
     "watch": "ng build --watch --configuration development",
     "deploy": "scp -P 2834 -r dist root@10.8.0.1:/containers/webapp",
+    "deploy:prod": "scp -P 22 -r dist root@10.9.0.1:/containers/webapp",
     "test": "ng test"
   },
   "private": true,

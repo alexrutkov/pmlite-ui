@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddAccountTagComponent} from "@modules/tags/components/add-account-tag/add-account-tag.component";
 import {MessageToastService} from "@services/message.service";
 import {AccountTagsDialogComponent} from "@modules/tags/components/account-tags/account-tags.dialog.component";
+import {Clipboard} from '@angular/cdk/clipboard';
 
 @Component({
 	selector: 'app-main',
@@ -27,7 +28,8 @@ export class MainComponent implements OnInit {
 		public tagsStore: TagsStore,
 		private agreementStore: AgreementDetailsStore,
 		private messageService: MessageToastService,
-		private matDialog: MatDialog
+		private matDialog: MatDialog,
+		private clipboard: Clipboard
 	) {
 	}
 
@@ -46,5 +48,10 @@ export class MainComponent implements OnInit {
 
 	manageAccountTags() {
 		this.matDialog.open(AccountTagsDialogComponent, {minWidth: 300})
+	}
+
+	copySupport() {
+		this.clipboard.copy('support@pmlite.ru');
+		this.messageService.success('Адрес скопирован!');
 	}
 }
